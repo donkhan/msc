@@ -1,0 +1,14 @@
+
+('Celko',    'Piper Cub'),
+('Higgins',  'B-52 Bomber'),
+('Higgins',  'F-14 Fighter'),
+('Higgins',  'Piper Cub'),
+('Jones',    'B-52 Bomber'),
+('Jones',    'F-14 Fighter'),
+('Smith',    'B-1 Bomber'),
+('Smith',    'B-52 Bomber'),
+('Smith',    'F-14 Fighter'),
+('Wilson',   'B-1 Bomber'),
+('Wilson',   'B-52 Bomber'),
+('Wilson',   'F-14 Fighter'),
+('Wilson',   'F-17 Fighter')
