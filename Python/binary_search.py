@@ -6,7 +6,7 @@ Created on Tue Sep 24 14:17:00 2019
 v = int(input("Enter the Value to search...."))
 """
 
-l = [1,2,3,4,5,7,8,9]
+l = [1,2,3,4,5,7,8,9,10]
 v = int(input("Enter the Value to search...."))
 
 
