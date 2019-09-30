@@ -116,23 +116,6 @@ char get_next_vertex(char *array,int vc){
 	return ' ';
 }
 
-int can_add(struct edge candidate,struct edge* sparse_matrix,int ec){
-	int i = 0;
-	struct edge tmp;
-	for(i = 0;i<ec;i++){
-		tmp = sparse_matrix[i];
-		if(tmp.src == candidate.src && tmp.dst == candidate.dst){
-			printf("%c %c is rejected at 1\n",candidate.src,candidate.dst);
-			return 0;
-		}
-		if(tmp.src == candidate.dst && tmp.dst == candidate.src){
-			printf("%c %c is rejected at 2\n",candidate.src,candidate.dst);
-			return 0;
-		}
-	}
-	return 1;
-}
-
 void add_to_set(char *set,char vertex,int vc){
 	int i = 0;
 	for(i = 0;i<vc;i++){
@@ -174,35 +157,33 @@ void prims(struct edge *edges,int vc,int ec){
 	struct edge candidate_edge;
 	int no_of_edges_of_given_vertex;
 	int pass = 0,pos = 0,i = 0;
-	char next_vertex;	
-
+	int size_of_unreached = vc,size_of_reached = 0,size_to_calculate;
+	char next_vertex;
+	clrscr();
 	fill(unreached_set,vc);
 	empty(reached_set,vc);
 	print_edges(edges,ec);
-	
-	while(is_not_empty(unreached_set,vc) == 1 && pass < 10){
-		pass = pass + 1;
-		next_vertex = get_next_vertex(unreached_set,vc);	
-		printf("Vertex ... %c\n",next_vertex);	
-		edges_of_vertex = get_edges_of_vertex(edges,next_vertex,ec);
-		no_of_edges_of_given_vertex = get_no_of_edges(edges_of_vertex);
-		sort(edges_of_vertex,no_of_edges_of_given_vertex);
-		for(i = 0;i<no_of_edges_of_given_vertex;i++){
-			candidate_edge = edges_of_vertex[i];
-			if(can_add(candidate_edge,sparse_matrix,ec) == 1){
-				sparse_matrix[pos] = edges_of_vertex[i];
-				pos = pos + 1;
-				break;
-			}
-		}
+	getch();
+
+	while(pass < 2){
+		next_vertex = VERTEX_START;
 		remove_from_set(unreached_set,next_vertex,vc);
 		add_to_set(reached_set,next_vertex,vc);
 		print_set(unreached_set,vc);
 		print_set(reached_set,vc);
-		print_line();		
+		size_of_reached = size_of_reached + 1;
+		size_of_unreached = size_of_unreached - 1;
+		size_to_calculate = size_of_reached + size_of_unreached;
+		edges_of_vertex = (struct edge *)malloc(sizeof(struct edge *) * size_to_calculate);
+
+
+
+
+		pass = pass + 1;
 	}
-	
-	printf("Sparse Matrix \n");
+
+
+	printf("Final Sparse Matrix \n");
 	print_edges(sparse_matrix,pos);
 }
 
@@ -210,8 +191,9 @@ void test_case1(){
 	//https://www.javatpoint.com/prims-minimum-spanning-tree-algorithm
 	int vc = 9;
 	int ec = 10;
-	VERTEX_START = '0';VERTEX_END = '9';
+
 	struct edge *edges = (struct edge *)malloc(sizeof(struct edge) * ec);
+	VERTEX_START = '0';VERTEX_END = '9';
 	edges[0].src = '0'; edges[0].dst = '8'; edges[0].cost = 4;
 	edges[1].src = '0'; edges[1].dst = '3'; edges[1].cost = 2;
 	
@@ -237,13 +219,14 @@ void test_case2(){
 	//https://www.geeksforgeeks.org/prims-minimum-spanning-tree-mst-greedy-algo-5/
         int vc = 9;
         int ec = 14;
-        VERTEX_START = '0';VERTEX_END = '9';
-        struct edge *edges = (struct edge *)malloc(sizeof(struct edge) * ec);
+
+	struct edge *edges = (struct edge *)malloc(sizeof(struct edge) * ec);
+	VERTEX_START = '0';VERTEX_END = '9';
         edges[0].src = '0'; edges[0].dst = '1'; edges[0].cost = 4;
         edges[1].src = '0'; edges[1].dst = '7'; edges[1].cost = 8;
 
         edges[2].src = '1'; edges[2].dst = '7'; edges[2].cost = 11;
-        edges[3].src = '1'; edges[3].dst = '2'; edges[3].cost = 8;
+	edges[3].src = '1'; edges[3].dst = '2'; edges[3].cost = 8;
 
         edges[4].src = '7'; edges[4].dst = '8'; edges[4].cost = 7;
         edges[5].src = '7'; edges[5].dst = '6'; edges[5].cost = 1;
@@ -261,11 +244,12 @@ void test_case2(){
 	edges[12].src = '4'; edges[12].dst = '3'; edges[12].cost = 9;
 	edges[13].src = '5'; edges[13].dst = '6'; edges[13].cost = 2;
 
-        prims(edges,vc,ec);
+	prims(edges,vc,ec);
 }
 
 int main(){
 	test_case1();
+	getch();
 	return 1;
 }
 
