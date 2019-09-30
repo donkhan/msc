@@ -15,9 +15,10 @@ void print_line(){
 }
 
 void print_edges(struct edge *edges,int no){
+	int i;
 	print_line();
 	printf("Edges ......\n");
-	for(int i = 0;i<no;i++){
+	for(i = 0;i<no;i++){
 		printf("Source = %c Destination = %c  Cost = %d\n",edges[i].source,edges[i].destination,edges[i].cost);
 	}
 	print_line();
@@ -88,7 +89,8 @@ void find_neighbours_and_update_short_distance(int row,int **lm,struct edge *edg
 }
 
 int is_visited(char c,char* visited_vertices,int vertex_count){
-	for(int i = 0;i<vertex_count;i++){
+	int i;
+	for(i = 0;i<vertex_count;i++){
 		if(visited_vertices[i] == c){
 			return 1;
 		}
@@ -171,13 +173,14 @@ void dijikstra(struct edge *edges,int vertex_count,int edges_count){
 void test_case1(){
 	int edges_count = 7;
 	int vertex_count = 5;
-	struct edge edges[edges_count];
+	int s = sizeof(struct edge *);
+	struct edge *edges = (struct edge *)malloc(s * edges_count);
 	edges[0].source = 'a';edges[0].destination = 'b'; edges[0].cost = 7;
         edges[1].source = 'a';edges[1].destination = 'c'; edges[1].cost = 3;
         edges[2].source = 'b';edges[2].destination = 'c'; edges[2].cost = 1;
         edges[3].source = 'b';edges[3].destination = 'd'; edges[3].cost = 2;
         edges[4].source = 'b';edges[4].destination = 'e'; edges[4].cost = 6;
-        edges[5].source = 'c';edges[5].destination = 'd'; edges[5].cost = 2;
+	edges[5].source = 'c';edges[5].destination = 'd'; edges[5].cost = 2;
 	edges[6].source = 'd';edges[6].destination = 'e'; edges[6].cost = 4;	
 	dijikstra(edges,vertex_count,edges_count);
 }
@@ -186,10 +189,11 @@ void test_case1(){
 void test_case2(){
 	int edges_count = 4;
 	int vertex_count = 4;
-	struct edge edges[edges_count];
+	int s = sizeof(struct edge *);
+	struct edge *edges = (struct edge *)malloc(s * edges_count);
 	edges[0].source = 'a';edges[0].destination = 'b'; edges[0].cost = 5;
         edges[1].source = 'a';edges[1].destination = 'c'; edges[1].cost = 15;
-        edges[2].source = 'b';edges[2].destination = 'c'; edges[2].cost = 6;
+	edges[2].source = 'b';edges[2].destination = 'c'; edges[2].cost = 6;
         edges[3].source = 'c';edges[3].destination = 'd'; edges[3].cost = 2;
 	dijikstra(edges,vertex_count,edges_count);
 }
@@ -197,11 +201,12 @@ void test_case2(){
 void test_case3(){
 	int edges_count = 4;
 	int vertex_count = 4;
-	struct edge edges[edges_count];
+	int s = sizeof(struct edge *);
+	struct edge *edges = (struct edge *) malloc(s * edges_count);
 	edges[0].source = 'a';edges[0].destination = 'b'; edges[0].cost = 24;
-        edges[1].source = 'a';edges[1].destination = 'c'; edges[1].cost = 3;
+	edges[1].source = 'a';edges[1].destination = 'c'; edges[1].cost = 3;
         edges[2].source = 'a';edges[2].destination = 'd'; edges[2].cost = 20;
-        edges[3].source = 'c';edges[3].destination = 'd'; edges[3].cost = 12;
+	edges[3].source = 'c';edges[3].destination = 'd'; edges[3].cost = 12;
 	dijikstra(edges,vertex_count,edges_count);
 }
 
@@ -230,7 +235,9 @@ void test_case4(){
 void test_case5(){
 	int edges_count = 4;
 	int vertex_count = 4;
-	struct edge edges[edges_count];
+	int s = sizeof(struct edge *);
+	struct edge *edges = (struct edge *) malloc(s * edges_count);
+
 	VERTEX_NAMING_STARTS_WITH = 'A';
 	edges[0].source = 'A';edges[0].destination = 'B'; edges[0].cost = 24;
         edges[1].source = 'B';edges[1].destination = 'C'; edges[1].cost = 3;
@@ -264,7 +271,7 @@ void test_case7(){
         VERTEX_NAMING_STARTS_WITH = 'A';
         edges[0].source = 'A';edges[0].destination = 'B'; edges[0].cost = 3;
         edges[1].source = 'A';edges[1].destination = 'C'; edges[1].cost = 4;
-        edges[2].source = 'A';edges[2].destination = 'D'; edges[2].cost = 7;
+	edges[2].source = 'A';edges[2].destination = 'D'; edges[2].cost = 7;
 	
         edges[3].source = 'B';edges[3].destination = 'C'; edges[3].cost = 1;
         edges[4].source = 'B';edges[4].destination = 'F'; edges[4].cost = 5;
@@ -280,12 +287,13 @@ void test_case7(){
 	edges[11].source = 'E'; edges[11].destination = 'H'; edges[11].cost = 4;
 
 	edges[12].source = 'F';edges[12].destination = 'H'; edges[12].cost = 8;
-	edges[13].source = 'G';edges[13].destination = 'H'; edges[13].cost = 2; 
-	
+	edges[13].source = 'G';edges[13].destination = 'H'; edges[13].cost = 2;
+
 
 	dijikstra(edges,vertex_count,edges_count);
 }
 
 int main(){
 	test_case7();
+	getch();
 }
