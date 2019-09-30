@@ -57,7 +57,7 @@ void add_to_sparse_matrix(struct edge edge,int pos, struct edge *sparse_matrix){
 
 
 int multiplex_edges(struct edge *me,struct edge edge,int count){
-	int i;
+	int i,ec;
 	char s,d;
 	//printf("Adding %c%c\n",edge.src,edge.dst);
 	me[count] = edge;
@@ -65,7 +65,7 @@ int multiplex_edges(struct edge *me,struct edge edge,int count){
 	me[count].src = edge.dst;
 	me[count].dst = edge.src;
 	count = count + 1;
-	int ec = count;
+	ec = count;
 	for(i = 0;i<ec;i++){
 		if(me[i].dst == edge.src){
 			s = me[i].src;
@@ -149,6 +149,7 @@ void test_case1(){
 
 int main(){
 	test_case1();
+	getch();
 	return 1;
 }
 
