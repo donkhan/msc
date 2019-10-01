@@ -19,7 +19,7 @@ def bs(l,ele):
     
     
 def main():
-    l = [1,2,3,4,5]
+    l = range(1,100,2)
     print("List is " + str(l))
     found = bs(l,int(input("Enter the Value to Search: ")))
     if found is True:
