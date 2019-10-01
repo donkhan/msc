@@ -51,7 +51,7 @@ void log_loop(struct edge e){
 	printf("Edge %c to %c will generate a loop. so ignored. \n",e.src,e.dst);
 }
 
-void add_to_sparse_matrix(struct edge edge,int pos, struct edge *sparse_matrix){
+void add_to_mst(struct edge edge,int pos, struct edge *sparse_matrix){
 	sparse_matrix[pos] = edge;
 }
 
@@ -95,9 +95,9 @@ int multiplex_edges(struct edge *me,struct edge edge,int count){
 void kruskal(struct edge *edges,int vc,int ec){
 	int i,j,pos = 0,me_count = 0;
 	struct edge edge;
-	struct edge *sparse_matrix = (struct edge *)malloc(sizeof(struct edge) * ec);
+	struct edge *mst = (struct edge *)malloc(sizeof(struct edge) * ec);
 	struct edge *multiplexed_edges = (struct edge *) malloc(sizeof(struct edge) * ec * ec -1);
-	
+
 	printf("Edges.....\n");
 	print_edges(edges,ec);
 	printf("Sorted....\n");
@@ -106,7 +106,7 @@ void kruskal(struct edge *edges,int vc,int ec){
 	for(i = 0;i<ec;i++){
 		edge = edges[i];
 		if(is_loop(edge,multiplexed_edges,me_count) == 0){
-			add_to_sparse_matrix(edge,pos,sparse_matrix);
+			add_to_mst(edge,pos,mst);
 			me_count = multiplex_edges(multiplexed_edges,edge,me_count);
 			pos = pos + 1;
 			//print_edges(multiplexed_edges,me_count);
@@ -115,8 +115,8 @@ void kruskal(struct edge *edges,int vc,int ec){
 		}
 	}
 	print_line();
-	printf("Sparse Matrix....\n");
-	print_edges(sparse_matrix,pos);
+	printf("MST....\n");
+	print_edges(mst,pos);
 }
 
 void test_case1(){
