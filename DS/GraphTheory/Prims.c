@@ -54,7 +54,7 @@ void prims(struct edge *edges,int vc,int ec){
 			for(j = 0;j<vc;j++){
 				if(unreached_set[j] != ' ' && reached_set[i] != ' '){
 					t_edge = find_distance(unreached_set[j],
-						reached_set[i],edges,ec,1000);
+						reached_set[i],edges,ec,INFINITE);
 					if(t_edge->cost < sd){
 						sd = t_edge->cost;
 						x_edge = t_edge;
@@ -169,7 +169,7 @@ void test_case1(){
 	VERTEX_START = '0';VERTEX_END = '9';
 	edges[0].src = '0'; edges[0].dst = '8'; edges[0].cost = 4;
 	edges[1].src = '0'; edges[1].dst = '3'; edges[1].cost = 2;
-	
+
 	
 	edges[2].src = '1'; edges[2].dst = '7'; edges[2].cost = 4;
 
@@ -180,7 +180,7 @@ void test_case1(){
 	edges[6].src = '3'; edges[6].dst = '4'; edges[6].cost = 1;
 	
 	edges[7].src = '4'; edges[7].dst = '8'; edges[7].cost = 8;
-	
+
 	edges[8].src = '5'; edges[8].dst = '6'; edges[8].cost = 8;
 	edges[9].src = '0'; edges[9].dst = '1'; edges[9].cost = 3;
 	
@@ -195,7 +195,7 @@ void test_case2(){
 
 	struct edge *edges = (struct edge *)malloc(sizeof(struct edge) * ec);
 	VERTEX_START = '0';VERTEX_END = '9';
-        edges[0].src = '0'; edges[0].dst = '1'; edges[0].cost = 4;
+	edges[0].src = '0'; edges[0].dst = '1'; edges[0].cost = 4;
         edges[1].src = '0'; edges[1].dst = '7'; edges[1].cost = 8;
 
         edges[2].src = '1'; edges[2].dst = '7'; edges[2].cost = 11;
@@ -206,7 +206,7 @@ void test_case2(){
 
         edges[6].src = '2'; edges[6].dst = '8'; edges[6].cost = 2;
         edges[7].src = '2'; edges[7].dst = '3'; edges[7].cost = 7;
-        edges[8].src = '2'; edges[8].dst = '5'; edges[8].cost = 4;
+	edges[8].src = '2'; edges[8].dst = '5'; edges[8].cost = 4;
 
 	edges[9].src = '8'; edges[9].dst = '6'; edges[9].cost = 6;
 	
@@ -221,7 +221,7 @@ void test_case2(){
 }
 
 void test_case3(){
-	//https://lcm.csa.iisc.ernet.in/ds
+	//https://lcm.csa.iisc.ernet.in/dsa/node183.html
 	int vc = 6;
 	int ec = 10;
 
