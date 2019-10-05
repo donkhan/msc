@@ -24,20 +24,20 @@ void print_edges(struct edge *edges,int no){
 	print_line();
 }
 
-void fillInfinites(int **cm,int vertex_count,int INFINITE){
+void fillInfinites(int *cm,int vertex_count,int INFINITE){
 	int i,j;
 	for(i = 0;i<vertex_count;i++){
 		for(j = 0;j<vertex_count;j++){
-			cm[i][j] = INFINITE;
+			cm[i] = INFINITE;
 		}
 	}	
 }
 
-void print_costmatrix(int** cm,int vertex_count,int row,int INFINITE){
+void print_costmatrix(int* cm,int vertex_count,int row,int INFINITE){
 	int i,j;
-	for(j = 0;j<vertex_count;j++){
-		if(cm[row][j] != INFINITE){
-			printf("%d \t",cm[row][j]);
+	for(i = 0;i<vertex_count;i++){
+		if(cm[i] != INFINITE){
+			printf("%d \t",cm[i]);
 		}else{
 			printf("INF\t");
 		}
@@ -71,7 +71,7 @@ int get_distance(char s,char e,struct edge *edges,int edges_count,int INFINITE){
 }
 
 
-void find_neighbours_and_update_short_distance(int row,int **lm,struct edge *edges,char source_vertex,int cost,int vertex_count,int edges_count,int INFINITE){
+void find_neighbours_and_update_short_distance(int row,int *lm,struct edge *edges,char source_vertex,int cost,int vertex_count,int edges_count,int INFINITE){
 	int j,distance,total_distance,k;
 	char via = getChar(row);
 	for(j = 0;j<vertex_count;j++){
@@ -80,10 +80,9 @@ void find_neighbours_and_update_short_distance(int row,int **lm,struct edge *edg
 		total_distance = distance + cost;
 		if(DEBUG)
 			printf("%c to %c via %c ld %d Total Distance %d \n",source_vertex,dest_vertex,via,distance,total_distance);
-		if (lm[row][j] > total_distance){
-			for(k = 0;k<vertex_count;k++){
-				lm[k][j] = total_distance;
-			}
+		if (lm[j] > total_distance){
+			lm[j] = total_distance;
+			
 		}
 	}
 }
@@ -98,7 +97,7 @@ int is_visited(char c,char* visited_vertices,int vertex_count){
 	return 0;
 }
 
-char get_next_vertex(int row,char* visited_vertices,int **cm,int vertex_count,int INFINITE){
+char get_next_vertex(int row,char* visited_vertices,int *cm,int vertex_count,int INFINITE){
 	int i,col;
 	char next_vertex = '@';
 	int val = INFINITE;
@@ -107,8 +106,8 @@ char get_next_vertex(int row,char* visited_vertices,int **cm,int vertex_count,in
 		if(is_visited(c,visited_vertices,vertex_count) == 1){
 			continue;
 		}
-		if(cm[row][col] < val){
-			val = cm[row][col];
+		if(cm[row] < val){
+			val = cm[row];
 			next_vertex = c;
 		}
 
@@ -124,13 +123,13 @@ void add_to_visited_vertices(char vertex,int pos,char* visited_vertices){
 	visited_vertices[pos] = vertex;
 }
 
-void print_final_output(int** cost_matrix,int vertex_count,char source_vertex,int INFINITE){
+void print_final_output(int* cost_matrix,int vertex_count,char source_vertex,int INFINITE){
 	int i,j,cost = 0;
 	printf("Shortest Distance between %c and other nodes \n",source_vertex);
 	for(i = 0;i<vertex_count;i++){
-		printf("To %c  = %d \t",getChar(i),cost_matrix[0][i]);
-		if (cost < cost_matrix[0][i] && cost_matrix[0][i] != INFINITE){
-			cost = cost_matrix[0][i];
+		printf("To %c  = %d \t",getChar(i),cost_matrix[i]);
+		if (cost < cost_matrix[i] && cost_matrix[i] != INFINITE){
+			cost = cost_matrix[i];
 		}
 	}
 	printf("\nCost of the Matrix %d \n",cost);
@@ -141,9 +140,8 @@ void dijikstra(struct edge *edges,int vertex_count,int edges_count){
 	char source_vertex = VERTEX_NAMING_STARTS_WITH,next_vertex = source_vertex;
 	int i,j,row,cost,pos,INFINITE = 1000;	
 	char* visited_vertices = (char *) malloc(sizeof(char) * vertex_count);
-	int** cost_matrix = (int **)malloc(sizeof(int *) * vertex_count);
+	int* cost_matrix = (int *)malloc(sizeof(int) * vertex_count);
 	for(i = 0;i<vertex_count;i++){
-		cost_matrix[i] = (int *)malloc(sizeof(int) * vertex_count);
 		visited_vertices[i] = ' ';
 	}
 
@@ -154,7 +152,7 @@ void dijikstra(struct edge *edges,int vertex_count,int edges_count){
 	row = 0;cost = 0;
 	for(i = 0;i<vertex_count;i++){
 		print_line();
-		printf("Next vertex %c with cost of %d \n",next_vertex,cost);
+		printf("Vertex %c with cost of %d \n",next_vertex,cost);
 		find_neighbours_and_update_short_distance(row,cost_matrix,edges,source_vertex,cost,vertex_count,edges_count,INFINITE);
 		add_to_visited_vertices(next_vertex,i,visited_vertices);
 		print_costmatrix(cost_matrix,vertex_count,row,INFINITE);
@@ -163,7 +161,7 @@ void dijikstra(struct edge *edges,int vertex_count,int edges_count){
 			break;
 		}
 		pos = get_position(next_vertex);
-		cost = cost_matrix[row][pos];
+		cost = cost_matrix[pos];
 		row = pos;
 		print_line();
 	}
@@ -294,9 +292,9 @@ void test_case7(){
 }
 
 int main(){
-        int i;
-        void (*fun_ptrs[])() = {test_case1,test_case2,test_case3,test_case4,test_case5,test_case6,test_case7};
-        printf("Enter Test Case No .......");
-        scanf("%d",&i);
-        fun_ptrs[i-1]();
+	int i;
+	void (*fun_ptrs[])() = {test_case1,test_case2,test_case3,test_case4,test_case5,test_case6,test_case7}; 
+	printf("Enter Test Case No .......");
+	scanf("%d",&i);
+	fun_ptrs[i-1]();
 }
