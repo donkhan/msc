@@ -295,5 +295,5 @@ void test_case7(){
 
 int main(){
 	test_case7();
-	getch();
+	//getch();
 }
