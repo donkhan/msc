@@ -15,3 +15,9 @@ create or replace function m_s(d date) returns int begin declare mdays,m int; se
 
 --Age Function
 create or replace function age(dob date) returns int begin declare now date; set now = now(); return floor( (ydays(year(dob),year(now)) + m_l(dob) + m_s(now)) /365 ); end |
+
+
+
+-- Much Simpler Function. Needs to understand looping and declaration
+
+create or replace function age_x(dob date) returns int begin declare n date; declare days int; set days = 0; set n = now(); ll : LOOP if dob > n  then leave ll; else set dob = date_add(dob, INTERVAL 1 day); set days = days + 1; iterate ll;  end if;  END LOOP; return days - 1; end 
