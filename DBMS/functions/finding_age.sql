@@ -21,3 +21,15 @@ create or replace function age(dob date) returns int begin declare now date; set
 -- Much Simpler Function. Needs to understand looping and declaration
 
 create or replace function age_x(dob date) returns int begin declare n date; declare days int; set days = 0; set n = now(); ll : LOOP if dob > n  then leave ll; else set dob = date_add(dob, INTERVAL 1 day); set days = days + 1; iterate ll;  end if;  END LOOP; return days - 1; end 
+
+-- While Loop
+
+create or replace function age_x(dob date) returns int begin declare n date; declare days int; set days = 0; set n = now(); ll : while dob < n  do set dob = date_add(dob, INTERVAL 1 day); set days = days + 1;   end while;  return days; end |
+
+-- Listing functions
+
+show function status;
+
+
+-- Seeing Function Definition
+show create function m_s |
