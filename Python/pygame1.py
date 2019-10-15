@@ -35,7 +35,7 @@ while run:
         y = y - vel
     if keys[pygame.K_DOWN]:
         y = y + vel
-    pygame.draw.rect(win,(255,0,0),(x,y,width,height)
+    pygame.draw.rect(win,(255,0,0),(x,y,width,height))
     pygame.display.update()
 
 pygame.quit()
