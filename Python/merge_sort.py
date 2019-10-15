@@ -38,7 +38,9 @@ def sort(l):
     
 
 def main():
-    print(sort([2,1,4,5,6,3,7,9,23,34,145]))
+    unsorted_array = [2,1,4,5,6,3,7,9,23,34,145]
+    print("Unsorted " + str(unsorted_array))
+    print("Sorted "+ str(sort(unsorted_array)))
 
 main()
     
