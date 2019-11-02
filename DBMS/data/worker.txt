@@ -38,3 +38,5 @@ INSERT INTO Title
 (007, 'Executive', '2016-06-11 00:00:00'),
 (006, 'Lead', '2016-06-11 00:00:00'),
 (003, 'Lead', '2016-06-11 00:00:00');
+
+SELECT Salary FROM Worker W1 WHERE 6 = (SELECT COUNT( DISTINCT ( W2.Salary ) ) FROM Worker W2 WHERE W2.Salary >= W1.Salary);
