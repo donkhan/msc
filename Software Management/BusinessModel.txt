@@ -1,0 +1,18 @@
+Business Domain :  Finance
+Project : Money Exchange System
+
+
+
+
+Business Domain : Restaurant
+Project:	Home Kitchen
+
+Business Domain: Education
+Project: Attendence Management
+
+Business Domain : Travel
+Project: TourManager
+
+
+
+
