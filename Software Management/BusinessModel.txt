@@ -69,7 +69,8 @@ Project:	Home Kitchen
 	2. Ordering Module:
 		2a. Menu for the selected day will be listed.
 		2b. Customer can choose the item and the quantity. Calculated amount will be shown to him.
-	3. 
+	3. Feedback Module:
+		3a. Customer can login and give his feed back by choosing the date and the dish.
 	
 
 
