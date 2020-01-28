@@ -2,7 +2,6 @@ import socket
 
 # Create a TCP/IP socket
 sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-
 # Bind the socket to the port
 server_address = ('localhost', 10000)
 print('server starting up on ')
