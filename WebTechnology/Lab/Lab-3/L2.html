@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+<script>
+    function fn_show_capital(){
+         var val = document.getElementById("c").value;
+         document.getElementById("text").value = val;
+    }
+</script>
+
+</head>
+<body>
+    <textarea rows="4" cols="50">
+        Multi Line Input
+    </textarea>
+    <br>
+
+    <select onchange="fn_show_capital()" id  = "c">
+        <option value="London">Britain</option>
+        <option value="Washington">United States of America</option>
+        <option value="New Delhi">India</option>
+        <option value="Jakarta">Indonesia</option>
+        <option value="Beijing">China</option>
+    </select>
+    <input  id="text" disabled></input>
+    <button>Send to Server </button>
+    <br>
+</body>
+</html>

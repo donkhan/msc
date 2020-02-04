@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+.fade{
+        opacity:.5;
+}
+.fade:hover{
+        opacity:1;
+}
+.rotate:hover{
+        transform: rotateZ(-30deg);
+}
+.grow:hover{
+        transform: scale(1.1);
+}
+.gr:hover{
+        transform: scale(1.05);
+        transform: rotateZ(-30deg);
+}
+
+.cssanimation, .cssanimation span {
+    animation-duration: 1s;
+    animation-fill-mode: both;
+}
+
+.cssanimation span { display: inline-block }
+
+.bounceInBottom { animation-name: bounceInBottom }
+@keyframes bounceInBottom {
+    0% { transform: translate3d(0, 300%, 0) }
+    58% { transform: translate3d(0, -27px, 0) }
+    73% { transform: translate3d(0, 12px, 0) }
+    88% { transform: translate3d(0, -8px, 0) }
+}
+
+.bounce {
+  display: inline-block;
+  position: relative;
+  animation: bounce 1s infinite linear;
+  colr:000;
+}
+.fa-twitter{
+	color: #027bdd;
+  font-size: 30px;
+  margin: 20px;
+}
+@-webkit-keyframes bounce {
+    0% { top: 0; }
+    50% { top: -0.2em; }
+    70% { top: -0.3em; }
+    100% { top: 0; }
+}
+@-moz-keyframes bounce {
+    0% { top: 0; }
+    50% { top: -0.2em; }
+    70% { top: -0.3em; }
+    100% { top: 0; }
+}
+@-o-keyframes bounce {
+    0% { top: 0; }
+    50% { top: -0.2em; }
+    70% { top: -0.3em; }
+    100% { top: 0; }
+}
+@-ms-keyframes bounce {
+    0% { top: 0; }
+    50% { top: -0.2em; }
+    70% { top: -0.3em; }
+    100% { top: 0; }
+}
+@keyframes bounce {
+    0% { top: 0; }
+    50% { top: -0.2em; }
+    70% { top: -0.3em; }
+    100% { top: 0; }
+}
+html {
+  background: red;
+}
+
+ul {
+  margin: 150px auto 0;
+  display: table;
+  text-align: center;
+  color: white;
+  list-style: none;
+}
+li {
+  display: table-cell;
+  position: relative;
+  padding: 50px;
+  font-family: arial;
+
+}
+a {
+  color: white;
+  text-transform:uppercase;
+  text-decoration: none;
+  letter-spacing: .25em;
+
+  display: inline-block;
+  padding: 15px;
+  position: relative;
+}
+a:hover:after {
+  width:100%;
+  right: 0;
+}
+a:after {
+  background: none repeat scroll 0 0 transparent;
+  bottom: 0;
+  content: "";
+  display: block;
+  height: 2px;
+  right: 0;
+  position: absolute;
+  background: #2F74D0;
+  transition: width 1s ease 0s, right 0.5s ease 0s;
+  width: 0;
+}
+    </style>
+</head>
+<body>
+<div>
+  <h1>Hover Effects</h1>
+      <br><br>
+  <label class="bounce" style="font: 100px arial, sans-serif;"> Bounce</label>
+        <br><br>
+  <label class="fade">Fade Effect on Hover</label>
+    <br><br>
+  <div class="rotate"">
+    <label class="rotate">Rotate Effect on Hover</label>
+  </div>
+  <br><br>
+  <div class="grow">
+     <label class="grow">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+         Grow Effect on Hover</label>
+  </div>
+    <br><br>
+  <div class="gr">
+     <label class="gr">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+         Grow Rotate Effect on Hover </label>
+  </div>
+  <br><br>
+  <h1 class="cssanimation sequence bounceInBottom">cssanimation</h1>
+  </div>
+    <div id="mainnav">
+  <ul>
+    <li><a href="#">Home</a></li>
+    <li><a href="#">About</a></li>
+    <li><a href="#">Contact</a></li>
+    <li><a href="#"Store></a></li>
+  </ul>
+</div>
+</body>
+</html>
