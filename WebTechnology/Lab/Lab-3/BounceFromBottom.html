@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+
+.cssanimation, .cssanimation span {
+    animation-duration: 1s;
+    animation-fill-mode: both;
+}
+
+.cssanimation span { display: inline-block }
+
+.bounceInBottom { animation-name: bounceInBottom }
+@keyframes bounceInBottom {
+    0% { transform: translate3d(0, 300%, 0) }
+    58% { transform: translate3d(0, -27px, 0) }
+    73% { transform: translate3d(0, 12px, 0) }
+    88% { transform: translate3d(0, -8px, 0) }
+}
+
+    </style>
+</head>
+<body>
+<div>
+  <br><br>
+  <h1 class="cssanimation sequence bounceInBottom">cssanimation</h1>
+</div>
+</body>
+</html>
