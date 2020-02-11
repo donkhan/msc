@@ -4,36 +4,33 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <script>
+        function print(ans){
+            document.getElementById("ans").value = ans;
+        }
         function add(a,b){
-                ans = a + "+" + b + " = " + (a+b);
-                document.getElementById("ans").value = ans;
+                print(ans = a + "+" + b + " = " + (a+b));
         }
         function sub(a,b){
-                ans = a + "-" + b + " = " + (a-b);
-                document.getElementById("ans").value = ans;
+                print(ans = a + "-" + b + " = " + (a-b));
         }
         function mul(a,b){
-                ans = a + "*" + b + " = " + (a*b);
-                document.getElementById("ans").value = ans;
+                print(ans = a + "*" + b + " = " + (a*b));
         }
         function exp(a,b){
-                ans = a + "**" + b + " = " + (a**b);
-                document.getElementById("ans").value = ans;
+                print(ans = a + "**" + b + " = " + (a**b));
         }
         function div(a,b){
                 if( b != 0){
-                    ans = a + "%" + b + " = " + (a/b);
-                    document.getElementById("ans").value = ans;
+                    print(ans = a + "%" + b + " = " + (a/b));
                 }else{
-                    document.getElementById("ans").value = "Divide By Zero Not supported";
+                    print("Divide By Zero Not supported");
                 }
         }
         function mod(a,b){
                 if( b != 0){
-                    ans = a + "%" + b + " = " + (a%b);
-                    document.getElementById("ans").value = ans;
+                    print(ans = a + "%" + b + " = " + (a%b));
                 }else{
-                    document.getElementById("ans").value = "Divide By Zero Not supported";
+                    print("Divide By Zero Not supported");
                 }
         }
         function fn(f){
@@ -48,6 +45,8 @@
     </script>
 </head>
 <body>
+
+<h1> Simple Calculator </h1>
 
 Number A: <input type="textfield" id="a" /> <br><br>
 Number B: <input type="textfield" id="b" /> <br><br>

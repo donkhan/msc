@@ -15,21 +15,23 @@
             }
          function ReadCookie() {
                var allcookies = document.cookie;
-               alert("All Cookies : " + allcookies );
-               // Get all the cookies pairs in an array
                cookiearray = allcookies.split(';');
                // Now take key value pair out of this array
                for(var i=0; i<cookiearray.length; i++) {
-                  name = cookiearray[i].split('=')[0];
+                  name = cookiearray[i].split('=')[0].trim();
                   value = cookiearray[i].split('=')[1];
-                  alert ("Key is : " + name + " and Value is : " + value);
+                  if(name == 'expires'){
+                    continue;
+                  }
+                  if(name != '' && value != ''){
+                    alert ("Key is : " + name + " and Value is : " + value);
+                  }
                }
             }
             function DeleteCookie(){
                var now = new Date();
                now.setMonth( now.getMonth() - 1 );
-               cookievalue = escape(document.myform.customer.value) + ";"
-               document.cookie = "name=" + cookievalue;
+               document.cookie = "name=" ;
                document.cookie = "expires=" + now.toUTCString() + ";"
             }
     </script>
@@ -40,6 +42,7 @@
          <input type = "button" value = "Set Cookie" onclick = "WriteCookie();"/>
          <p> click the following button and see the result:</p>
          <input type = "button" value = "Get Cookie" onclick = "ReadCookie()"/>
+         <input type = "button" value = "Delete Cookie" onclick = "DeleteCookie()"/>
       </form>
 </body>
 </html>
