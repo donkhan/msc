@@ -1,0 +1,25 @@
+No of Relations from Set A to Set B:
+	No of elements in A = m
+	No of elements in B = n
+		Total No of Relations from Set A to B is pow(2,mn)
+
+
+Number of Reflexive Relations on a set with n elements : pow(2,n(n-1))
+
+Number of Symmetric Relations on a set with n elements : pow(2,n(n+1)/2)
+
+Number of Anti-Symmetric Relations on a set with n elements: pow(2,n)*pow(3,n(n-1)/2)
+
+Number of Asymmetric Relations on a set with n elements : pow(3,n(n-1)/2)
+
+Irreflexive Relations on a set with n elements : pow(2,n(n-1))
+
+Reflexive and symmetric Relations on a set with n elements : pow(2,n(n-1)/2)
+
+
+Let |X| = m and |Y| = n
+
+No. of functions f:X->Y is |Y|^|X| = n^m = 3^5 = 243.
+
+
+
