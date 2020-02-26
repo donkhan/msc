@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        function print(ans){
+            document.getElementById("ans").value = ans;
+        }
+        function add(a,b){
+                print(ans = a + "+" + b + " = " + (a+b));
+        }
+        function sub(a,b){
+                print(ans = a + "-" + b + " = " + (a-b));
+        }
+        function mul(a,b){
+                print(ans = a + "*" + b + " = " + (a*b));
+        }
+        function exp(a,b){
+                print(ans = a + "**" + b + " = " + (a**b));
+        }
+        function div(a,b){
+                if( b != 0){
+                    print(ans = a + "%" + b + " = " + (a/b));
+                }else{
+                    print("Divide By Zero Not supported");
+                }
+        }
+        function mod(a,b){
+                if( b != 0){
+                    print(ans = a + "%" + b + " = " + (a%b));
+                }else{
+                    print("Divide By Zero Not supported");
+                }
+        }
+        function fn(f){
+             a = document.getElementById("a").value
+             b = document.getElementById("b").value
+             if(a != undefined && b != undefined){
+                a = parseFloat(a);
+                b = parseFloat(b);
+                f(a,b);
+             }
+        }
+    </script>
+</head>
+<body>
+
+<h1> Simple Calculator </h1>
+
+Number A: <input type="textfield" id="a" /> <br><br>
+Number B: <input type="textfield" id="b" /> <br><br>
+Answer : <input type="textfield" disabled = true id="ans" /> <br><br>
+
+<button onclick="fn(add)"> Add</button>
+<button onclick="fn(sub)"> Sub</button>
+<button onclick="fn(mul)"> Mul</button>
+<button onclick="fn(div)"> Div</button>
+<button onclick="fn(mod)"> Mod</button>
+<button onclick="fn(exp)"> Exp</button>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        //no = prompt("Enter the No of data points....")
+        no = 3;
+        min = Number.MAX_VALUE;
+        max = Number.MIN_VALUE;
+        grade_counter = 1
+        while (grade_counter <= no){
+            val = parseInt(prompt(" Enter " + grade_counter  + "  Value : " ));
+            if(val < min){
+                min = val;
+            }
+            if(val > max){
+                max = val;
+            }
+            grade_counter = grade_counter + 1
+        }
+        document.write("Min = " + min + " <br> " )
+        document.write("Max = " + max)
+    </script>
+</head>
+<body>
+
+</body>
+</html>

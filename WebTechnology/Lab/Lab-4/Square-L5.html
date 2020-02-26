@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        function square(){
+             i = document.getElementById("a").value
+             if(i != undefined){
+                i = parseInt(i);
+                i = i * i;
+                document.getElementById("b").value = i;
+             }
+
+        }
+    </script>
+</head>
+<body>
+
+Number: <input type="textfield" id="a" /> <br><br><br><br><br>
+Square: <input type="textfield" disabled = true id="b" /> <br><br><br><br>
+
+<button onclick="square()">Calculate</button> <br>
+
+
+
+</body>
+</html>

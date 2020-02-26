@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        function WriteCookie() {
+               if( document.myform.customer.value == "" ) {
+                  alert("Enter some value!");
+                  return;
+               }
+               cookievalue = escape(document.myform.customer.value) + ";";
+               document.cookie = "name=" + cookievalue;
+               alert("Setting Cookies : " + "name=" + cookievalue );
+            }
+         function ReadCookie() {
+               var allcookies = document.cookie;
+               cookiearray = allcookies.split(';');
+               // Now take key value pair out of this array
+               for(var i=0; i<cookiearray.length; i++) {
+                  name = cookiearray[i].split('=')[0].trim();
+                  value = cookiearray[i].split('=')[1];
+                  if(name == 'expires'){
+                    continue;
+                  }
+                  if(name != '' && value != ''){
+                    alert ("Key is : " + name + " and Value is : " + value);
+                  }
+               }
+            }
+            function DeleteCookie(){
+               var now = new Date();
+               now.setMonth( now.getMonth() - 1 );
+               document.cookie = "name=" ;
+               document.cookie = "expires=" + now.toUTCString() + ";"
+            }
+    </script>
+</head>
+<body>
+     <form name = "myform" action = "">
+         Enter name: <input type = "text" name = "customer"/>
+         <input type = "button" value = "Set Cookie" onclick = "WriteCookie();"/>
+         <p> click the following button and see the result:</p>
+         <input type = "button" value = "Get Cookie" onclick = "ReadCookie()"/>
+         <input type = "button" value = "Delete Cookie" onclick = "DeleteCookie()"/>
+      </form>
+</body>
+</html>
