@@ -1,0 +1,76 @@
+Sl No,Players,Country,Franchise,Price,Reserve Price,Specialty
+1,Cameron White,Australia,Bangalore,500000,100000,All Rounder
+2,Jacques Kallis ,South Africa,Bangalore,900000,225000,AllRounder
+3,Wasim Jaffer,India,Bangalore,150000,150000,Batsman
+4,Shivnarine Chanderpaul ,West Indies,Bangalore,200000,200000,Batsman
+5,Anil Kumble,India,Bangalore,500000,250000,Bowler
+6,Zaheer Khan ,India,Bangalore,450000,200000,Bowler
+7,Nathan Bracken,Australia,Bangalore,325000,225000,Bowler
+8,Dale Steyn,South Africa,Bangalore,325000,150000,Bowler
+9,Mark Boucher ,South Africa,Bangalore,450000,200000,WK/Batsman
+10,Matthew Hayden,Australia,Chennai,375000,225000,Batsman
+11,Stephen Fleming,New Zealand,Chennai,350000,350000,Batsman
+12,Suresh Raina,India,Chennai,650000,125000,Batsman
+13,Michael Hussey,Australia,Chennai,250000,250000,Batsman
+14,M Muralitharan,Sri Lanka,Chennai,600000,250000,Bowler
+15,Jacob Oram,New Zealand,Chennai,675000,200000,Bowler
+16,Albie Morkel,South Africa,Chennai,675000,225000,Bowler
+17,Joginder Sharma,India,Chennai,225000,100000,Bowler
+18,Makhaya Ntini ,South Africa,Chennai,200000,200000,Bowler
+19,MS Dhoni,India,Chennai,1500000,400000,WK/Batsman
+20,Parthiv Patel,India,Chennai,325000,150000,WK/Batsman
+21,Fervez Maharoof,Sri Lanka,Delhi,225000,150000,All Rounder
+22,Shoaib Malik,Pakistan,Delhi,500000,300000,Batsman
+23,AB de Villiers,South Africa,Delhi,300000,200000,Batsman
+24,Tillakaratne Dilshan,Sri Lanka,Delhi,250000,150000,Batsman
+25,Gautam Gambhir,India,Delhi,725000,220000,Batsman
+26,Manoj Tiwary,India,Delhi,675000,100000,Batsman
+27,Daniel Vettori,New Zealand ,Delhi,625000,250000,Bowler
+28,Mohammad Asif ,Pakistan,Delhi,650000,225000,Bowler
+29,Glenn McGrath,Australia,Delhi,350000,350000,Bowler
+30,Dinesh Karthik,India,Delhi,525000,200000,WK/Batsman
+31,Shahid Afridi,Pakistan,Hyderabad,675000,225000,All Rounder
+32,Scott Styris,New Zealand,Hyderabad,175000,175000,All Rounder
+33,Andrew Symonds ,Australia,Hyderabad,1350000,250000,Batsman
+34,Herschelle Gibbs ,South Africa,Hyderabad,575000,250000,Batsman
+35,VVS Laxman,India,Hyderabad,375000,150000,Batsman
+36,Rohit Sharma,India,Hyderabad,750000,150000,Batsman
+37,Chamara Silva,Sri Lanka,Hyderabad,100000,100000,Batsman
+38,RP Singh,India,Hyderabad,875000,200000,Bowler
+39,Chaminda Vaas ,Sri Lanka,Hyderabad,200000,200000,Bowler
+40,Nuwan Zoysa,India,Hyderabad,110000,100000,Bowler
+41,Adam Gilchrist ,Australia,Hyderabad,700000,300000,WK/Batsman
+42,Yusuf Pathan,India,Jaipur,475000,100000,All Rounder
+43,Graeme Smith ,South Africa,Jaipur,250000,250000,Batsman
+44,Younis Khan,Pakistan,Jaipur,225000,225000,Batsman
+45,Mohammad Kaif,India,Jaipur,675000,125000,Batsman
+46,Justin Langer,Australia,Jaipur,200000,200000,Batsman
+47,Shane Warne ,Australia,Jaipur,450000,450000,Bowler
+48,Munaf Patel,India,Jaipur,275000,100000,Bowler
+49,Kamran Akmal,Pakistan,Jaipur,150000,150000,WK/Batsman
+50,Ricky Ponting ,Australia,Kolkata,400000,335000,Batsman
+51,Chris Gayle,West Indies ,Kolkata,800000,250000,Batsman
+52,David Hussey,Australia,Kolkata,625000,100000,Batsman
+53,Shoaib Akhtar,Pakistan,Kolkata,425000,250000,Bowler
+54,Ajit Agarkar,India,Kolkata,350000,200000,Bowler
+55,Murali Kartik ,India,Kolkata,425000,200000,Bowler
+56,Umar Gul,Pakistan,Kolkata,150000,150000,Bowler
+57,Ishant Sharma,India,Kolkata,950000,150000,Bowler
+58,Brendon McCullum,New Zealand,Kolkata,700000,175000,WK/Batsman
+59,Tatenda Taibu,Zimbabwe,Kolkata,125000,125000,WK/Batsman
+60,M Jayawardene,Sri Lanka,Mohali,475000,250000,Batsman
+61,Ramnaresh Sarwan,West Indies,Mohali,225000,225000,Batsman
+62,Simon Katich,Australia,Mohali,200000,200000,Batsman
+63,Brett Lee [Images],Australia,Mohali,900000,300000,Bowler
+64,S Sreesanth,India,Mohali,625000,200000,Bowler
+65,Irfan Pathan ,India,Mohali,925000,200000,Bowler
+66,Ramesh Powar,India,Mohali,170000,150000,Bowler
+67,Piyush Chawla,India,Mohali,400000,125000,Bowler
+68,Kumar Sangakkara,Sri Lanka,Mohali,700000,250000,WK/Batsman
+69,Sanath Jayasuriya,Sri Lanka,Mumbai,975000,250000,All Rounder
+70,Shaun Pollock,South Africa,Mumbai,550000,200000,All Rounder
+71,Robin Uthappa,India,Mumbai,800000,200000,Batsman
+72,Loots Bosman,South Africa,Mumbai,150000,150000,Batsman
+73,Harbhajan Singh ,India,Mumbai,850000,250000,Bowler
+74,Lasith Malinga ,Sri Lanka,Mumbai,350000,200000,Bowler
+75,Dilhara Fernando,Sri Lanka,Mumbai,150000,150000,Bowler
