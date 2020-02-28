@@ -6,4 +6,8 @@ def min_moves(l):
             moves = moves + 1
     return moves
 
-print(min_moves([5,1,3,2,7]))
+l = [ int(i) for i in input().split()]
+print(min_moves(l))
+
+
+
