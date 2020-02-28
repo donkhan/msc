@@ -1,5 +1,4 @@
 def min_moves(l):
-    print(l)
     sorted_index = { elem : i for i , elem in enumerate(sorted(l))}
     moves = 0
     for idx,elem in enumerate(l):
