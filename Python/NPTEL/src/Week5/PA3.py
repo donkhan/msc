@@ -21,6 +21,7 @@ def our_problem(n):
         x = i
         y = n - i
         if is_semi_prime(x) and is_semi_prime(y):
+            #print(x,y)
             return True
     return False
 
