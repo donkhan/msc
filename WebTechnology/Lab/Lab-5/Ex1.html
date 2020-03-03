@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        if(window.attachEvent) {
+            window.attachEvent('onload', yourFunctionName);
+        } else {
+            if(window.onload) {
+                var curronload = window.onload;
+                var newonload = function(evt) {
+                    curronload(evt);
+                    renderFn(evt);
+                };
+            window.onload = newonload;
+            } else {
+                window.onload = renderFn;
+            }
+        }
+        function renderFn(){
+            var table = document.getElementById("t");
+            // Create an empty <tr> element and add it to the 1st position of the table:
+            for(i = 1;i<101;i++){
+                var row = table.insertRow(i);
+                // Insert new cells (<td> elements) at the 1st and 2nd position of the "new" <tr> element:
+                var cell1 = row.insertCell(0);
+                var cell2 = row.insertCell(1);
+                var cell3 = row.insertCell(2);
+                // Add some text to the new cells:
+                cell1.innerHTML = (i).toLocaleString('en', {useGrouping:true})
+                cell2.innerHTML = (i*i).toLocaleString('en', {useGrouping:true})
+                cell3.innerHTML = (i*i*i).toLocaleString('en', {useGrouping:true})
+            }
+         }
+    </script>
+    <style>
+        table, th, td {
+         border: 1px solid black;
+         border-collapse: collapse;
+        }
+        th{
+            width: 100px;
+        }
+        td{
+            text-align: center
+        }
+    </style>
+</head>
+<body>
+<br><br>
+<table id="t">
+    <tr><th>Number</th><th>Square</th><th>Cube</th></tr>
+</table>
+</body>
+</html>
