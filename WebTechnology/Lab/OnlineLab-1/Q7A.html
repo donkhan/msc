@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        if(window.attachEvent) {
+            window.attachEvent('onload', yourFunctionName);
+        } else {
+            if(window.onload) {
+                var curronload = window.onload;
+                var newonload = function(evt) {
+                    curronload(evt);
+                    renderFn(evt);
+                };
+            window.onload = newonload;
+            } else {
+                window.onload = renderFn;
+            }
+        }
+        function renderFn(){
+            var p = document.getElementById("dt");
+            p.innerHTML = new Date()
+         }
+    </script>
+
+</head>
+<body>
+<br><br>
+<p id="dt"></p>
+</body>
+</html>

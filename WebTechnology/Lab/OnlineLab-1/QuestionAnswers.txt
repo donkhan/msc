@@ -1,0 +1,11 @@
+
+
+Q6:
+   a: XML, DTD for Book - Done
+   b: Mouse Over Event - Done
+Q7:
+   a: Java Script - to print date and time - Done
+   b: XML,DTD for Student - Done
+   c: DHTML for onsubmit event - Done
+
+ 
