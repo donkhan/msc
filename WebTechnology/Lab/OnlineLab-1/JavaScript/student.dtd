@@ -1,0 +1,44 @@
+<?xml encoding="UTF-8"?>
+
+<!ELEMENT student (date-of-birth,name,course,stream,year-of-joining,
+                   semesters)>
+<!ATTLIST student
+  xmlns CDATA #FIXED ''>
+
+<!ELEMENT date-of-birth (#PCDATA)>
+<!ATTLIST date-of-birth
+  xmlns CDATA #FIXED ''>
+
+<!ELEMENT name (#PCDATA)>
+<!ATTLIST name
+  xmlns CDATA #FIXED ''>
+
+<!ELEMENT course (#PCDATA)>
+<!ATTLIST course
+  xmlns CDATA #FIXED ''>
+
+<!ELEMENT stream (#PCDATA)>
+<!ATTLIST stream
+  xmlns CDATA #FIXED ''>
+
+<!ELEMENT year-of-joining (#PCDATA)>
+<!ATTLIST year-of-joining
+  xmlns CDATA #FIXED ''>
+
+<!ELEMENT semesters (semester)>
+<!ATTLIST semesters
+  xmlns CDATA #FIXED ''>
+
+<!ELEMENT semester (papers)>
+<!ATTLIST semester
+  xmlns CDATA #FIXED ''
+  no CDATA #REQUIRED>
+
+<!ELEMENT papers (paper)+>
+<!ATTLIST papers
+  xmlns CDATA #FIXED ''>
+
+<!ELEMENT paper EMPTY>
+<!ATTLIST paper
+  xmlns CDATA #FIXED ''
+  name CDATA #REQUIRED>

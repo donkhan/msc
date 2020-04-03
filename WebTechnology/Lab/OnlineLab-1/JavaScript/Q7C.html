@@ -1,0 +1,27 @@
+<HTML>
+<HEAD>
+<TITLE>Submit and Reset Confirmation</TITLE>
+<SCRIPT LANGUAGE="JavaScript">
+function allowReset() {
+    return window.confirm("Go ahead and clear the form?")
+}
+function allowSend() {
+    return window.confirm("Go ahead and mail this info?")
+}
+</SCRIPT>
+</HEAD>
+<BODY>
+<FORM METHOD=POST ENCTYPE="text/plain" ACTION="mailto:trash4@dannyg.com"
+ onReset="return allowReset()" onSubmit="return allowSend()">
+Enter your first name:<INPUT TYPE="text" NAME="firstName"><P>
+Enter your last name:<INPUT TYPE="text" NAME="lastName"><P>
+Enter your address:<INPUT TYPE="text" NAME="address"><P>
+Enter your city:<INPUT TYPE="text" NAME="city"><P>
+<INPUT TYPE="radio" NAME="gender" CHECKED>Male
+<INPUT TYPE="radio" NAME="gender">Female <P>
+<INPUT TYPE="checkbox" NAME="retired">I am retired<P>
+<INPUT TYPE="reset">
+<INPUT TYPE="submit">
+</FORM>
+</BODY>
+</HTML>

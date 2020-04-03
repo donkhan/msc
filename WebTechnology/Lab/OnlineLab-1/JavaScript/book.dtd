@@ -1,0 +1,36 @@
+<?xml encoding="UTF-8"?>
+
+<!ELEMENT book (author,publisher,title,Editions)>
+<!ATTLIST book
+  xmlns CDATA #FIXED ''>
+
+<!ELEMENT author EMPTY>
+<!ATTLIST author
+  xmlns CDATA #FIXED ''
+  name CDATA #REQUIRED>
+
+<!ELEMENT publisher EMPTY>
+<!ATTLIST publisher
+  xmlns CDATA #FIXED ''
+  name CDATA #REQUIRED>
+
+<!ELEMENT title EMPTY>
+<!ATTLIST title
+  xmlns CDATA #FIXED ''
+  name CDATA #REQUIRED>
+
+<!ELEMENT Editions (Edition)>
+<!ATTLIST Editions
+  xmlns CDATA #FIXED ''>
+
+<!ELEMENT Edition (no,year)>
+<!ATTLIST Edition
+  xmlns CDATA #FIXED ''>
+
+<!ELEMENT no (#PCDATA)>
+<!ATTLIST no
+  xmlns CDATA #FIXED ''>
+
+<!ELEMENT year (#PCDATA)>
+<!ATTLIST year
+  xmlns CDATA #FIXED ''>

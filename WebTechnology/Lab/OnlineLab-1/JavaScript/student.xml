@@ -1,0 +1,15 @@
+<student>
+<date-of-birth>5-7-2000 </date-of-birth>
+<name> XYZ </name>
+<course> MSC </course>
+<stream> Computer Science </stream>
+<year-of-joining> 2019 </year-of-joining>
+<semesters>
+<semester no="1">
+<papers>
+<paper name="Python"></paper>
+<paper name="Discrete Maths"> </paper>
+</papers>
+</semester>
+</semesters>
+</student>

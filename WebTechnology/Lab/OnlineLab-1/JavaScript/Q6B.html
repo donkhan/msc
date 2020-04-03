@@ -1,0 +1,22 @@
+<HTML>
+<HEAD>
+<TITLE>title Property</TITLE>
+<SCRIPT LANGUAGE="JavaScript">
+var count = 0
+function setToolTip(elem) {
+    elem.title = "You have previously rolled atop this paragraph " + count + " time(s)."
+}
+function incrementCount(elem) {
+    count++;
+    setToolTip(elem);
+}
+</SCRIPT>
+</HEAD>
+<BODY>
+<H1>title Property Lab</H1>
+<HR>
+<P ID="myP" TITLE="First Time!" onMouseOver="incrementCount(this)">
+Roll the mouse over this paragraph a few times.<BR>
+Then pause it to view the tooltip.</P>
+</BODY>
+</HTML>
