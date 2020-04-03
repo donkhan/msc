@@ -17,7 +17,7 @@ function myFunction() {
     var h = document.createElement("H1"); // Create the H1 element
     var t = document.createTextNode("New Header"); // Create a text element
     h.appendChild(t);
-    div.removeChild(div.firstChild);div.removeChild(div.firstChild);
+    div.removeChild(div.firstElementChild);
     div.appendChild(h);
 }
 
