@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+</head>
+<body>
+
+<div id="myDiv">
+<h1 id="h1"> Header in the Beginning</h1>
+</div>
+
+<button onclick="myFunction()">Change Header</button>
+
+<script>
+function myFunction() {
+    var div = document.getElementById("myDiv");
+    var h = document.createElement("H1"); // Create the H1 element
+    var t = document.createTextNode("New Header"); // Create a text element
+    h.appendChild(t);
+    div.removeChild(div.firstChild);div.removeChild(div.firstChild);
+    div.appendChild(h);
+}
+
+</script>
+
+</body>
+</html>
