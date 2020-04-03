@@ -1,5 +1,10 @@
+VBScripts - All Problems are done
 
-
+Q1: DHTML using JavaScript - Done
+Q2: Dom Manipulation of Header - Done
+Q3: Header change on button click - Done
+Q4: CSS Change using JavaScript - Done
+Q5: Not Attempted
 Q6:
    a: XML, DTD for Book - Done
    b: Mouse Over Event - Done
