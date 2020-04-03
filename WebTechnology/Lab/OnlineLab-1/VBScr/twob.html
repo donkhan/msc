@@ -1,0 +1,28 @@
+<html>
+<head>
+<meta http-equiv="x-ua-compatible" content="IE=10">
+<title>My First VBScript Code!!!</title>
+</head>
+<body>
+
+<script type="text/vbscript">
+v = InputBox("Enter the No ")
+document.write("<br>")
+If v < 1 OR v > 100 Then
+ document.write("Outside Range")
+Else
+For i = 1 to v Step 1
+    j = i MOD 10
+    If j = 0 Then
+        document.write( i & "<br>")
+    End If
+Next
+End If
+
+document.write("<br>")
+
+
+</script>
+
+</body>
+</html>

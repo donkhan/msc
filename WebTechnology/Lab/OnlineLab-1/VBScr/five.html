@@ -1,0 +1,24 @@
+<html>
+<head>
+<meta http-equiv="x-ua-compatible" content="IE=10">
+<title>M</title>
+</head>
+
+
+<script type="text/vbscript">
+     Function cal()
+        e = InputBox("Enter English...")
+        m = InputBox("Enter Maths...")
+        s = InputBox("Enter Science...")
+        average = (cInt(e) + cInt(s) + cInt(m) )/300
+        MsgBox(FormatPercent(average,3))
+     End Function
+     document.write(FormatPercent(((90+95+96)/300),3))
+     document.write("<br>")
+
+</script>
+
+<body>
+<button onclick="cal()"> Calculate Mark </button>
+</body>
+</html>
