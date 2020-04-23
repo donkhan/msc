@@ -1,0 +1,6 @@
+# Class Problem 2
+PID A.T B.T Order
+P1  0   3
+P2  0   4
+P3  0   3
+time_quantum=1

@@ -1,0 +1,6 @@
+P1. two digit decimal - Done
+P2. Cover test case not found case - Done
+
+D1. Needs to add more test cases
+D2. Prepare documentation
+D3. Zip the complete stuff and send to the Project Guide

@@ -1,0 +1,2 @@
+This program was tested in Python 2.7 and in 3.7.3 This program uses matplotlib
+for showing gantt chart. To install matplotlib please run pip install matplotlib

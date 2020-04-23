@@ -1,0 +1,6 @@
+List of OS we tested
+
+1. Windows
+2. Mac
+
+

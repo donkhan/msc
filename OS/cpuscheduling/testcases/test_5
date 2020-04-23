@@ -1,0 +1,8 @@
+# Idle in Between also
+PID A.T B.T Order
+P1  2   5
+P2  10   7
+time_quantum=5
+
+
+

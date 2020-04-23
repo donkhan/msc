@@ -1,0 +1,15 @@
+# Class Problem 2
+PID A.T B.T Order
+P1  4   5
+P2  2   7
+P3  3   7
+P4  3   6
+time_quantum=3
+assert:total_turnaround_time=89
+assert:avg_turnaround_time=22.25
+assert:total_wait_time=64
+assert:avg_wait_time=16
+
+
+
+
