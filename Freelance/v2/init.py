@@ -14,11 +14,9 @@ def get_config(exam):
 
 def fire_request(url):
     request = urllib2.Request(url)
-    opener = urllib2.build_opener(urllib2.HTTPHandler(debuglevel=1))
-    sock = opener.open(request)
-    content = sock.read()
+    sock = urllib2.build_opener(urllib2.HTTPHandler(debuglevel=1)).open(request)
+    d = json.loads(sock.read())
     sock.close()
-    d = json.loads(content)
     return d
 
 
@@ -98,6 +96,7 @@ def fill_marks(subjects,subject_results,index_no,expected_no_of_results):
     if no_of_subjects != expected_no_of_results:
         print "Error for " , index_no, " e ", expected_no_of_results, " o ", len(mark_array), mark_array
     return mark_array
+
 
 def get(config):
     fd = open("v2.config")
