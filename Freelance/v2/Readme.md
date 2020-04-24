@@ -1,4 +1,4 @@
-Download all the files
+Download all the files.
 Run as:
 
 python alresult.py
