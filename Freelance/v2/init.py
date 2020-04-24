@@ -1,4 +1,5 @@
 import urllib2
+import json
 
 input_sep = ","
 
@@ -17,7 +18,8 @@ def fire_request(url):
     sock = opener.open(request)
     content = sock.read()
     sock.close()
-    return content
+    d = json.loads(content)
+    return d
 
 
 def open_file(output_file,header):

@@ -1,11 +1,9 @@
 import init
-import json
 
 config = init.get_config("gv")
 
 
-def parse(op_file,content,index_line):
-    d = json.loads(content)
+def parse(op_file,d,index_line):
     init.write_to_file(index_line + "," + init.find(d['studentInfo'],"District / Medium Cut off Mark") + ","
                        + d['subjectResults'][0]['subjectResult'] + "\n", op_file)
 
