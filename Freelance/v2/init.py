@@ -90,6 +90,8 @@ def fill_marks(subjects,subject_results,index_no,expected_no_of_results):
             print "Exception happened"
     if no_of_subjects != expected_no_of_results:
         print "Error for " , index_no, " e ", expected_no_of_results, " o ", len(mark_array), mark_array
+        print "Subjects" , subjects
+        print "Subject Results",subject_results
     return mark_array
 
 

@@ -6,7 +6,7 @@ config = init.get_config("al")
 def parse(op_file,d,index_line):
     student_info = ",".join(index_line.split(init.input_sep)[0:8])
     s = ""
-    for s_info in ['Subject Stream','Syllabus','District Rank','Island Rank','Z-Score']:
+    for s_info in ['Name','Subject Stream','Syllabus','District Rank','Island Rank','Z-Score']:
         s = s + "," + init.find(d['studentInfo'],s_info)
 
     init.write_to_file(student_info + "," + s[1:] + "," + ",".join(init.fill_marks(config[4], d['subjectResults'],
