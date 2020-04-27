@@ -10,10 +10,15 @@ def get_config(exam):
 
 
 def fire_request(url):
-    sock = urllib2.build_opener(urllib2.HTTPHandler(debuglevel=1)).open(urllib2.Request(url))
-    d = json.loads(sock.read())
-    sock.close()
-    return d
+    try:
+        req = urllib2.Request(url)
+        sock = urllib2.build_opener(urllib2.HTTPHandler(debuglevel=0)).open(req)
+        d = json.loads(sock.read())
+        sock.close()
+        return d
+    except urllib2.HTTPError as error:
+        code = error.getcode()
+        print "Error Code " + code
 
 
 def open_file(output_file,header):
