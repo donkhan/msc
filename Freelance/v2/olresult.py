@@ -1,6 +1,4 @@
 import init
-import json
-
 config = init.get_config("ol")
 
 

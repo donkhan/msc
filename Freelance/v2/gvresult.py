@@ -4,7 +4,11 @@ config = init.get_config("gv")
 
 
 def parse(op_file,d,index_line):
-    init.write_to_file(index_line + "," + init.find(d['studentInfo'],"District / Medium Cut off Mark") + ","
+    if 'errMsge' in d:
+        init.write_to_file(index_line + " - Student Not Found \n",op_file)
+        return
+    init.write_to_file(index_line + "," + d['name'] + "," +
+                       init.find(d['studentInfo'],"District / Medium Cut off Mark") + ","
                        + d['subjectResults'][0]['subjectResult'] + "\n", op_file)
 
 

@@ -18,6 +18,7 @@ def fire_request(url):
 
 def open_file(output_file,header):
     f = open(output_file, "w")
+    header = header.upper()
     f.write(header)
     return f
 
