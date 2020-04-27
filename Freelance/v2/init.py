@@ -3,18 +3,14 @@ import json
 
 input_sep = ","
 
+
 def get_config(exam):
-    url="https://doenets.lk/result/service/"+exam[0].upper() + exam[1:]+"Result"
-    input_file="input-"+exam+".csv"
-    output_file="output-"+exam+".csv"
-    header = get(exam + "_header")
-    subjects = get(exam + "_subjects").split(",")
-    return url,input_file,output_file,header,subjects
+    return get("base_url")+exam[0].upper() + exam[1:]+"Result","input-"+exam+".csv",\
+           "output-"+exam+".csv",get(exam + "_header"),get(exam + "_subjects").split(",")
 
 
 def fire_request(url):
-    request = urllib2.Request(url)
-    sock = urllib2.build_opener(urllib2.HTTPHandler(debuglevel=1)).open(request)
+    sock = urllib2.build_opener(urllib2.HTTPHandler(debuglevel=1)).open(urllib2.Request(url))
     d = json.loads(sock.read())
     sock.close()
     return d
@@ -39,8 +35,7 @@ def start(input_file,output_file,header,url,input_sep,parse_fn,pos=6,query_formi
     f = open_file(output_file,header)
     lines = open(input_file, "r").readlines()[1:]
     for line in lines:
-        index_line = line.replace('\n', '')
-        index_line = index_line.replace("\r", "")
+        index_line = line.replace('\n', '').replace("\r", "")
         if index_line.startswith("#"):
             continue
         index_no = index_line.split(input_sep)[pos]
