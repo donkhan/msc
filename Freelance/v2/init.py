@@ -12,13 +12,15 @@ def get_config(exam):
 def fire_request(url):
     try:
         req = urllib2.Request(url)
-        sock = urllib2.build_opener(urllib2.HTTPHandler(debuglevel=0)).open(req)
+        sock = urllib2.build_opener(urllib2.HTTPHandler()).open(req)
         d = json.loads(sock.read())
         sock.close()
         return d
-    except urllib2.HTTPError as error:
-        code = error.getcode()
-        print "Error Code " + code
+    except urllib2.HTTPError as http_error:
+        print "Http Error Happened. Code is " , http_error.getcode()
+    except urllib2.URLError as error:
+        print "URL Error Happened. Reason is" , error.reason.strerror
+
 
 
 def open_file(output_file,header):
