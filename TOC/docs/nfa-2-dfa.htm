@@ -1,0 +1,269 @@
+
+<!-- saved from url=(0072)https://www.cs.odu.edu/~toida/nerzic/390teched/regular/fa/nfa-2-dfa.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252"></head><body>
+<div align="right"><h5>Finite Automata</h5></div>
+<center>
+<h2>
+Conversion of NFA to DFA
+</h2>
+</center>
+<br><br>
+<b>Conversion of NFA to DFA </b>
+<br>
+<br>
+Let M<sub>2</sub> = &lt; Q<sub>2</sub> , <img src="./nfa-2-dfa_files/Sigma.gif"> , 
+q<sub>2,0</sub> , <img src="./nfa-2-dfa_files/delta.gif"><sub>2</sub> , A<sub>2</sub> &gt; be an
+NFA
+that recognizes a language L.
+Then the DFA M
+= &lt; Q, <img src="./nfa-2-dfa_files/Sigma.gif"> , 
+q<sub>0</sub> , <img src="./nfa-2-dfa_files/delta.gif">, A &gt; that satisfies the following conditions recognizes L:
+<br>
+<br>
+
+<b>Q</b> = 2<sup>Q<sub>2</sub></sup> , that is the set of all subsets of Q<sub>2</sub> , 
+<br>
+q<sub>0</sub> = { q<sub>2,0</sub> } ,
+<br>
+<img src="./nfa-2-dfa_files/delta.gif">( q, a ) = <img align="MIDDLE" src="./nfa-2-dfa_files/cup-delta-q.gif">  
+for each state q in <b>Q</b> and each symbol a in <img src="./nfa-2-dfa_files/Sigma.gif"> &nbsp; and 
+<br>
+A = { q <img align="MIDDLE" src="./nfa-2-dfa_files/in.gif"> Q | q <img src="./nfa-2-dfa_files/cap.gif"> A<sub>2</sub> 
+<img align="MIDDLE" src="./nfa-2-dfa_files/neq.gif"> <img align="MIDDLE" src="./nfa-2-dfa_files/emptyset.gif"> }
+<br>
+<br>
+<br>
+
+<!--
+For the validity of this conversion see the textbook.
+<BR>
+<BR>
+--->
+
+<!--
+Thus to obtain a DFA which recognizes the same langauge as a given 
+NFA, 
+you may proceed as follows:
+<BR>
+<BR>
+--->
+
+To obtain a DFA M = &lt; Q, <img src="./nfa-2-dfa_files/Sigma.gif"> , 
+q<sub>0</sub> , <img src="./nfa-2-dfa_files/delta.gif">, A &gt; which accepts the same language as the given 
+NFA
+M<sub>2</sub> = &lt; Q<sub>2</sub> , <img align="TOP" src="./nfa-2-dfa_files/Sigma.gif"> , 
+q<sub>2,0</sub> , <img src="./nfa-2-dfa_files/delta.gif"><sub>2</sub> , A<sub>2</sub> &gt; does, 
+you may proceed as follows:
+<br>
+<br>
+Initially <b>Q </b>= <img align="MIDDLE" src="./nfa-2-dfa_files/emptyset.gif">.
+<br>
+First put { q<sub>2,0</sub> } into <b>Q</b>. { q<sub>2,0</sub> } is the initial state of the DFA M.
+<br>
+Then for each state q in <b>Q</b> do the following:
+<br>
+add the set <img align="MIDDLE" src="./nfa-2-dfa_files/cup-delta-q.gif">, where <img src="./nfa-2-dfa_files/delta.gif">here is that of NFA M<sub>2</sub>, 
+as a state to <b>Q</b> if it is not already in <b>Q</b> for each symbol a
+in <img src="./nfa-2-dfa_files/Sigma.gif"> . 
+<br>
+For this new state, add
+<img src="./nfa-2-dfa_files/delta.gif">( q, a ) = 
+<img align="MIDDLE" src="./nfa-2-dfa_files/cup-delta-q.gif"> to 
+<img src="./nfa-2-dfa_files/delta.gif">, where the <img src="./nfa-2-dfa_files/delta.gif"> on the right hand side
+is that of  NFA M<sub>2</sub>.
+
+<br>
+<br>
+When no more new states can be added to <b>Q</b>, the process terminates. All the states of <b>Q</b> that contain 
+accepting states of M<sub>2</sub> are accepting states of M.
+<br>
+<br>
+<b>Note:</b> The states that are not reached from the initial state are not included in <b>Q</b> obtained by this procedure. 
+Thus the set of states <b>Q</b> thus obtained is not necessarily equal to 2<sup>Q<sub>2</sub></sup> .
+<br>
+
+<br>
+<br>
+<br>
+<b>Example 1:</b> Let us convert the following NFA
+to DFA.
+<br>
+<br>
+<br>
+<br>
+
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+<img src="./nfa-2-dfa_files/nfa-dfa1.jpg"> 
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+Initially Q is empty.
+Then since the initial state of the DFA is {0} , {0} is added to Q.
+<br>
+Since <img src="./nfa-2-dfa_files/delta.gif"><sub>2</sub>( 0 , a ) = { 1 , 2 } ,
+{ 1 , 2 } is added to <b>Q</b> and <img src="./nfa-2-dfa_files/delta.gif">( { 0 } , a ) = 
+{ 1 , 2 } .
+<br>
+Since <img src="./nfa-2-dfa_files/delta.gif"><sub>2</sub>( 0 , b ) = 
+<img align="MIDDLE" src="./nfa-2-dfa_files/emptyset.gif"> ,
+<img align="MIDDLE" src="./nfa-2-dfa_files/emptyset.gif"> is added to  
+<b>Q</b> and <img src="./nfa-2-dfa_files/delta.gif">( { 0 } , b ) = 
+<img align="MIDDLE" src="./nfa-2-dfa_files/emptyset.gif"> .
+<br>
+At this point Q = { {0} , { 1 , 2 }, 
+<img align="MIDDLE" src="./nfa-2-dfa_files/emptyset.gif"> } .
+<br>
+Then since { 1 , 2 } is now in <b>Q</b>, the transitions from { 1 , 2 } on symbols a and b are computed.
+Since  <img src="./nfa-2-dfa_files/delta.gif"><sub>2</sub>( 1 , a ) = { 1 , 2 } , and 
+ <img src="./nfa-2-dfa_files/delta.gif"><sub>2</sub>( 2 , a ) = <img align="MIDDLE" src="./nfa-2-dfa_files/emptyset.gif"> ,
+<img src="./nfa-2-dfa_files/delta.gif">( { 1 , 2 } , a ) = { 1 , 2 } . 
+Similarly <img src="./nfa-2-dfa_files/delta.gif">( { 1 , 2 } , b ) = { 1 , 3 } . Thus { 1 , 3 } is added to <b>Q</b> .
+<br>
+Similarly <img src="./nfa-2-dfa_files/delta.gif">( { 1 , 3 } , a ) = { 1 , 2 } and
+<img src="./nfa-2-dfa_files/delta.gif">( { 1 , 3 } , b ) = <img align="MIDDLE" src="./nfa-2-dfa_files/emptyset.gif"> .
+Thus
+no new states are added to <b>Q</b> . Since the transitions from all states of <b>Q</b> have been
+computed and no more states are added to <b>Q</b>, the conversion process stops here.
+<br>
+<br>
+Note that there are no states of Q<sub>2</sub> in <img align="MIDDLE" src="./nfa-2-dfa_files/emptyset.gif"> .
+Hence there are no states that M<sub>2</sub> can go to from <img align="MIDDLE" src="./nfa-2-dfa_files/emptyset.gif"> .
+Hence <img src="./nfa-2-dfa_files/delta.gif">(
+<img align="MIDDLE" src="./nfa-2-dfa_files/emptyset.gif"> , a ) =
+<img src="./nfa-2-dfa_files/delta.gif">(
+<img align="MIDDLE" src="./nfa-2-dfa_files/emptyset.gif"> , b ) =
+<img align="MIDDLE" src="./nfa-2-dfa_files/emptyset.gif"> .
+<br>
+<br>
+For the accepting states of M, since states 0 and 1 are the accepting states of the NFA, all the states of
+<b>Q</b> that contain 0 and/or 1 are accepting states. Hence { 0 }, { 1 , 2 } and { 1 , 3 } are the accepting
+states of M.
+<br><br><br>
+The DFA thus obtained is shown below.
+<br><br><br>
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+<img src="./nfa-2-dfa_files/dfa1.jpg"> 
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<b>Example 2:</b> Similarly the NFA 
+<br>
+<br>
+<br>
+<br>
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+<img src="./nfa-2-dfa_files/nfa-dfa2.jpg"> 
+<br>
+<br>
+<br>
+<br>
+<br>
+is converted to the following DFA: 
+<br>
+<br>
+<br>
+<br>
+<br>
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+<img src="./nfa-2-dfa_files/dfa2.jpg">
+<br>
+<br>
+<br>
+<br>
+<br>
+<h3><font color="green">Test Your Understanding of Conversion of NFA to DFA</font></h3>
+Indicate which of the following statements are correct and which are not.
+<br>
+Click Yes or No , then Submit.
+<br>
+There are two sets of questions.
+<br>
+<br>
+Answer the questions below on converting the following NFA
+to DFA.
+<br><br><br>
+<img src="./nfa-2-dfa_files/nfa-2-dfa-ex.jpg">
+<br>
+<br>
+<br>
+The following notation is used in the questions:
+<br><br>
+<img src="./nfa-2-dfa_files/delta.gif">
+<!--
+<SUB>1</SUB>
+--->
+&nbsp; &nbsp;<b>:</b> \delta
+<!--
+&nbsp; &nbsp; <IMG SRC="../../symbols/delta.gif"><SUB>2</SUB>&nbsp; &nbsp;<B>:</B> \delta2
+&nbsp; &nbsp; <IMG SRC="../../symbols/delta.gif"><SUP>*</SUP>&nbsp; &nbsp;<B>:</B> \delta^*
+&nbsp; &nbsp; <IMG SRC="../../symbols/Lambda.gif">&nbsp; &nbsp;<B>:</B> \Lambda
+--->
+
+<br>
+<br>
+<br>
+<applet code="nfa2dfaex.class" width="900" height="900">
+</applet>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+<b><a href="https://www.cs.odu.edu/~toida/nerzic/390teched/regular/fa/cmp-prf-nfa-lamb-2-nfa.html"><r><font color="blue">
+Next -- Equivalence of NFA-<img src="./nfa-2-dfa_files/Lambda.gif"> andf NFA </font></r></a></b>
+<br>
+<br>
+<b>
+<a href="https://www.cs.odu.edu/~toida/nerzic/390teched/schedule/schedule.html#day12"><r><font color="blue">
+Back to Study Schedule </font></r></a></b>
+<br>
+<br>
+<b>
+<a href="https://www.cs.odu.edu/~toida/nerzic/390teched/web_course.html"><r><font color="blue">
+Back to Table of Contents </font></r></a></b>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+<!--- Link to Proposition, Connectives --->
+
+</body></html>
