@@ -48,6 +48,7 @@ def handle_custom_inputs():
     n = int(input("Enter No of Processes : "))
     p_list = []
     for i in range(1, n + 1):
+        print "Process " ,i
         p = Process(["PID" + str(i), int(input("Enter Arrival Time : ")),
                      int(input("Enter Burst Time : ")), int(input("Order : "))])
         p_list.append(p)
@@ -64,7 +65,8 @@ def test_all_test_cases():
 
 
 def get_input_and_start():
-    c = 'E'
+    #c = 'E'
+    c = raw_input("Enter E for Test case S for Custom Solution T to run all test cases...")
     if c == 'E':
         test_case(int(input("Enter Test Case No ...")), OutputOptions(), False)
     elif c == 'T':
