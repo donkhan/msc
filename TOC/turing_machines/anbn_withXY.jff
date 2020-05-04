@@ -3,133 +3,34 @@
 	<automaton>
 		<!--The list of states.-->
 		<state id="0" name="q0">
-			<x>90.0</x>
-			<y>197.0</y>
+			<x>60.0</x>
+			<y>122.0</y>
 			<initial/>
 		</state>
 		<state id="1" name="q1">
-			<x>264.0</x>
-			<y>47.0</y>
+			<x>167.0</x>
+			<y>73.0</y>
 		</state>
 		<state id="2" name="q2">
-			<x>490.0</x>
-			<y>29.0</y>
+			<x>309.0</x>
+			<y>52.0</y>
 		</state>
 		<state id="3" name="q3">
-			<x>819.0</x>
-			<y>77.0</y>
+			<x>450.0</x>
+			<y>169.0</y>
 		</state>
 		<state id="4" name="q4">
-			<x>324.0</x>
-			<y>319.0</y>
-		</state>
-		<state id="5" name="q5">
-			<x>572.0</x>
-			<y>307.0</y>
-		</state>
-		<state id="6" name="q6">
-			<x>377.0</x>
-			<y>117.0</y>
+			<x>267.0</x>
+			<y>278.0</y>
 			<final/>
 		</state>
 		<!--The list of transitions.-->
 		<transition>
 			<from>0</from>
-			<to>1</to>
-			<read>a</read>
-			<write/>
-			<move>R</move>
-		</transition>
-		<transition>
-			<from>1</from>
-			<to>2</to>
-			<read/>
-			<write/>
-			<move>L</move>
-		</transition>
-		<transition>
-			<from>5</from>
-			<to>3</to>
-			<read>b</read>
-			<write/>
-			<move>L</move>
-		</transition>
-		<transition>
-			<from>2</from>
-			<to>6</to>
-			<read/>
-			<write/>
-			<move>R</move>
-		</transition>
-		<transition>
-			<from>3</from>
-			<to>3</to>
-			<read>a</read>
-			<write>a</write>
-			<move>L</move>
-		</transition>
-		<transition>
-			<from>3</from>
-			<to>3</to>
-			<read>b</read>
-			<write>b</write>
-			<move>L</move>
-		</transition>
-		<transition>
-			<from>4</from>
-			<to>5</to>
-			<read/>
-			<write/>
-			<move>L</move>
-		</transition>
-		<transition>
-			<from>5</from>
-			<to>6</to>
-			<read/>
-			<write/>
-			<move>R</move>
-		</transition>
-		<transition>
-			<from>0</from>
 			<to>4</to>
-			<read>b</read>
+			<read/>
 			<write/>
 			<move>R</move>
-		</transition>
-		<transition>
-			<from>1</from>
-			<to>1</to>
-			<read>a</read>
-			<write>a</write>
-			<move>R</move>
-		</transition>
-		<transition>
-			<from>1</from>
-			<to>1</to>
-			<read>b</read>
-			<write>b</write>
-			<move>R</move>
-		</transition>
-		<transition>
-			<from>4</from>
-			<to>4</to>
-			<read>b</read>
-			<write>b</write>
-			<move>R</move>
-		</transition>
-		<transition>
-			<from>4</from>
-			<to>4</to>
-			<read>a</read>
-			<write>a</write>
-			<move>R</move>
-		</transition>
-		<transition>
-			<from>2</from>
-			<to>3</to>
-			<read>a</read>
-			<write/>
-			<move>L</move>
 		</transition>
 		<transition>
 			<from>3</from>
@@ -140,10 +41,87 @@
 		</transition>
 		<transition>
 			<from>0</from>
-			<to>6</to>
+			<to>1</to>
+			<read>a</read>
+			<write>X</write>
+			<move>R</move>
+		</transition>
+		<transition>
+			<from>3</from>
+			<to>3</to>
+			<read>a</read>
+			<write>a</write>
+			<move>L</move>
+		</transition>
+		<transition>
+			<from>3</from>
+			<to>3</to>
+			<read>b</read>
+			<write>b</write>
+			<move>L</move>
+		</transition>
+		<transition>
+			<from>3</from>
+			<to>3</to>
+			<read>X</read>
+			<write>X</write>
+			<move>L</move>
+		</transition>
+		<transition>
+			<from>3</from>
+			<to>3</to>
+			<read>Y</read>
+			<write>Y</write>
+			<move>L</move>
+		</transition>
+		<transition>
+			<from>1</from>
+			<to>1</to>
+			<read>a</read>
+			<write>a</write>
+			<move>R</move>
+		</transition>
+		<transition>
+			<from>1</from>
+			<to>1</to>
+			<read>b</read>
+			<write>b</write>
+			<move>R</move>
+		</transition>
+		<transition>
+			<from>0</from>
+			<to>0</to>
+			<read>X</read>
+			<write>X</write>
+			<move>R</move>
+		</transition>
+		<transition>
+			<from>0</from>
+			<to>0</to>
+			<read>Y</read>
+			<write>Y</write>
+			<move>R</move>
+		</transition>
+		<transition>
+			<from>1</from>
+			<to>2</to>
 			<read/>
 			<write/>
-			<move>R</move>
+			<move>L</move>
+		</transition>
+		<transition>
+			<from>1</from>
+			<to>2</to>
+			<read>Y</read>
+			<write>Y</write>
+			<move>L</move>
+		</transition>
+		<transition>
+			<from>2</from>
+			<to>3</to>
+			<read>b</read>
+			<write>Y</write>
+			<move>L</move>
 		</transition>
 	</automaton>
 </structure>
