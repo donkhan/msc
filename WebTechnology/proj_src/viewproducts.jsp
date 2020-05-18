@@ -109,7 +109,7 @@ body {
    <a href=home.jsp?uuid="<% out.print(uuid); %>" >Home</a>
    <a href=viewproducts.jsp?uuid="<% out.print(uuid); %>" >View Products</a>
    <a href=addproduct.jsp?uuid="<% out.print(uuid); %>" >Add Product</a>
-
+   <a href=searchproduct.jsp?uuid="<% out.print(uuid); %>" >Search Product</a>
 </div>
 
 
