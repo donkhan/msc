@@ -1,73 +1,10 @@
 <!DOCTYPE html>
 <html>
-<head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<style>
-body {
-  font-family: Arial, Helvetica, sans-serif;
-  margin: 0;
-}
 
-.navbar {
-  overflow: hidden;
-  background-color: #333;
-}
+    <jsp:include page="style.jsp">
+                <jsp:param name="style" value="" />
+    </jsp:include>
 
-.navbar a {
-  float: left;
-  font-size: 16px;
-  color: white;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-}
-
-.subnav {
-  float: left;
-  overflow: hidden;
-}
-
-.subnav .subnavbtn {
-  font-size: 16px;
-  border: none;
-  outline: none;
-  color: white;
-  padding: 14px 16px;
-  background-color: inherit;
-  font-family: inherit;
-  margin: 0;
-}
-
-.navbar a:hover, .subnav:hover .subnavbtn {
-  background-color: red;
-}
-
-.subnav-content {
-  display: none;
-  position: absolute;
-  left: 0;
-  background-color: red;
-  width: 100%;
-  z-index: 1;
-}
-
-.subnav-content a {
-  float: left;
-  color: white;
-  text-decoration: none;
-}
-
-.subnav-content a:hover {
-  background-color: #eee;
-  color: black;
-}
-
-.subnav:hover .subnav-content {
-  display: block;
-}
-</style>
-</head>
 <body>
 
 <%@ page import="javax.naming.*" %>
@@ -83,7 +20,7 @@ body {
    if(uuid.startsWith("\"")){
     uuid = uuid.substring(1,uuid.length()-1);
    }
-   System.out.println("View Products uuid = " + uuid);
+   System.out.println("Search Product uuid = " + uuid);
    String search_product_id = request.getParameter("search_product_id");
    if(search_product_id == null) search_product_id = "";
 
@@ -102,7 +39,7 @@ body {
    }
    rs.close();
    if(i == -1){
-    response.sendRedirect("/sample/login.html");
+    response.sendRedirect("/sample/home.jsp");
    }
 
 
