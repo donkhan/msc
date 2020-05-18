@@ -14,11 +14,12 @@
 <%@ page import="org.h2.jdbcx.JdbcDataSource" %>
 <%
    String uuid = request.getParameter("uuid");
-   if (uuid == null){
+   if (uuid == null || uuid.equals("")){
          response.sendRedirect("/prod/home.jsp");
    }
    if(uuid.startsWith("\"")){
     uuid = uuid.substring(1,uuid.length()-1);
+    response.sendRedirect("/prod/home.jsp");
    }
    System.out.println("Search Product uuid = " + uuid);
    String search_product_id = request.getParameter("search_product_id");
@@ -58,7 +59,7 @@
 </div>
 
         <br><br><br>
-        <form action="/prod/searchproduct.jsp" method="get">
+        <form action="/prod/searchproduct.jsp" method="get" align="center">
         Product ID    : <input type="text" name="search_product_id">
         <input type="hidden" name="uuid" value="<% out.print(uuid); %>" >
         <br><br>
@@ -66,12 +67,13 @@
         <button type="submit" formaction="/prod/searchproduct.jsp">Search</button>
         </form>
 
-        <% if(!search_product_id.equals("")){ %>
-
+        <% if(!search_product_id.equals("")){
+            try {
+        %>
         <TABLE>
           <TR><TH border=1>ID</TH><TH border=1>Name</TH><TH border=1>Category</TH><TH border=1>Price</TH></TR>
         <%
-            try {
+
                  query = "select * from products where id = ?";
                  stmt = con.prepareStatement(query);
                  stmt.setString(1,search_product_id);
@@ -84,12 +86,10 @@
                       <TD border=1> <%= rs.getString(3) %> </TD>
                       <TD border=1> <%= rs.getString(4) %> </TD>
                   </TR>
+          </TABLE>
 
         <%
-                 }
-        %>
-        </TABLE>
-        <%
+            }
             } catch(Throwable t){
                 t.printStackTrace();
             }

@@ -63,7 +63,7 @@
                    <a href=searchproduct.jsp?uuid="<% out.print(""); %>" >Search Product</a>
                     <a href=logout.jsp?uuid="<% out.print(""); %>" >Logout</a>
                 </div>
-                <form action="/prod/home.jsp" method="get">
+                <form action="/prod/home.jsp" method="get" align="center">
                     <br><br><br>
                     Name:
                     <input type="text" id="name" name="name"><br><br>

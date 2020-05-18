@@ -10,6 +10,7 @@
 <%@ page import="java.sql.*" %>
 <%@ page import="javax.sql.*" %>
 <%@ page import="org.h2.jdbcx.JdbcDataSource" %>
+
 <%
    String uuid = request.getParameter("uuid");
    System.out.println("View Products uuid = " + uuid);
@@ -22,6 +23,7 @@
    if (uuid.equals("")){
             response.sendRedirect("/prod/home.jsp");
    }
+
    Context ctx = new InitialContext();
    Context initCtx  = (Context) ctx.lookup("java:/comp/env");
    DataSource ds = (DataSource) initCtx.lookup("jdbc/MyLocalDB");

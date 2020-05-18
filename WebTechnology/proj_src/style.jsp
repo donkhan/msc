@@ -64,5 +64,10 @@ body {
 .subnav:hover .subnav-content {
   display: block;
 }
+
+form
+{
+    align:"center";
+}
 </style>
 </head>

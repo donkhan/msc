@@ -13,13 +13,17 @@
 <%@ page import="org.h2.jdbcx.JdbcDataSource" %>
 <%
    String uuid = request.getParameter("uuid");
-   if (uuid == null){
-         response.sendRedirect("/prod/home.jsp");
+   System.out.println("Add Product uuid = " + uuid);
+   if (uuid == null || uuid.equals("")){
+    response.sendRedirect("/prod/home.jsp");
    }
    if(uuid.startsWith("\"")){
     uuid = uuid.substring(1,uuid.length()-1);
    }
-   System.out.println("Add Product uuid = " + uuid);
+   if (uuid.equals("")){
+    response.sendRedirect("/prod/home.jsp");
+   }
+
    String product_id = request.getParameter("product_id");
    String product_name = request.getParameter("product_name");
    String product_category = request.getParameter("product_category");
@@ -73,7 +77,7 @@
 </div>
 
 <h1> Product Management System </h1>
-<form action="/prod/addproduct.jsp" method="get">
+<form action="/prod/addproduct.jsp" method="get" align="center">
 
 <br><br><br><br>
 Product ID    : <input type="text" name="product_id">
