@@ -23,11 +23,9 @@
         DataSource ds = (DataSource) initCtx.lookup("jdbc/MyLocalDB");
 
         Connection con = null;
-        PreparedStatement pstmt;
         PreparedStatement stmt;
         try {
              con = ds.getConnection();
-             String uuid=UUID.randomUUID().toString();
              con.setAutoCommit(false);
              String query = "select * from customers where name = ? and password = ?";
              System.out.println(query);
@@ -35,24 +33,21 @@
              stmt.setString(1,name);
              stmt.setString(2,password);
              ResultSet rs = stmt.executeQuery();
-             rs.next();
              int i = -1;
              while(rs.next()){
                 i = i + 1;
              }
-             i = 0;
              rs.close();
-             System.out.println(i);
              if(i == 0){
-                pstmt = con.prepareStatement("UPDATE CUSTOMERS " +
+                String uuid=UUID.randomUUID().toString();
+                stmt = con.prepareStatement("UPDATE CUSTOMERS " +
                                      "SET uuid = ? " +
                                      "WHERE NAME = ?");
-                         pstmt.setString(1, uuid);
-                         pstmt.setString(2, name);
-                         pstmt.executeUpdate();
+                         stmt.setString(1, uuid);
+                         stmt.setString(2, name);
+                         stmt.executeUpdate();
                 con.commit();
-                pstmt.close();
-                System.out.println("Redirecting to home page");
+                stmt.close();
                 response.sendRedirect("/sample/home.jsp?uuid="+uuid);
              }
          } catch(Throwable t){
