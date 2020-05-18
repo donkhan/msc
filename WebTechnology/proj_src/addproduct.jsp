@@ -70,45 +70,19 @@ body {
 </head>
 <body>
 
-<%@ page import="javax.naming.*" %>
-<%@ page import="java.util.*" %>
-<%@ page import="java.sql.*" %>
-<%@ page import="javax.sql.*" %>
-<%@ page import="org.h2.jdbcx.JdbcDataSource" %>
-<%
-   String uuid = request.getParameter("uuid");
-   if (uuid == null){
-         response.sendRedirect("/sample/login.html");
-   }
-   if(uuid.startsWith("\"")){
-    uuid = uuid.substring(1,uuid.length()-1);
-   }
-   System.out.println("Home uuid = " + uuid);
-
-   Context ctx = new InitialContext();
-   Context initCtx  = (Context) ctx.lookup("java:/comp/env");
-   DataSource ds = (DataSource) initCtx.lookup("jdbc/MyLocalDB");
-   Connection con = ds.getConnection();;
-   PreparedStatement stmt;
-   String query = "select * from customers where uuid = ? ";
-   stmt = con.prepareStatement(query);
-   stmt.setString(1,uuid);
-   ResultSet rs = stmt.executeQuery();
-   int i = -1;
-   while(rs.next()){
-    i = i + 1;
-   }
-   rs.close();
-   if(i == -1){
-    response.sendRedirect("/sample/login.html");
-   }
-
- %>
-
 <div class="navbar">
-   <a href=home.jsp?uuid="<% out.print(uuid); %>" >Home</a>
-   <a href=viewproducts.jsp?uuid="<% out.print(uuid); %>" >View Products</a>
+  <a href="">Home</a>
+  <a href="viewproducts.jsp">View Products</a>
+  <a href="addproduct.jsp">Add Product</a>
+  <a href="#contact">View Products</a>
+  <a href="#contact">Search Product</a>
+  <a href="#contact">Logout</a>
 </div>
+
+
+        <% String uuid = request.getParameter("uuid"); %>
+        The uuid Value is <%=uuid %>
+
 
 
 </body>

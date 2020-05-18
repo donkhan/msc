@@ -79,15 +79,37 @@ body {
 <%
    String uuid = request.getParameter("uuid");
    if (uuid == null){
-      response.sendRedirect("/sample/login.html");
+         response.sendRedirect("/sample/login.html");
    }
+   if(uuid.startsWith("\"")){
+    uuid = uuid.substring(1,uuid.length()-1);
+   }
+   System.out.println("View Products uuid = " + uuid);
+
+   Context ctx = new InitialContext();
+   Context initCtx  = (Context) ctx.lookup("java:/comp/env");
+   DataSource ds = (DataSource) initCtx.lookup("jdbc/MyLocalDB");
+   Connection con = ds.getConnection();;
+   PreparedStatement stmt;
+   String query = "select * from customers where uuid = ? ";
+   stmt = con.prepareStatement(query);
+   stmt.setString(1,uuid);
+   ResultSet rs = stmt.executeQuery();
+   int i = -1;
+   while(rs.next()){
+    i = i + 1;
+   }
+   rs.close();
+   if(i == -1){
+    response.sendRedirect("/sample/login.html");
+   }
+
  %>
 
 <div class="navbar">
-   <a href="home.jsp?uuid="+uuid>Home</a>
-   <a href="viewproducts.jsp?uuid="+uuid>View Products</a>
-   <a href="searchproduct.jsp?uuid="+uuid>Search Products</a>
- </div>
+   <a href=home.jsp?uuid="<% out.print(uuid); %>" >Home</a>
+   <a href=viewproducts.jsp?uuid="<% out.print(uuid); %>" >View Products</a>
+</div>
 
 
 </div>
@@ -95,18 +117,11 @@ body {
         <br><br><br>
         <TABLE>
           <TR><TH border=1>ID</TH><TH border=1>Name</TH><TH border=1>Category</TH><TH border=1>Price</TH></TR>
-
         <%
-            Context ctx = new InitialContext();
-            Context initCtx  = (Context) ctx.lookup("java:/comp/env");
-            DataSource ds = (DataSource) initCtx.lookup("jdbc/MyLocalDB");
-            Connection con = null;
-            Statement stmt;
             try {
-                 con = ds.getConnection();
-                 String query = "select * from products";
-                 stmt = con.createStatement();
-                 ResultSet rs = stmt.executeQuery(query);
+                 query = "select * from products";
+                 stmt = con.prepareStatement(query);
+                 rs = stmt.executeQuery();
                  while (rs.next()) {
         %>
                   <TR >

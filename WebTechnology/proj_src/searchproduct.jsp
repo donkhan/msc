@@ -78,10 +78,12 @@ body {
 
 <%
    String uuid = request.getParameter("uuid");
+   String product_id = request.getParameter("product_id");
+   System.out.println("uuid = " + uuid + " product_id = "+ product_id);
    if (uuid == null){
       response.sendRedirect("/sample/login.html");
    }
-   String product_id = request.getParameter("product_id");
+
  %>
 
 <div class="navbar">
@@ -102,6 +104,7 @@ body {
         %>
             <form action="/sample/searchproduct.jsp" method="get">
                 Enter Product ID <input type="text" name="product_id">
+                <input type="hidden" name="uuid" value="" <%  System.out.println(uuid); %> >
                 <button type="submit" formaction="/sample/searchproduct.jsp">Search</button>
             </form>
         <%

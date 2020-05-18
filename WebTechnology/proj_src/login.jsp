@@ -28,7 +28,6 @@
              con = ds.getConnection();
              con.setAutoCommit(false);
              String query = "select * from customers where name = ? and password = ?";
-             System.out.println(query);
              stmt = con.prepareStatement(query);
              stmt.setString(1,name);
              stmt.setString(2,password);
@@ -49,6 +48,8 @@
                 con.commit();
                 stmt.close();
                 response.sendRedirect("/sample/home.jsp?uuid="+uuid);
+             }else{
+                response.sendRedirect("login.html");
              }
          } catch(Throwable t){
             t.printStackTrace();
