@@ -4,8 +4,6 @@
         <jsp:param name="styleName" value="" />
     </jsp:include>
 
-<body>
-
 <%@ page import="javax.naming.*" %>
 <%@ page import="java.util.*" %>
 <%@ page import="java.sql.*" %>
@@ -19,10 +17,8 @@
         String password = request.getParameter("password");
         System.out.println("name = " + name + " pw = " + password);
         Context ctx = new InitialContext();
-
         Context initCtx  = (Context) ctx.lookup("java:/comp/env");
         DataSource ds = (DataSource) initCtx.lookup("jdbc/MyLocalDB");
-
         Connection con = null;
         PreparedStatement stmt;
         try {
@@ -75,8 +71,6 @@
                     <input type="text" id="password" name="password"><br><br>
                     <button type="submit" formaction="/sample/home.jsp">Login</button>
                 </form>
-
-
              <% }
          } catch(Throwable t){
             t.printStackTrace();
@@ -86,9 +80,6 @@
              if (con!=null) { con.close(); }
          }
     %>
-
-
-
 </body>
 </html>
 </body>

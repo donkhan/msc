@@ -18,13 +18,13 @@
    if(uuid.startsWith("\"")){
     uuid = uuid.substring(1,uuid.length()-1);
    }
-   System.out.println("Add Product uuid = " + uuid);
+   System.out.println("Edit Product uuid = " + uuid);
    String product_id = request.getParameter("product_id");
    String product_name = request.getParameter("product_name");
    String product_category = request.getParameter("product_category");
    String product_price = request.getParameter("product_price");
    double price = 0;
-   System.out.println("New Product id " + product_id + " product name " + product_name + " product price " + product_price);
+   System.out.println("Edit Product id " + product_id + " product name " + product_name + " product price " + product_price);
    System.out.println("Product Category " + product_category);
 
    if( product_id == null) product_id = "";

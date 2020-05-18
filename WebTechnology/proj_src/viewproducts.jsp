@@ -73,6 +73,7 @@
                         <input type="hidden" name="uuid" value="<% out.print(uuid); %>" >
                         <input type="hidden" name="product_id" value="<% out.print(rs.getString(1)); %>" >
                         <button type="submit" formaction="/sample/editproduct.jsp">Edit</button>
+                        </form>
                       </TD>
 
                       <TD border=1>
@@ -80,6 +81,7 @@
                          <input type="hidden" name="uuid" value="<% out.print(uuid); %>" >
                          <input type="hidden" name="product_id" value="<% out.print(rs.getString(1)); %>" >
                          <button type="submit" formaction="/sample/deleteproduct.jsp">Delete</button>
+                         </form>
                       </TD>
 
                   </TR>
