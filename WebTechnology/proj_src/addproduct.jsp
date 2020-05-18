@@ -14,7 +14,7 @@
 <%
    String uuid = request.getParameter("uuid");
    if (uuid == null){
-         response.sendRedirect("/sample/home.jsp");
+         response.sendRedirect("/prod/home.jsp");
    }
    if(uuid.startsWith("\"")){
     uuid = uuid.substring(1,uuid.length()-1);
@@ -47,7 +47,7 @@
    }
    rs.close();
    if(i == -1){
-    response.sendRedirect("/sample/home.jsp");
+    response.sendRedirect("/prod/home.jsp");
    }
 
    if(!product_id.equals("") && !product_name.equals("") && !product_category.equals("") && !product_price.equals("")){
@@ -73,7 +73,7 @@
 </div>
 
 <h1> Product Management System </h1>
-<form action="/sample/addproduct.jsp" method="get">
+<form action="/prod/addproduct.jsp" method="get">
 
 <br><br><br><br>
 Product ID    : <input type="text" name="product_id">
@@ -86,7 +86,7 @@ Price         : <input type="price" name="product_price">
 <br><br>
 <input type="hidden" name="uuid" value="<% out.print(uuid); %>" >
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<button type="submit" formaction="/sample/addproduct.jsp">Add</button>
+<button type="submit" formaction="/prod/addproduct.jsp">Add</button>
 </form>
 
 </body>

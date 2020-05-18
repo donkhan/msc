@@ -13,7 +13,7 @@
 <%
    String uuid = request.getParameter("uuid");
    if (uuid == null){
-         response.sendRedirect("/sample/home.jsp");
+         response.sendRedirect("/prod/home.jsp");
    }
    if(uuid.startsWith("\"")){
     uuid = uuid.substring(1,uuid.length()-1);
@@ -52,7 +52,7 @@
    }
    rs.close();
    if(i == -1){
-    response.sendRedirect("/sample/home.jsp");
+    response.sendRedirect("/prod/home.jsp");
    }
 
    if(!product_id.equals("") && !product_name.equals("") && !product_category.equals("") && !product_price.equals("")){
@@ -65,7 +65,7 @@
       stmt.setString(4,product_id);
       stmt.executeUpdate();
       con.commit();
-      response.sendRedirect("/sample/viewproducts.jsp?uuid=" + uuid);
+      response.sendRedirect("/prod/viewproducts.jsp?uuid=" + uuid);
    }
    else{
      query = "select * from products where id = ?";
@@ -88,7 +88,7 @@
 </div>
 
 <h1> Product Management System </h1>
-<form action="/sample/editproduct.jsp" method="get">
+<form action="/prod/editproduct.jsp" method="get">
 
 <br><br><br><br>
 Product Name  : <input type="text" name="product_name" value="<% out.println(product_name); %>">
@@ -101,7 +101,7 @@ Price         : <input type="price" name="product_price" value="<% out.println(p
 <input type="hidden" name="product_id" value="<% out.print(product_id); %>" >
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<button type="submit" formaction="/sample/editproduct.jsp">Edit</button>
+<button type="submit" formaction="/prod/editproduct.jsp">Edit</button>
 </form>
 
 </body>

@@ -13,7 +13,7 @@
 <%
    String uuid = request.getParameter("uuid");
    if (uuid == null || uuid.equals("")){
-         response.sendRedirect("/sample/home.jsp");
+         response.sendRedirect("/prod/home.jsp");
    }
    if(uuid.startsWith("\"")){
     uuid = uuid.substring(1,uuid.length()-1);
@@ -48,7 +48,7 @@
      stmt.executeUpdate();
      con.commit();
      stmt.close();
-     response.sendRedirect("/sample/home.jsp");
+     response.sendRedirect("/prod/home.jsp");
    }
 
  %>

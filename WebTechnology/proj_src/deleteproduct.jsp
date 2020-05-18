@@ -10,7 +10,7 @@
 <%
    String uuid = request.getParameter("uuid");
    if (uuid == null){
-         response.sendRedirect("/sample/home.jsp");
+         response.sendRedirect("/prod/home.jsp");
    }
    if(uuid.startsWith("\"")){
     uuid = uuid.substring(1,uuid.length()-1);
@@ -32,7 +32,7 @@
    con.commit();
    System.out.println("Deletion Done");
 
-   response.sendRedirect("/sample/viewproducts.jsp?uuid=" + uuid);
+   response.sendRedirect("/prod/viewproducts.jsp?uuid=" + uuid);
  %>
 
 

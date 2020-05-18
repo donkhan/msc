@@ -14,13 +14,13 @@
    String uuid = request.getParameter("uuid");
    System.out.println("View Products uuid = " + uuid);
    if (uuid == null || uuid.equals("")){
-         response.sendRedirect("/sample/home.jsp");
+         response.sendRedirect("/prod/home.jsp");
    }
    if(uuid.startsWith("\"")){
     uuid = uuid.substring(1,uuid.length()-1);
    }
    if (uuid.equals("")){
-            response.sendRedirect("/sample/home.jsp");
+            response.sendRedirect("/prod/home.jsp");
    }
    Context ctx = new InitialContext();
    Context initCtx  = (Context) ctx.lookup("java:/comp/env");
@@ -37,7 +37,7 @@
    }
    rs.close();
    if(i == -1){
-    response.sendRedirect("/sample/home.jsp");
+    response.sendRedirect("/prod/home.jsp");
    }
 
  %>
@@ -72,7 +72,7 @@
                         <form action="/sample/editproduct.jsp" method="get">
                         <input type="hidden" name="uuid" value="<% out.print(uuid); %>" >
                         <input type="hidden" name="product_id" value="<% out.print(rs.getString(1)); %>" >
-                        <button type="submit" formaction="/sample/editproduct.jsp">Edit</button>
+                        <button type="submit" formaction="/prod/editproduct.jsp">Edit</button>
                         </form>
                       </TD>
 
@@ -80,7 +80,7 @@
                          <form action="/sample/deleteproduct.jsp" method="get">
                          <input type="hidden" name="uuid" value="<% out.print(uuid); %>" >
                          <input type="hidden" name="product_id" value="<% out.print(rs.getString(1)); %>" >
-                         <button type="submit" formaction="/sample/deleteproduct.jsp">Delete</button>
+                         <button type="submit" formaction="/prod/deleteproduct.jsp">Delete</button>
                          </form>
                       </TD>
 

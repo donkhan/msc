@@ -15,7 +15,7 @@
 <%
    String uuid = request.getParameter("uuid");
    if (uuid == null){
-         response.sendRedirect("/sample/home.jsp");
+         response.sendRedirect("/prod/home.jsp");
    }
    if(uuid.startsWith("\"")){
     uuid = uuid.substring(1,uuid.length()-1);
@@ -39,7 +39,7 @@
    }
    rs.close();
    if(i == -1){
-    response.sendRedirect("/sample/home.jsp");
+    response.sendRedirect("/prod/home.jsp");
    }
 
 
@@ -58,12 +58,12 @@
 </div>
 
         <br><br><br>
-        <form action="/sample/searchproduct.jsp" method="get">
+        <form action="/prod/searchproduct.jsp" method="get">
         Product ID    : <input type="text" name="search_product_id">
         <input type="hidden" name="uuid" value="<% out.print(uuid); %>" >
         <br><br>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <button type="submit" formaction="/sample/searchproduct.jsp">Search</button>
+        <button type="submit" formaction="/prod/searchproduct.jsp">Search</button>
         </form>
 
         <% if(!search_product_id.equals("")){ %>

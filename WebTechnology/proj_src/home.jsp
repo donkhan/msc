@@ -63,18 +63,18 @@
                    <a href=searchproduct.jsp?uuid="<% out.print(""); %>" >Search Product</a>
                     <a href=logout.jsp?uuid="<% out.print(""); %>" >Logout</a>
                 </div>
-                <form action="/sample/home.jsp" method="get">
+                <form action="/prod/home.jsp" method="get">
                     <br><br><br>
                     Name:
                     <input type="text" id="name" name="name"><br><br>
                     Password:
                     <input type="text" id="password" name="password"><br><br>
-                    <button type="submit" formaction="/sample/home.jsp">Login</button>
+                    <button type="submit" formaction="/prod/home.jsp">Login</button>
                 </form>
              <% }
          } catch(Throwable t){
             t.printStackTrace();
-            response.sendRedirect("/sample/home.jsp");
+            response.sendRedirect("/prod/home.jsp");
          }
          finally {
              if (con!=null) { con.close(); }
