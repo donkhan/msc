@@ -78,7 +78,7 @@ body {
 <%
    String uuid = request.getParameter("uuid");
    if (uuid == null){
-         response.sendRedirect("/sample/login.html");
+         response.sendRedirect("/sample/home.jsp");
    }
    if(uuid.startsWith("\"")){
     uuid = uuid.substring(1,uuid.length()-1);
@@ -114,9 +114,10 @@ body {
    <a href=viewproducts.jsp?uuid="<% out.print(uuid); %>" >View Products</a>
    <a href=addproduct.jsp?uuid="<% out.print(uuid); %>" >Add Product</a>
    <a href=searchproduct.jsp?uuid="<% out.print(uuid); %>" >Search Product</a>
+    <a href=logout.jsp?uuid="<% out.print(uuid); %>" >Logout</a>
 </div>
 
-
+<h1> Product Management System </h1>
 </div>
 
         <br><br><br>
