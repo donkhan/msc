@@ -1,9 +1,3 @@
-<%@ page import="javax.naming.*" %>
-<%@ page import="java.util.*" %>
-<%@ page import="java.sql.*" %>
-<%@ page import="javax.sql.*" %>
-<%@ page import="org.h2.jdbcx.JdbcDataSource" %>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -76,6 +70,11 @@ body {
 </head>
 <body>
 
+<%@ page import="javax.naming.*" %>
+<%@ page import="java.util.*" %>
+<%@ page import="java.sql.*" %>
+<%@ page import="javax.sql.*" %>
+<%@ page import="org.h2.jdbcx.JdbcDataSource" %>
 <%
    String uuid = request.getParameter("uuid");
    if (uuid == null){
@@ -109,6 +108,8 @@ body {
 <div class="navbar">
    <a href=home.jsp?uuid="<% out.print(uuid); %>" >Home</a>
    <a href=viewproducts.jsp?uuid="<% out.print(uuid); %>" >View Products</a>
+   <a href=addproduct.jsp?uuid="<% out.print(uuid); %>" >Add Product</a>
+
 </div>
 
 
