@@ -41,18 +41,15 @@
    if(i == -1){
     response.sendRedirect("/prod/home.jsp");
    }
-
-
-
  %>
 
-<div class="navbar">
-   <a href=home.jsp?uuid="<% out.print(uuid); %>" >Home</a>
-   <a href=viewproducts.jsp?uuid="<% out.print(uuid); %>" >View Products</a>
-   <a href=addproduct.jsp?uuid="<% out.print(uuid); %>" >Add Product</a>
-   <a href=searchproduct.jsp?uuid="<% out.print(uuid); %>" >Search Product</a>
-    <a href=logout.jsp?uuid="<% out.print(uuid); %>" >Logout</a>
-</div>
+<%
+    request.setAttribute("uuid",uuid);
+    request.setAttribute("query","select * from products where id = ?");
+%>
+<jsp:include page="navbar.jsp">
+     <jsp:param name="uuid" value="${uuid}" />
+</jsp:include>
 
 <h1> Product Management System </h1>
 </div>
@@ -66,38 +63,16 @@
         <button type="submit" formaction="/prod/searchproduct.jsp">Search</button>
         </form>
 
-        <% if(!search_product_id.equals("")){ %>
+        <% if(!search_product_id.equals("")){
+            request.setAttribute("product_id",search_product_id);
+        %>
+            <jsp:include page="list_products.jsp">
+                 <jsp:param name="uuid" value="${uuid}" />
+                 <jsp:param name="query" value="${query}" />
+                 <jsp:param name="product_id" value="${product_id}" />
+            </jsp:include>
 
-        <TABLE>
-          <TR><TH border=1>ID</TH><TH border=1>Name</TH><TH border=1>Category</TH><TH border=1>Price</TH></TR>
-        <%
-            try {
-                 query = "select * from products where id = ?";
-                 stmt = con.prepareStatement(query);
-                 stmt.setString(1,search_product_id);
-                 rs = stmt.executeQuery();
-                 while (rs.next()) {
-        %>
-                  <TR >
-                      <TD border=1> <%= rs.getString(1) %> </TD>
-                      <TD border=1> <%= rs.getString(2) %> </TD>
-                      <TD border=1> <%= rs.getString(3) %> </TD>
-                      <TD border=1> <%= rs.getString(4) %> </TD>
-                  </TR>
-
-        <%
-                 }
-        %>
-        </TABLE>
-        <%
-            } catch(Throwable t){
-                t.printStackTrace();
-            }
-            finally {
-                 if (con!=null) { con.close(); }
-            }
-        }
-        %>
+        <% } %>
 
 </body>
 </html>

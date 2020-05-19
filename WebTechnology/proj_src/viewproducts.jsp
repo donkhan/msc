@@ -44,59 +44,20 @@
 
  %>
 
-<% request.setAttribute("uuid",uuid); %>
+<%
+    request.setAttribute("uuid",uuid);
+    request.setAttribute("query","select * from products");
+%>
 <jsp:include page="navbar.jsp">
      <jsp:param name="uuid" value="${uuid}" />
 </jsp:include>
 
 <h1> Product Management System </h1>
-</div>
+<jsp:include page="list_products.jsp">
+     <jsp:param name="uuid" value="${uuid}" />
+     <jsp:param name="query" value="${query}" />
+</jsp:include>
 
-        <br><br><br>
-        <TABLE>
-          <TR><TH border=1>ID</TH><TH border=1>Name</TH><TH border=1>Category</TH><TH border=1>Price</TH></TR>
-        <%
-            try {
-                 query = "select * from products";
-                 stmt = con.prepareStatement(query);
-                 rs = stmt.executeQuery();
-                 while (rs.next()) {
-        %>
-                  <TR >
-                      <TD border=1> <%= rs.getString(1) %> </TD>
-                      <TD border=1> <%= rs.getString(2) %> </TD>
-                      <TD border=1> <%= rs.getString(3) %> </TD>
-                      <TD border=1> <%= rs.getString(4) %> </TD>
-                      <TD border=1>
-                        <form action="/sample/editproduct.jsp" method="get">
-                        <input type="hidden" name="uuid" value="<% out.print(uuid); %>" >
-                        <input type="hidden" name="product_id" value="<% out.print(rs.getString(1)); %>" >
-                        <button type="submit" formaction="/prod/editproduct.jsp">Edit</button>
-                        </form>
-                      </TD>
-
-                      <TD border=1>
-                         <form action="/sample/deleteproduct.jsp" method="get">
-                         <input type="hidden" name="uuid" value="<% out.print(uuid); %>" >
-                         <input type="hidden" name="product_id" value="<% out.print(rs.getString(1)); %>" >
-                         <button type="submit" formaction="/prod/deleteproduct.jsp">Delete</button>
-                         </form>
-                      </TD>
-
-                  </TR>
-
-        <%
-                 }
-        %>
-        </TABLE>
-        <%
-            } catch(Throwable t){
-                t.printStackTrace();
-            }
-            finally {
-                 if (con!=null) { con.close(); }
-            }
-        %>
 
 </body>
 </html>
