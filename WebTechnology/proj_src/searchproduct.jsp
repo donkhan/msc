@@ -2,9 +2,8 @@
 <html>
 
     <jsp:include page="style.jsp">
-                <jsp:param name="style" value="" />
+            <jsp:param name="style" value="" />
     </jsp:include>
-
 <body>
 
 <%@ page import="javax.naming.*" %>
@@ -14,16 +13,29 @@
 <%@ page import="org.h2.jdbcx.JdbcDataSource" %>
 <%
    String uuid = request.getParameter("uuid");
+   System.out.println("Add Product uuid = " + uuid);
    if (uuid == null || uuid.equals("")){
-         response.sendRedirect("/prod/home.jsp");
+    System.out.println("Redirecting...");
+    response.sendRedirect("/prod/home.jsp");
    }
    if(uuid.startsWith("\"")){
     uuid = uuid.substring(1,uuid.length()-1);
+   }
+   if (uuid.equals("")){
     response.sendRedirect("/prod/home.jsp");
    }
-   System.out.println("Search Product uuid = " + uuid);
-   String search_product_id = request.getParameter("search_product_id");
-   if(search_product_id == null) search_product_id = "";
+
+   String product_id = request.getParameter("product_id");
+   String product_name = request.getParameter("product_name");
+   String product_category = request.getParameter("product_category");
+   String product_price = request.getParameter("product_price");
+   System.out.println("New Product id " + product_id + " product name " + product_name);
+
+   if( product_id == null) product_id = "";
+   if( product_name == null) product_name = "";
+   if( product_category == null) product_category = "";
+   if( product_price == null) product_price = "";
+
 
    Context ctx = new InitialContext();
    Context initCtx  = (Context) ctx.lookup("java:/comp/env");
@@ -43,61 +55,42 @@
     response.sendRedirect("/prod/home.jsp");
    }
 
+   if(!product_id.equals("") && !product_name.equals("") && !product_category.equals("") && !product_price.equals("")){
+     query = " insert into products (id, name, category, price )"
+                     + " values (?, ?, ?, ?)";
+      stmt = con.prepareStatement(query);
+      stmt.setString(1,product_id);
+      stmt.setString(2,product_name);
+      stmt.setString(3,product_category);
+      stmt.setDouble(4,Double.parseDouble(product_price));
 
+      stmt.execute();
+   }
 
  %>
 
-<div class="navbar">
-   <a href=home.jsp?uuid="<% out.print(uuid); %>" >Home</a>
-   <a href=viewproducts.jsp?uuid="<% out.print(uuid); %>" >View Products</a>
-   <a href=addproduct.jsp?uuid="<% out.print(uuid); %>" >Add Product</a>
-   <a href=searchproduct.jsp?uuid="<% out.print(uuid); %>" >Search Product</a>
-    <a href=logout.jsp?uuid="<% out.print(uuid); %>" >Logout</a>
-</div>
+<% request.setAttribute("uuid",uuid); %>
+<jsp:include page="navbar.jsp">
+     <jsp:param name="uuid" value="${uuid}" />
+</jsp:include>
+
 
 <h1> Product Management System </h1>
-</div>
+<form action="/prod/addproduct.jsp" method="get" align="center">
 
-        <br><br><br>
-        <form action="/prod/searchproduct.jsp" method="get" align="center">
-        Product ID    : <input type="text" name="search_product_id">
-        <input type="hidden" name="uuid" value="<% out.print(uuid); %>" >
-        <br><br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <button type="submit" formaction="/prod/searchproduct.jsp">Search</button>
-        </form>
-
-        <% if(!search_product_id.equals("")){
-            try {
-        %>
-        <TABLE>
-          <TR><TH border=1>ID</TH><TH border=1>Name</TH><TH border=1>Category</TH><TH border=1>Price</TH></TR>
-        <%
-
-                 query = "select * from products where id = ?";
-                 stmt = con.prepareStatement(query);
-                 stmt.setString(1,search_product_id);
-                 rs = stmt.executeQuery();
-                 while (rs.next()) {
-        %>
-                  <TR >
-                      <TD border=1> <%= rs.getString(1) %> </TD>
-                      <TD border=1> <%= rs.getString(2) %> </TD>
-                      <TD border=1> <%= rs.getString(3) %> </TD>
-                      <TD border=1> <%= rs.getString(4) %> </TD>
-                  </TR>
-          </TABLE>
-
-        <%
-            }
-            } catch(Throwable t){
-                t.printStackTrace();
-            }
-            finally {
-                 if (con!=null) { con.close(); }
-            }
-        }
-        %>
+<br><br><br><br>
+Product ID    : <input type="text" name="product_id">
+<br><br>
+Product Name  : <input type="text" name="product_name">
+<br><br>
+Category      : <input type="text" name="product_category">
+<br><br>
+Price         : <input type="price" name="product_price">
+<br><br>
+<input type="hidden" name="uuid" value="<% out.print(uuid); %>" >
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<button type="submit" formaction="/prod/addproduct.jsp">Add</button>
+</form>
 
 </body>
 </html>
