@@ -12,6 +12,7 @@
 
 
 <body>
+
     <%
         String name = request.getParameter("name");
         String password = request.getParameter("password");
@@ -44,25 +45,18 @@
                          stmt.executeUpdate();
                 con.commit();
                 stmt.close();
+                request.setAttribute("uuid",uuid);
              %>
-                <div class="navbar">
-                    <a href=home.jsp?uuid="<% out.print(uuid); %>" >Home</a>
-                       <a href=viewproducts.jsp?uuid="<% out.print(uuid); %>" >View Products</a>
-                       <a href=addproduct.jsp?uuid="<% out.print(uuid); %>" >Add Product</a>
-                       <a href=searchproduct.jsp?uuid="<% out.print(uuid); %>" >Search Product</a>
-                       <a href=logout.jsp?uuid="<% out.print(uuid); %>" >Logout</a>
-                </div>
+                <jsp:include page="navbar.jsp">
+                     <jsp:param name="uuid" value="${uuid}" />
+                </jsp:include>
                 <br><br><br><br><br><br>
                 Welcome to Product Management System. Please click appropriate menus to add/edit/delete/view the product types
              <%
              }else{ %>
-                <div class="navbar">
-                   <a href=home.jsp?uuid="<% out.print(""); %>" >Home</a>
-                   <a href=viewproducts.jsp?uuid="<% out.print(""); %>" >View Products</a>
-                   <a href=addproduct.jsp?uuid="<% out.print(""); %>" >Add Product</a>
-                   <a href=searchproduct.jsp?uuid="<% out.print(""); %>" >Search Product</a>
-                    <a href=logout.jsp?uuid="<% out.print(""); %>" >Logout</a>
-                </div>
+                <jsp:include page="navbar.jsp">
+                     <jsp:param name="uuid" value="${uuid}" />
+                </jsp:include>
                 <form action="/prod/home.jsp" method="get" align="center">
                     <br><br><br>
                     Name:
