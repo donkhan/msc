@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include <stdio.h>
 
 char* int_to_binary(int value,int length){
 	int c;
@@ -59,6 +60,22 @@ char* pluck(char *src,int pos, int length){
 		dst[i] = src[i+pos];
 	}
 	return dst;
+}
+
+void print_bytes(char *s,int length){
+	int bytes = 0;
+	printf("\nBinary: %s\n",s);
+	printf("Octet Split \n");
+	for(int i = 0;i<length;i++){
+		if(i%8 == 0 && i != 0){
+			printf(",");
+			bytes = bytes + 1;
+		}
+		printf("%c",s[i]);
+	}
+	//printf("\n# Bytes %d\n",bytes);
+
+
 }
 
 
