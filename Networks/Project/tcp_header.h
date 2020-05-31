@@ -1,10 +1,6 @@
 #include <stdio.h>
 #include <string.h>
 
-#ifdef LIB_INC
-#include "lib.h"
-#endif
-
 struct tcp_header {
 	unsigned int src_port : 16;
     unsigned int dst_port : 16;
@@ -78,8 +74,6 @@ char* encapsulate_tcp_header(struct tcp_header* tcp_header){
 	for(int i = 0;i<tcp_header->hlen;i++){
 		tcp_packet = strcat(tcp_packet,int_to_binary(tcp_header->options[i],32));
 	}
-
-	printf("TCP Packet Length = %lu\n",strlen(tcp_packet));
 	return tcp_packet;
 }
 
@@ -112,6 +106,7 @@ struct tcp_header* decapsulate_tcp_header(char *c){
 }
 
 void print_tcp_header(struct tcp_header* tcp_header){
+	print_start("TCP");
 	printf("\nSource Port %d",tcp_header->src_port);
 	printf("\nDestination Port %d",tcp_header->dst_port);
 	printf("\nSequence No %d",tcp_header->seq_no);
@@ -126,6 +121,7 @@ void print_tcp_header(struct tcp_header* tcp_header){
 	for(int i = 0;i<tcp_header->hlen;i++){
 		printf("Options %d %d\n",i,tcp_header->options[i]);
 	}
+	print_end("IP");
 	printf("\n");
 }
 

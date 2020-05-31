@@ -42,7 +42,9 @@ struct tcp_payload* decapsulate_tcp_payload(char *c){
 
 void print_tcp_payload(struct tcp_payload* payload){
 	print_tcp_header(payload->header);
-	printf("Data %s\n",payload->data);
+	print_start_payload("Application PayLoad ");
+	printf("\nDATA: %s\n",payload->data);
+	print_end_payload("Application PayLoad ");
 }
   
 

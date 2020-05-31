@@ -1,4 +1,4 @@
-#define LIB_INC
+#include "lib.h"
 #include "tcp.h"
 
 

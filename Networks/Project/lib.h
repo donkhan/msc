@@ -100,7 +100,6 @@ char* toIP(char* a){
 		int len = 1;
 		if(value > 99) len = 3;
 		else if(value > 9) len = 2;
-		printf("\n%d %d",value,len);
 		snprintf(buf, len+1,format, value);
 		for(int j = 0;j<strlen(buf);j++){
 			x[k] = buf[j];
@@ -114,13 +113,30 @@ char* toIP(char* a){
 
 	address = malloc(sizeof(strlen(x)-1));
 	for(int i = 0;i<strlen(x);i++){
-		printf("\n%c",x[i]);
 		address[i] = x[i];
 	}
-	printf("\nDECA S = %s\n",address);
 	return address;
 }
 
+void print_start_payload(char* header){
+	printf("\n************** %s ***************",header);
+	printf("******************************************");
+}
+
+void print_end(char* header){
+	printf("\n************** End of %s ***************",header);
+	printf("*************************************************");
+}
+
+void print_start(char* header){
+	printf("\n************** %s HEADER ***************",header);
+	printf("******************************************");
+}
+
+void print_end_payload(char* header){
+	printf("\n************** End of %s ***************",header);
+	printf("*************************************************");
+}
 
 
 
