@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 
 char* int_to_binary(int value,int length){
 	int c;
@@ -73,9 +74,51 @@ void print_bytes(char *s,int length){
 		}
 		printf("%c",s[i]);
 	}
-	//printf("\n# Bytes %d\n",bytes);
+}
 
+char* get_4_octets(char* a){
+	char* address = calloc(32,sizeof(char));
+	char* token = strtok(a,".");
+	while(token != NULL){
+		address = strcat(address,int_to_binary(atoi(token),8));
+		token = strtok(NULL,".");
+	}
+	return address;
+}
 
+char* toIP(char* a){
+	char *token;
+	char *address;
+	char buf[8];
+	char x[15];
+	int k = 0;
+
+	for(int i = 0;i<4;i++){
+		token = pluck(a,i*8,8);
+		char *format = "%d";
+		int value = fromBinary(token);
+		int len = 1;
+		if(value > 99) len = 3;
+		else if(value > 9) len = 2;
+		printf("\n%d %d",value,len);
+		snprintf(buf, len+1,format, value);
+		for(int j = 0;j<strlen(buf);j++){
+			x[k] = buf[j];
+			k = k + 1;
+		}
+		if(i != 3){
+			x[k] = '.';
+			k = k + 1;
+		}
+	}
+
+	address = malloc(sizeof(strlen(x)-1));
+	for(int i = 0;i<strlen(x);i++){
+		printf("\n%c",x[i]);
+		address[i] = x[i];
+	}
+	printf("\nDECA S = %s\n",address);
+	return address;
 }
 
 

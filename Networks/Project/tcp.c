@@ -1,4 +1,6 @@
+#define LIB_INC
 #include "tcp.h"
+
 
 void tcp_test(){
 	struct tcp_payload* tcp_payload = get_sample_tcp_payload();

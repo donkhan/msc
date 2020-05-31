@@ -1,12 +1,9 @@
-#include <stdio.h> 
-#include <string.h>
 #include "tcp_header.h"
 
 struct tcp_payload{
 	struct tcp_header* header;
 	void* data;
 };
-
 
 struct tcp_payload* get_sample_tcp_payload(){
 	struct tcp_payload* payload = (struct tcp_payload *)malloc(sizeof(struct tcp_payload));
@@ -22,7 +19,6 @@ char* encapsulate_tcp_payload(struct tcp_payload* tcp_payload){
 	for(int i = 0;i<no_of_chars;i++){
 		bs = strcat(bs,int_to_binary(data[i],8));
 	}
-
 	return bs;
 }
 

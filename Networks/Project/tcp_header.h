@@ -1,6 +1,9 @@
 #include <stdio.h>
 #include <string.h>
+
+#ifdef LIB_INC
 #include "lib.h"
+#endif
 
 struct tcp_header {
 	unsigned int src_port : 16;
