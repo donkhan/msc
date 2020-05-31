@@ -7,6 +7,7 @@
 #include "udp.h"
 #include "ip_header.h"
 #include "ip.h"
+
 void printOption(char *message) {
 	printf("%s\nEnter Your Choice:  ", message);
 }
@@ -115,10 +116,10 @@ void ip_encapsulation() {
 	}
 
 	char *bs = encapsulate_ip_payload(ip_payload);
-	print_ip_payload(ip_payload);
+	print_ip_packet(ip_payload);
 	print_bytes(bs, strlen(bs));
 	ip_payload = decapsulate_ip_payload(bs,option);
-	print_ip_payload(ip_payload);
+	print_ip_packet(ip_payload);
 	save(bs, ".ip");
 }
 
@@ -132,8 +133,22 @@ void ip_decapsulation() {
 	int option = get_transport_option();
 	char *bs = read(".ip");
 	struct ip_payload *ip_payload = decapsulate_ip_payload(bs,option);
-	print_ip_payload(ip_payload);
+	print_ip_packet(ip_payload);
 }
+
+void craft(){
+	printf("\nCrafting...");
+	int option = get_transport_option();
+	struct ip_payload* ip_payload = craft_ip_packet(option,0);
+	//ip_payload->data = (void *)get_application_payload();
+	print_ip_packet(ip_payload);
+	char *bs = encapsulate_ip_payload(ip_payload);
+	print_bytes(bs, strlen(bs));
+	ip_payload = decapsulate_ip_payload(bs,option);
+	print_ip_packet(ip_payload);
+	save(bs, ".ip");
+}
+
 
 int main() {
 	int option;
@@ -145,7 +160,8 @@ int main() {
 				"\n4-UDP Decapsulation "
 				"\n5-IP Encapsulation"
 				"\n6-IP Decapsulation "
-				"\n7-Quit."
+				"\n7-Craft"
+				"\n8-Quit."
 				"\n");
 		scanf("%d", &option);
 		printf("Selected Option %d\n", option);
@@ -169,6 +185,9 @@ int main() {
 			ip_decapsulation();
 			break;
 		case 7:
+			craft();
+			break;
+		case 8:
 			flag = 0;
 		}
 	}

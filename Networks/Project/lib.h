@@ -77,6 +77,12 @@ void print_bytes(char *s,int length){
 }
 
 char* get_4_octets(char* a){
+	/*
+	char c[15];
+	for(int i = 0;i<strlen(a);i++){
+		c[i] = a[i];
+	}
+	*/
 	char* address = calloc(32,sizeof(char));
 	char* token = strtok(a,".");
 	while(token != NULL){
@@ -119,13 +125,11 @@ char* toIP(char* a){
 }
 
 void print_start(char* header){
-	printf("\n************** %s ***************",header);
-	printf("******************************************");
+	printf("\n************** %s ***************\n",header);
 }
 
 void print_end(char* header){
-	printf("\n************** End of %s ***************",header);
-	printf("*************************************************");
+	printf("\n************** End of %s ***************\n",header);
 }
 
 

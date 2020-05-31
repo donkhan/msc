@@ -10,6 +10,14 @@ struct tcp_payload* get_sample_tcp_payload(){
 	return payload;
 }
 
+struct tcp_payload* craft_tcp_packet(int in){
+	struct tcp_payload* tcp_payload = get_sample_tcp_payload();
+	tcp_payload->header = craft_tcp_header(in);
+	return tcp_payload;
+}
+
+
+
 char* encapsulate_tcp_payload(struct tcp_payload* tcp_payload){
 	char* bs = encapsulate_tcp_header(tcp_payload->header);
 	char *data = tcp_payload->data;
@@ -19,7 +27,6 @@ char* encapsulate_tcp_payload(struct tcp_payload* tcp_payload){
 	}
 	return bs;
 }
-
 
 struct tcp_payload* decapsulate_tcp_payload(char *c){
 	struct tcp_payload* payload = (struct tcp_payload *)malloc(sizeof(struct tcp_payload));

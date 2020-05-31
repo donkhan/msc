@@ -18,6 +18,19 @@ struct udp_header* get_sample_udp_header(){
 	return udp_header;
 }
 
+struct udp_header* craft_udp_header(int in){
+	print_start("UDP Header Configuration");
+	struct udp_header* udp_header = get_sample_udp_header();
+	int port;
+	printf("\nEnter Source Port ");
+	scanf("%d", &port);
+	udp_header->src_port = port;
+	printf("Enter Destination Port ");
+	scanf("%d", &port);
+	udp_header->dst_port = port;
+	print_end("UDP Header Configuration");
+	return udp_header;
+}
 
 char* encapsulate_udp_header(struct udp_header* udp_header){
 	int size = 32;

@@ -10,6 +10,7 @@ struct udp_payload* get_sample_udp_payload(){
 	return payload;
 }
 
+
 char* encapsulate_udp_payload(struct udp_payload* udp_payload){
 	char* bs = encapsulate_udp_header(udp_payload->header);
 	char *data = udp_payload->data;
@@ -45,4 +46,9 @@ void print_udp_payload(struct udp_payload* payload){
 	print_end("Application PayLoad ");
 }
   
+struct udp_payload* craft_udp_packet(int in){
+	struct udp_payload* udp_payload = get_sample_udp_payload();
+	udp_payload->header = craft_udp_header(in);
+	return udp_payload;
+}
 
