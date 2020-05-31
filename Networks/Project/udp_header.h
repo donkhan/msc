@@ -21,7 +21,7 @@ struct udp_header* get_sample_udp_header(){
 struct udp_header* craft_udp_header(int in){
 	print_start("UDP Header Configuration");
 	struct udp_header* udp_header = get_sample_udp_header();
-	int port;
+	int port,checksum,length;;
 	printf("\nEnter Source Port ");
 	scanf("%d", &port);
 	udp_header->src_port = port;
@@ -60,8 +60,8 @@ void print_udp_header(struct udp_header* udp_header){
 	print_start("UDP");
 	printf("\nSource Port %d",udp_header->src_port);
 	printf("\nDestination Port %d",udp_header->dst_port);
-	printf("\nLength %d",udp_header->dst_port);
-	printf("\nChecksum %d",udp_header->dst_port);
+	printf("\nLength %d",udp_header->length);
+	printf("\nChecksum %d",udp_header->checksum);
 	print_end("UDP");
 	printf("\n");
 }

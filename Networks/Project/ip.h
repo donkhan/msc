@@ -16,9 +16,9 @@ struct ip_payload* craft_ip_packet(int option,int in){
 	ip_payload->option = option;
 	ip_payload->header = craft_ip_packet_header(in);
 	if(option == 1){
-		ip_payload->data = craft_udp_packet(in);
+		ip_payload->data = craft_udp_payload(in);
 	}else{
-		ip_payload->data = craft_tcp_packet(in);
+		ip_payload->data = craft_tcp_payload(in);
 	}
 	return ip_payload;
 }

@@ -6,7 +6,7 @@ struct udp_payload{
 struct udp_payload* get_sample_udp_payload(){
 	struct udp_payload* payload = (struct udp_payload *)malloc(sizeof(struct udp_payload));
 	payload->header = get_sample_udp_header();
-	payload->data = "SAMPLE UDP PACKET";
+	payload->data = "U";
 	return payload;
 }
 
@@ -46,7 +46,7 @@ void print_udp_payload(struct udp_payload* payload){
 	print_end("Application PayLoad ");
 }
   
-struct udp_payload* craft_udp_packet(int in){
+struct udp_payload* craft_udp_payload(int in){
 	struct udp_payload* udp_payload = get_sample_udp_payload();
 	udp_payload->header = craft_udp_header(in);
 	return udp_payload;

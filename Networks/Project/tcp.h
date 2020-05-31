@@ -10,7 +10,7 @@ struct tcp_payload* get_sample_tcp_payload(){
 	return payload;
 }
 
-struct tcp_payload* craft_tcp_packet(int in){
+struct tcp_payload* craft_tcp_payload(int in){
 	struct tcp_payload* tcp_payload = get_sample_tcp_payload();
 	tcp_payload->header = craft_tcp_header(in);
 	return tcp_payload;
