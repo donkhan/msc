@@ -57,13 +57,20 @@ struct tcp_header* craft_tcp_header(int in) {
 	struct tcp_header *tcp_header = get_sample_tcp_header();
 	if (in) {
 		print_start("TCP Header Configuration");
-		int port;
-		printf("\nEnter Source Port ");
-		scanf("%d", &port);
-		tcp_header->src_port = port;
-		printf("\nEnter Destination Port ");
-		scanf("%d", &port);
-		tcp_header->dst_port = port;
+		tcp_header->src_port = get_int_input("Source Port");
+		tcp_header->dst_port = get_int_input("Destination Port");
+		tcp_header->seq_no = get_int_input("Sequence No");
+		tcp_header->ack_no = get_int_input("Acknowledgment No");
+		tcp_header->hlen = get_int_input("Header Length");
+		tcp_header->window_size = get_int_input("Window Size");
+		tcp_header->urg = get_int_input("Urgent Flag");
+		tcp_header->ack = get_int_input("Acknowledgment Flag");
+		tcp_header->psh = get_int_input("Push Flag");
+		tcp_header->rst = get_int_input("Reset Flag");
+		tcp_header->syn = get_int_input("Syn Flag");
+		tcp_header->fin = get_int_input("Fin Flag");
+		tcp_header->urgent_pointer = get_int_input("Urgent Pointer");
+
 		print_end("TCP Header Configuration");
 	}
 	return tcp_header;

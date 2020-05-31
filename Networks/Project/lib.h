@@ -65,8 +65,8 @@ char* pluck(char *src,int pos, int length){
 
 void print_bytes(char *s,int length){
 	int bytes = 0;
-	printf("\nBinary: %s\n",s);
-	printf("Octet Split \n");
+	printf("\nBinary: %s",s);
+	printf("\nOctet Split: \n");
 	for(int i = 0;i<length;i++){
 		if(i%8 == 0 && i != 0){
 			printf(",");
@@ -92,13 +92,13 @@ char* get_4_octets(char* a){
 	return address;
 }
 
+
 char* toIP(char* a){
 	char *token;
 	char *address;
 	char buf[8];
 	char x[15];
 	int k = 0;
-
 	for(int i = 0;i<4;i++){
 		token = pluck(a,i*8,8);
 		char *format = "%d";
@@ -111,14 +111,12 @@ char* toIP(char* a){
 			x[k] = buf[j];
 			k = k + 1;
 		}
-		if(i != 3){
-			x[k] = '.';
-			k = k + 1;
-		}
+		x[k] = '.';
+		k = k + 1;
 	}
-
-	address = malloc(sizeof(strlen(x)-1));
-	for(int i = 0;i<strlen(x);i++){
+	k = k - 1;
+	address = calloc(k,sizeof(char));
+	for(int i = 0;i<k;i++){
 		address[i] = x[i];
 	}
 	return address;
@@ -132,6 +130,12 @@ void print_end(char* header){
 	printf("\n************** End of %s ***************\n",header);
 }
 
+int get_int_input(char* field){
+	int input = 0;
+	printf("Enter %s : ",field);
+	scanf("%d",&input);
+	return input;
+}
 
 
 

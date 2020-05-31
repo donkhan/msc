@@ -13,6 +13,13 @@ struct tcp_payload* get_sample_tcp_payload(){
 struct tcp_payload* craft_tcp_payload(int in){
 	struct tcp_payload* tcp_payload = get_sample_tcp_payload();
 	tcp_payload->header = craft_tcp_header(in);
+	in = 0;
+	if(in){
+		printf("Enter Payload ");
+		char *payload;
+		scanf("%s",payload);
+		tcp_payload->data = (void *)payload;
+	}
 	return tcp_payload;
 }
 

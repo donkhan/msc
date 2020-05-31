@@ -1,5 +1,5 @@
-#include<stdio.h>
-#include<string.h>
+#include <stdio.h>
+#include <string.h>
 #include "lib.h"
 #include "tcp_header.h"
 #include "tcp.h"
@@ -116,10 +116,10 @@ void ip_encapsulation() {
 	}
 
 	char *bs = encapsulate_ip_payload(ip_payload);
-	print_ip_packet(ip_payload);
+	print_ip_payload(ip_payload);
 	print_bytes(bs, strlen(bs));
 	ip_payload = decapsulate_ip_payload(bs,option);
-	print_ip_packet(ip_payload);
+	print_ip_payload(ip_payload);
 	save(bs, ".ip");
 }
 
@@ -133,19 +133,18 @@ void ip_decapsulation() {
 	int option = get_transport_option();
 	char *bs = read(".ip");
 	struct ip_payload *ip_payload = decapsulate_ip_payload(bs,option);
-	print_ip_packet(ip_payload);
+	print_ip_payload(ip_payload);
 }
 
 void craft(){
-	printf("\nCrafting...");
+	printf("\nCrafting...\n");
 	int option = get_transport_option();
-	struct ip_payload* ip_payload = craft_ip_packet(option,0);
-	//ip_payload->data = (void *)get_application_payload();
-	print_ip_packet(ip_payload);
+	struct ip_payload* ip_payload = craft_ip_payload(option,1);
+	print_ip_payload(ip_payload);
 	char *bs = encapsulate_ip_payload(ip_payload);
 	print_bytes(bs, strlen(bs));
 	ip_payload = decapsulate_ip_payload(bs,option);
-	print_ip_packet(ip_payload);
+	print_ip_payload(ip_payload);
 	save(bs, ".ip");
 }
 

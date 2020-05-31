@@ -36,8 +36,8 @@ struct ip_header* get_sample_ip_header() {
 	ip_header->protocol = 12;
 	ip_header->header_checksum = 34;
 
-	strcpy(ip_header->src, "1.1.1.1");
-	strcpy(ip_header->dst, "2.1.1.1");
+	strcpy(ip_header->src, "192.168.1.2");
+	strcpy(ip_header->dst, "192.168.1.45");
 
 	return ip_header;
 }
@@ -75,23 +75,24 @@ char* encapsulate_ip_header(struct ip_header *ip_header) {
 
 	ip_packet = strcat(ip_packet, get_4_octets(ip_header->src));
 	ip_packet = strcat(ip_packet, get_4_octets(ip_header->dst));
-	printf("%s\n", ip_packet);
 
 	return ip_packet;
 }
 
 struct ip_header* craft_ip_packet_header(int in) {
 	struct ip_header *header = get_sample_ip_header();
+	int input;
 	if (in) {
-		int version = 4;
 		print_start("IP Header Configuration");
-		printf("\nEnter Version...");
-		scanf("%d", &version);
-		header->version = version;
-		printf("Enter Source Address...");
+		header->version = get_int_input("Version");
+		printf("Enter Source Address : ");
 		scanf("%s", header->src);
-		printf("Enter Destination Address...");
-		scanf("%s", header->src);
+		printf("Enter Destination Address : ");
+		scanf("%s", header->dst);
+		header->dscp = get_int_input("Differentiated Services Code Point");
+		header->ecn = get_int_input("Explicit Congestion Notification");
+		header->ttl = get_int_input("Time to Live");
+		header->protocol = get_int_input("Protocol");
 		print_end("IP Header Configuration");
 	}
 	return header;
