@@ -118,22 +118,12 @@ char* toIP(char* a){
 	return address;
 }
 
-void print_start_payload(char* header){
+void print_start(char* header){
 	printf("\n************** %s ***************",header);
 	printf("******************************************");
 }
 
 void print_end(char* header){
-	printf("\n************** End of %s ***************",header);
-	printf("*************************************************");
-}
-
-void print_start(char* header){
-	printf("\n************** %s HEADER ***************",header);
-	printf("******************************************");
-}
-
-void print_end_payload(char* header){
 	printf("\n************** End of %s ***************",header);
 	printf("*************************************************");
 }

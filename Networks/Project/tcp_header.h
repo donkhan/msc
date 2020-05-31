@@ -119,9 +119,9 @@ void print_tcp_header(struct tcp_header* tcp_header){
 	printf("\nCheck Sum %d",tcp_header->tcp_checksum);
 	printf("\nUrgent Pointer %d",tcp_header->urgent_pointer);
 	for(int i = 0;i<tcp_header->hlen;i++){
-		printf("Options %d %d\n",i,tcp_header->options[i]);
+		printf("\nOptions %d %d",i,tcp_header->options[i]);
 	}
-	print_end("IP");
+	print_end("TCP");
 	printf("\n");
 }
 

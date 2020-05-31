@@ -1,5 +1,3 @@
-#include "tcp_header.h"
-
 struct tcp_payload{
 	struct tcp_header* header;
 	void* data;
@@ -8,7 +6,7 @@ struct tcp_payload{
 struct tcp_payload* get_sample_tcp_payload(){
 	struct tcp_payload* payload = (struct tcp_payload *)malloc(sizeof(struct tcp_payload));
 	payload->header = get_sample_tcp_header();
-	payload->data = "ABC";
+	payload->data = "SAMPLE TCP PACKET";
 	return payload;
 }
 
@@ -42,9 +40,9 @@ struct tcp_payload* decapsulate_tcp_payload(char *c){
 
 void print_tcp_payload(struct tcp_payload* payload){
 	print_tcp_header(payload->header);
-	print_start_payload("Application PayLoad ");
+	print_start("Application PayLoad ");
 	printf("\nDATA: %s\n",payload->data);
-	print_end_payload("Application PayLoad ");
+	print_end("Application PayLoad ");
 }
   
 
