@@ -62,22 +62,15 @@ char* read(char *ext) {
 	fp = fopen(file_name, "r");
 	fgets(bs, sz, fp);
 	fclose(fp);
-	printf("Binary %s\n", bs);
+	print_bytes(bs,strlen(bs));
 	return bs;
 }
 
-char* get_application_payload(){
-	char *app_payload = calloc(32,sizeof(char));
-	printf("Enter Application Payload...");
-	scanf("%s",app_payload);
-	return app_payload;
-}
 
 void tcp_encapsulation() {
 	struct tcp_payload *tcp_payload = get_sample_tcp_payload();
-	tcp_payload->data = (void *)get_application_payload();
-	char *bs = encapsulate_tcp_payload(tcp_payload);
 	print_tcp_payload(tcp_payload);
+	char *bs = encapsulate_tcp_payload(tcp_payload);
 	print_bytes(bs, strlen(bs));
 	tcp_payload = decapsulate_tcp_payload(bs);
 	print_tcp_payload(tcp_payload);
@@ -86,7 +79,6 @@ void tcp_encapsulation() {
 
 void udp_encapsulation() {
 	struct udp_payload *udp_payload = get_sample_udp_payload();
-	udp_payload->data = (void *)get_application_payload();
 	char *bs = encapsulate_udp_payload(udp_payload);
 	print_udp_payload(udp_payload);
 	print_bytes(bs, strlen(bs));
@@ -104,17 +96,6 @@ void udp_decapsulation() {
 void ip_encapsulation() {
 	int option = get_transport_option();
 	struct ip_payload *ip_payload = get_sample_ip_payload(option);
-	if(option == 2){
-		struct tcp_payload* payload = get_sample_tcp_payload();
-		payload->data = (void *)get_application_payload();
-		ip_payload->data = payload;
-	}
-	if(option == 1){
-		struct udp_payload* payload = get_sample_udp_payload();
-		payload->data = (void *)get_application_payload();
-		ip_payload->data = payload;
-	}
-
 	char *bs = encapsulate_ip_payload(ip_payload);
 	print_ip_payload(ip_payload);
 	print_bytes(bs, strlen(bs));
@@ -187,6 +168,7 @@ int main() {
 			craft();
 			break;
 		case 8:
+			printf("Quitting the Demo... Bye\n");
 			flag = 0;
 		}
 	}

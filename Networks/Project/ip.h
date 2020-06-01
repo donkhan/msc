@@ -8,6 +8,12 @@ struct ip_payload* get_sample_ip_payload(int option){
 	struct ip_payload* ip_payload = (struct ip_payload *) malloc(sizeof(struct ip_payload));
 	ip_payload->header = get_sample_ip_header();
 	ip_payload->option = option;
+	if(option == 1){
+		ip_payload->data = (struct udp_payload *)get_sample_udp_payload();
+	}
+	if(option == 2){
+		ip_payload->data = (struct tcp_payload *)get_sample_tcp_payload();
+	}
 	return ip_payload;
 }
 

@@ -29,7 +29,7 @@ void udp_test(){
 }
 
 void udp_header_test(){
-	struct udp_header* p = craft_udp_header(0);
+	struct udp_header* p = craft_udp_header(1);
 	char* bs = encapsulate_udp_header(p);
 	print_udp_header(p);
 	print_bytes(bs,strlen(bs));
@@ -65,7 +65,7 @@ void ip_test(){
 }
 
 int main(){
-	ip_test();
+	tcp_test();
 }
 
 

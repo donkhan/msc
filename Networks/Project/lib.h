@@ -77,12 +77,6 @@ void print_bytes(char *s,int length){
 }
 
 char* get_4_octets(char* a){
-	/*
-	char c[15];
-	for(int i = 0;i<strlen(a);i++){
-		c[i] = a[i];
-	}
-	*/
 	char* address = calloc(32,sizeof(char));
 	char* token = strtok(a,".");
 	while(token != NULL){
@@ -136,6 +130,14 @@ int get_int_input(char* field){
 	scanf("%d",&input);
 	return input;
 }
+
+char* get_application_payload(){
+	char *app_payload = calloc(32,sizeof(char));
+	printf("Enter Application Payload...");
+	scanf("%s",app_payload);
+	return app_payload;
+}
+
 
 
 

@@ -49,12 +49,8 @@ void print_udp_payload(struct udp_payload* payload){
 struct udp_payload* craft_udp_payload(int in){
 	struct udp_payload* udp_payload = get_sample_udp_payload();
 	udp_payload->header = craft_udp_header(in);
-	in = 0;
 	if(in){
-		printf("Enter Payload ");
-		char *payload;
-		scanf("%s",payload);
-		udp_payload->data = (void *)payload;
+		udp_payload->data = (void *)get_application_payload();
 	}
 	return udp_payload;
 }
