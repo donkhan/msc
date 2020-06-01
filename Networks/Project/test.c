@@ -20,12 +20,12 @@ void tcp_test(){
 }
 
 void udp_test(){
-	struct udp_payload* udp_payload = craft_udp_payload(1);
-	char* bs = encapsulate_udp_payload(udp_payload);
-	print_udp_payload(udp_payload);
+	struct udp* udp = craft_udp(1);
+	char* bs = encapsulate_udp(udp);
+	print_udp(udp);
 	print_bytes(bs,strlen(bs));
-	udp_payload = decapsulate_udp_payload(bs);
-	print_udp_payload(udp_payload);
+	udp = decapsulate_udp(bs);
+	print_udp(udp);
 }
 
 void udp_header_test(){

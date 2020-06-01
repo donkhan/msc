@@ -80,19 +80,19 @@ void tcp_encapsulation() {
 }
 
 void udp_encapsulation() {
-	struct udp_payload *udp_payload = get_sample_udp_payload();
-	char *bs = encapsulate_udp_payload(udp_payload);
-	print_udp_payload(udp_payload);
+	struct udp *udp = get_sample_udp();
+	char *bs = encapsulate_udp(udp);
+	print_udp(udp);
 	print_bytes(bs, strlen(bs));
-	udp_payload = decapsulate_udp_payload(bs);
-	print_udp_payload(udp_payload);
+	udp = decapsulate_udp(bs);
+	print_udp(udp);
 	save(bs, ".udp");
 }
 
 void udp_decapsulation() {
 	char *bs = read(".udp");
-	struct udp_payload *udp_payload = decapsulate_udp_payload(bs);
-	print_udp_payload(udp_payload);
+	struct udp *udp = decapsulate_udp(bs);
+	print_udp(udp);
 }
 
 void ip_encapsulation() {

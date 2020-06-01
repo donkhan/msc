@@ -1,19 +1,19 @@
-struct udp_payload{
+struct udp{
 	struct udp_header* header;
 	void* data;
 };
 
-struct udp_payload* get_sample_udp_payload(){
-	struct udp_payload* payload = (struct udp_payload *)malloc(sizeof(struct udp_payload));
+struct udp* get_sample_udp(){
+	struct udp* payload = (struct udp *)malloc(sizeof(struct udp));
 	payload->header = get_sample_udp_header();
 	payload->data = "Sample UDP Packet";
 	return payload;
 }
 
 
-char* encapsulate_udp_payload(struct udp_payload* udp_payload){
-	char* bs = encapsulate_udp_header(udp_payload->header);
-	char *data = udp_payload->data;
+char* encapsulate_udp(struct udp* udp){
+	char* bs = encapsulate_udp_header(udp->header);
+	char *data = udp->data;
 	int no_of_chars = strlen(data);
 	for(int i = 0;i<no_of_chars;i++){
 		bs = strcat(bs,int_to_binary(data[i],8));
@@ -22,8 +22,8 @@ char* encapsulate_udp_payload(struct udp_payload* udp_payload){
 }
 
 
-struct udp_payload* decapsulate_udp_payload(char *c){
-	struct udp_payload* payload = (struct udp_payload *)malloc(sizeof(struct udp_payload));
+struct udp* decapsulate_udp(char *c){
+	struct udp* payload = (struct udp *)malloc(sizeof(struct udp));
 	payload->header = decapsulate_udp_header(c);
 	int e = end_of_udp_header(payload->header);
 	int total = strlen(c);
@@ -39,19 +39,19 @@ struct udp_payload* decapsulate_udp_payload(char *c){
 }
 
 
-void print_udp_payload(struct udp_payload* payload){
+void print_udp(struct udp* payload){
 	print_udp_header(payload->header);
 	print_start("Application PayLoad ");
 	printf("\nDATA: %s\n",payload->data);
 	print_end("Application PayLoad ");
 }
   
-struct udp_payload* craft_udp_payload(int in){
-	struct udp_payload* udp_payload = get_sample_udp_payload();
-	udp_payload->header = craft_udp_header(in);
+struct udp* craft_udp(int in){
+	struct udp* udp = get_sample_udp();
+	udp->header = craft_udp_header(in);
 	if(in){
-		udp_payload->data = (void *)get_application_payload();
+		udp->data = (void *)get_application_payload();
 	}
-	return udp_payload;
+	return udp;
 }
 
