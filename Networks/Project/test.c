@@ -11,12 +11,12 @@
 #include "eth.h"
 
 void tcp_test(){
-	struct tcp_payload* tcp_payload = craft_tcp_payload(1);
-	char* bs = encapsulate_tcp_payload(tcp_payload);
-	print_tcp_payload(tcp_payload);
+	struct tcp* tcp = craft_tcp(1);
+	char* bs = encapsulate_tcp(tcp);
+	print_tcp(tcp);
 	print_bytes(bs,strlen(bs));
-	tcp_payload = decapsulate_tcp_payload(bs);
-	print_tcp_payload(tcp_payload);
+	tcp = decapsulate_tcp(bs);
+	print_tcp(tcp);
 }
 
 void udp_test(){

@@ -1,29 +1,29 @@
-struct tcp_payload{
+struct tcp{
 	struct tcp_header* header;
 	void* data;
 };
 
-struct tcp_payload* get_sample_tcp_payload(){
-	struct tcp_payload* payload = (struct tcp_payload *)malloc(sizeof(struct tcp_payload));
+struct tcp* get_sample_tcp(){
+	struct tcp* payload = (struct tcp *)malloc(sizeof(struct tcp));
 	payload->header = get_sample_tcp_header();
 	payload->data = "SAMPLE TCP PACKET";
 	return payload;
 }
 
-struct tcp_payload* craft_tcp_payload(int in){
-	struct tcp_payload* tcp_payload = get_sample_tcp_payload();
-	tcp_payload->header = craft_tcp_header(in);
+struct tcp* craft_tcp(int in){
+	struct tcp* tcp = get_sample_tcp();
+	tcp->header = craft_tcp_header(in);
 	if(in){
-		tcp_payload->data = (void *)get_application_payload();
+		tcp->data = (void *)get_application_payload();
 	}
-	return tcp_payload;
+	return tcp;
 }
 
 
 
-char* encapsulate_tcp_payload(struct tcp_payload* tcp_payload){
-	char* bs = encapsulate_tcp_header(tcp_payload->header);
-	char *data = tcp_payload->data;
+char* encapsulate_tcp(struct tcp* tcp){
+	char* bs = encapsulate_tcp_header(tcp->header);
+	char *data = tcp->data;
 	int no_of_chars = strlen(data);
 	for(int i = 0;i<no_of_chars;i++){
 		bs = strcat(bs,int_to_binary(data[i],8));
@@ -31,8 +31,8 @@ char* encapsulate_tcp_payload(struct tcp_payload* tcp_payload){
 	return bs;
 }
 
-struct tcp_payload* decapsulate_tcp_payload(char *c){
-	struct tcp_payload* payload = (struct tcp_payload *)malloc(sizeof(struct tcp_payload));
+struct tcp* decapsulate_tcp(char *c){
+	struct tcp* payload = (struct tcp *)malloc(sizeof(struct tcp));
 	payload->header = decapsulate_tcp_header(c);
 	int e = end_of_header(payload->header);
 	int total = strlen(c);
@@ -48,7 +48,7 @@ struct tcp_payload* decapsulate_tcp_payload(char *c){
 }
 
 
-void print_tcp_payload(struct tcp_payload* payload){
+void print_tcp(struct tcp* payload){
 	print_tcp_header(payload->header);
 	print_start("Application PayLoad ");
 	printf("\nDATA: %s\n",payload->data);

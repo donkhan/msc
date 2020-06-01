@@ -70,12 +70,12 @@ char* read(char *ext) {
 
 
 void tcp_encapsulation() {
-	struct tcp_payload *tcp_payload = get_sample_tcp_payload();
-	print_tcp_payload(tcp_payload);
-	char *bs = encapsulate_tcp_payload(tcp_payload);
+	struct tcp *tcp = get_sample_tcp();
+	print_tcp(tcp);
+	char *bs = encapsulate_tcp(tcp);
 	print_bytes(bs, strlen(bs));
-	tcp_payload = decapsulate_tcp_payload(bs);
-	print_tcp_payload(tcp_payload);
+	tcp = decapsulate_tcp(bs);
+	print_tcp(tcp);
 	save(bs, ".tcp");
 }
 
@@ -126,8 +126,8 @@ void eth_decapsulation() {
 
 void tcp_decapsulation() {
 	char *bs = read(".tcp");
-	struct tcp_payload *tcp_payload = decapsulate_tcp_payload(bs);
-	print_tcp_payload(tcp_payload);
+	struct tcp *tcp = decapsulate_tcp(bs);
+	print_tcp(tcp);
 }
 
 void ip_decapsulation() {

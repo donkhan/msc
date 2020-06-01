@@ -12,7 +12,7 @@ struct ip_payload* get_sample_ip_payload(int option){
 		ip_payload->data = (struct udp *)get_sample_udp();
 	}
 	if(option == 2){
-		ip_payload->data = (struct tcp_payload *)get_sample_tcp_payload();
+		ip_payload->data = (struct tcp *)get_sample_tcp();
 	}
 	return ip_payload;
 }
@@ -26,7 +26,7 @@ struct ip_payload* craft_ip_payload(int option,int in){
 		ip_payload->data = craft_udp(in);
 	}else{
 		printf("\nCrafting TCP Payload...");
-		ip_payload->data = craft_tcp_payload(in);
+		ip_payload->data = craft_tcp(in);
 	}
 	return ip_payload;
 }
@@ -35,7 +35,7 @@ char* encapsulate_ip_payload(struct ip_payload* ip_payload){
 	char* ip = encapsulate_ip_header(ip_payload->header);
 	char* x;
 	if(ip_payload->option == 2){
-		x = encapsulate_tcp_payload((struct tcp_payload*)ip_payload->data);
+		x = encapsulate_tcp((struct tcp*)ip_payload->data);
 	}
 	else{
 		x = encapsulate_udp((struct udp*)ip_payload->data);
@@ -58,7 +58,7 @@ struct ip_payload* decapsulate_ip_payload(char *c,int option){
 	int total = strlen(c);
 	char* data = pluck(c,e,total-e);
 	if(option == 2){
-		payload->data = decapsulate_tcp_payload(data);
+		payload->data = decapsulate_tcp(data);
 	}
 	if(option == 1){
 		payload->data = decapsulate_udp(data);
@@ -73,7 +73,7 @@ void print_ip_payload(struct ip_payload* payload){
 	if(payload->option == 1){
 		print_udp(payload->data);
 	}else{
-		print_tcp_payload(payload->data);
+		print_tcp(payload->data);
 	}
 }
 
