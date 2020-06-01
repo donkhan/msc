@@ -65,7 +65,7 @@ char* pluck(char *src,int pos, int length){
 
 void print_bytes(char *s,int length){
 	int bytes = 0;
-	printf("\nBinary: %s",s);
+	printf("\nBinary: %s Length %d ",s,length);
 	printf("\nOctet Split: \n");
 	for(int i = 0;i<length;i++){
 		if(i%8 == 0 && i != 0){
@@ -201,7 +201,6 @@ char* get_hex_char(char *x){
 
 char* toHEX(char *string){
 	char* hex_string = calloc(17,sizeof(char));
-	print_bytes(string,strlen(string));
 	for(int i = 0;i<6;i++){
 		char *byte = pluck(string,i*8,8);
 		char *nibble_1 = pluck(byte,0,4);

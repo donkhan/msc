@@ -22,8 +22,10 @@ struct ip_payload* craft_ip_payload(int option,int in){
 	ip_payload->option = option;
 	ip_payload->header = craft_ip_packet_header(in);
 	if(option == 1){
+		printf("\nCrafting UDP Payload...");
 		ip_payload->data = craft_udp_payload(in);
 	}else{
+		printf("\nCrafting TCP Payload...");
 		ip_payload->data = craft_tcp_payload(in);
 	}
 	return ip_payload;
@@ -33,7 +35,7 @@ char* encapsulate_ip_payload(struct ip_payload* ip_payload){
 	char* ip = encapsulate_ip_header(ip_payload->header);
 	char* x;
 	if(ip_payload->option == 2){
-		x = encapsulate_tcp_payload(ip_payload->data);
+		x = encapsulate_tcp_payload((struct tcp_payload*)ip_payload->data);
 	}
 	else{
 		x = encapsulate_udp_payload((struct udp_payload*)ip_payload->data);

@@ -55,14 +55,7 @@ void tcp_header_test(){
 	print_tcp_header(pl);
 }
 
-void ip_test(){
-	struct ip_payload* pl = craft_ip_payload(1,1);
-	char* bs = encapsulate_ip_payload(pl);
-	print_ip_payload(pl);
-	print_bytes(bs,strlen(bs));
-	pl = decapsulate_ip_payload(bs,1);
-	print_ip_payload(pl);
-}
+
 
 void eth_header_test(){
 	struct eth_header* pl = craft_eth_header(0);
@@ -73,14 +66,21 @@ void eth_header_test(){
 	print_eth_header(pl);
 }
 
-void eth_test(){
-	int option = 1;
-	struct eth* pl = craft_eth(1,option);
-	char* bs = encapsulate_eth(pl,option);
-	print_eth(pl,option);
+void ip_test(){
+	struct ip_payload* pl = craft_ip_payload(1,0);
+	char* bs = encapsulate_ip_payload(pl);
+	print_ip_payload(pl);
 	print_bytes(bs,strlen(bs));
-	pl = decapsulate_eth(bs,option);
-	print_eth(pl,option);
+	pl = decapsulate_ip_payload(bs,1);
+	print_ip_payload(pl);
+}
+
+void eth_test(){
+	struct eth* pl = craft_eth(0,1);
+	print_eth(pl,1);
+	char* bs = encapsulate_eth(pl,1);
+	pl = decapsulate_eth(bs,1);
+	print_eth(pl,1);
 }
 
 

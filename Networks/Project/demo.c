@@ -7,6 +7,8 @@
 #include "udp.h"
 #include "ip_header.h"
 #include "ip.h"
+#include "eth_header.h"
+#include "eth.h"
 
 void printOption(char *message) {
 	printf("%s\nEnter Your Choice:  ", message);
@@ -104,6 +106,24 @@ void ip_encapsulation() {
 	save(bs, ".ip");
 }
 
+void eth_encapsulation() {
+	int option = get_transport_option();
+	struct eth *eth = get_sample_eth(option);
+	char *bs = encapsulate_eth(eth,option);
+	print_eth(eth,option);
+	print_bytes(bs, strlen(bs));
+	eth = decapsulate_eth(bs,option);
+	print_eth(eth,option);
+	save(bs, ".eth");
+}
+
+void eth_decapsulation() {
+	int option = get_transport_option();
+	char *bs = read(".eth");
+	struct eth *eth = decapsulate_eth(bs,option);
+	print_eth(eth,option);
+}
+
 void tcp_decapsulation() {
 	char *bs = read(".tcp");
 	struct tcp_payload *tcp_payload = decapsulate_tcp_payload(bs);
@@ -141,7 +161,9 @@ int main() {
 				"\n5-IP Encapsulation"
 				"\n6-IP Decapsulation "
 				"\n7-Craft"
-				"\n8-Quit."
+				"\n8-Eth Encapsulation"
+				"\n9-Eth Decapsulation"
+				"\n10-Quit."
 				"\n");
 		scanf("%d", &option);
 		printf("Selected Option %d\n", option);
@@ -168,6 +190,12 @@ int main() {
 			craft();
 			break;
 		case 8:
+			eth_encapsulation();
+			break;
+		case 9:
+			eth_decapsulation();
+			break;
+		case 10:
 			printf("Quitting the Demo... Bye\n");
 			flag = 0;
 		}
