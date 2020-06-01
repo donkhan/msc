@@ -138,6 +138,82 @@ char* get_application_payload(){
 	return app_payload;
 }
 
+char* get_6_octets(char* mac){
+	char* address = calloc(96,sizeof(char));
+	char* token = strtok(mac,":");
+	while(token != NULL){
+		char* binary = calloc(8 ,sizeof(char));
+		int i = 0;
+		while (token[i]) {
+			switch (token[i]) {
+				case '0': binary = strcat(binary,"0000");break;
+				case '1': binary = strcat(binary,"0001");break;
+				case '2': binary = strcat(binary,"0010");break;
+				case '3': binary = strcat(binary,"0011");break;
+				case '4': binary = strcat(binary,"0100");break;
+				case '5': binary = strcat(binary,"0101");break;
+				case '6': binary = strcat(binary,"0110");break;
+				case '7': binary = strcat(binary,"0111");break;
+				case '8': binary = strcat(binary,"1000");break;
+				case '9': binary = strcat(binary,"1001");break;
+				case 'a':
+				case 'A': binary = strcat(binary,"0000");break;
+				case 'b':
+				case 'B': binary = strcat(binary,"0000");break;
+				case 'c':
+				case 'C': binary = strcat(binary,"0000");break;
+				case 'd':
+				case 'D': binary = strcat(binary,"0000");break;
+				case 'e':
+				case 'E': binary = strcat(binary,"0000");break;
+		        case 'F':
+		        case 'f':
+		        	binary = strcat(binary,"1111");
+		        	break;
+		   	}
+			i++;
+		}
+		address = strcat(address,binary);
+		token = strtok(NULL,":");
+	}
+	return address;
+}
+
+char* get_hex_char(char *x){
+	if(strcmp(x,"0000")==0) return "0";
+	if(strcmp(x,"0001")==0) return "1";
+	if(strcmp(x,"0010")==0) return "2";
+	if(strcmp(x,"0011")==0) return "3";
+	if(strcmp(x,"0100")==0) return "4";
+	if(strcmp(x,"0101")==0) return "5";
+	if(strcmp(x,"0110")==0) return "6";
+	if(strcmp(x,"0111")==0) return "7";
+	if(strcmp(x,"1000")==0) return "8";
+	if(strcmp(x,"1001")==0) return "9";
+	if(strcmp(x,"1010")==0) return "A";
+	if(strcmp(x,"1011")==0) return "B";
+	if(strcmp(x,"1100")==0) return "C";
+	if(strcmp(x,"1101")==0) return "D";
+	if(strcmp(x,"1110")==0) return "E";
+	if(strcmp(x,"1111")==0) return "F";
+	return "";
+}
+
+char* toHEX(char *string){
+	char* hex_string = calloc(17,sizeof(char));
+	print_bytes(string,strlen(string));
+	for(int i = 0;i<6;i++){
+		char *byte = pluck(string,i*8,8);
+		char *nibble_1 = pluck(byte,0,4);
+		char *nibble_2 = pluck(byte,4,8);
+		hex_string = strcat(hex_string,get_hex_char(nibble_1));
+		hex_string = strcat(hex_string,get_hex_char(nibble_2));
+		if(i != 5){
+			hex_string = strcat(hex_string,":");
+		}
+	}
+	return hex_string;
+}
 
 
 

@@ -7,8 +7,8 @@
 #include "udp.h"
 #include "ip_header.h"
 #include "ip.h"
-
-
+#include "eth_header.h"
+#include "eth.h"
 
 void tcp_test(){
 	struct tcp_payload* tcp_payload = craft_tcp_payload(1);
@@ -64,8 +64,28 @@ void ip_test(){
 	print_ip_payload(pl);
 }
 
+void eth_header_test(){
+	struct eth_header* pl = craft_eth_header(0);
+	char* bs = encapsulate_eth_header(pl);
+	print_eth_header(pl);
+	print_bytes(bs,strlen(bs));
+	pl = decapsulate_eth_header(bs);
+	print_eth_header(pl);
+}
+
+void eth_test(){
+	int option = 1;
+	struct eth* pl = craft_eth(1,option);
+	char* bs = encapsulate_eth(pl,option);
+	print_eth(pl,option);
+	print_bytes(bs,strlen(bs));
+	pl = decapsulate_eth(bs,option);
+	print_eth(pl,option);
+}
+
+
 int main(){
-	tcp_test();
+	eth_test();
 }
 
 
