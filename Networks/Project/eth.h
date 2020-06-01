@@ -14,7 +14,7 @@ struct eth* craft_eth(int in,int option){
 	struct eth* eth = get_sample_eth(option);
 	if(in){
 		eth->header  = craft_eth_header(in);
-		struct ip* pl = craft_ip(1,0);
+		struct ip* pl = craft_ip(1,in);
 		eth->data = pl;
 	}
 	return eth;
@@ -42,11 +42,9 @@ char* encapsulate_eth(struct eth* eth,int option){
 
 struct eth* decapsulate_eth(char *c,int option){
 	print_start("Decapsulation");
-	print_bytes(c,strlen(c));
 	struct eth* eth = (struct eth *)malloc(sizeof(struct eth));
 	eth->header = decapsulate_eth_header(c);
 	char* ip = pluck(c,96,strlen(c)-96);
-	print_bytes(ip,strlen(ip));
 	eth->data = decapsulate_ip(ip,option);
 	print_end("Decapsulation");
 	return eth;
