@@ -144,6 +144,10 @@ char* get_6_octets(char* mac){
 	while(token != NULL){
 		char* binary = calloc(8 ,sizeof(char));
 		int i = 0;
+		char* first_nibble = calloc(4,sizeof(char));
+		if(strlen(token) == 1){
+			first_nibble = strcpy(first_nibble,"0000");
+		}
 		while (token[i]) {
 			switch (token[i]) {
 				case '0': binary = strcat(binary,"0000");break;
@@ -157,21 +161,24 @@ char* get_6_octets(char* mac){
 				case '8': binary = strcat(binary,"1000");break;
 				case '9': binary = strcat(binary,"1001");break;
 				case 'a':
-				case 'A': binary = strcat(binary,"0000");break;
+				case 'A': binary = strcat(binary,"1010");break;
 				case 'b':
-				case 'B': binary = strcat(binary,"0000");break;
+				case 'B': binary = strcat(binary,"1011");break;
 				case 'c':
-				case 'C': binary = strcat(binary,"0000");break;
+				case 'C': binary = strcat(binary,"1100");break;
 				case 'd':
-				case 'D': binary = strcat(binary,"0000");break;
+				case 'D': binary = strcat(binary,"1101");break;
 				case 'e':
-				case 'E': binary = strcat(binary,"0000");break;
+				case 'E': binary = strcat(binary,"1110");break;
 		        case 'F':
 		        case 'f':
 		        	binary = strcat(binary,"1111");
 		        	break;
 		   	}
 			i++;
+		}
+		if(strlen(token) == 1){
+			binary = strcat(first_nibble,binary);
 		}
 		address = strcat(address,binary);
 		token = strtok(NULL,":");

@@ -14,7 +14,7 @@ struct eth* craft_eth(int in,int option){
 	struct eth* eth = get_sample_eth(option);
 	if(in){
 		eth->header  = craft_eth_header(in);
-		struct ip* pl = craft_ip(1,1);
+		struct ip* pl = craft_ip(1,0);
 		eth->data = pl;
 	}
 	return eth;
