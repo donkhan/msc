@@ -97,12 +97,12 @@ void udp_decapsulation() {
 
 void ip_encapsulation() {
 	int option = get_transport_option();
-	struct ip_payload *ip_payload = get_sample_ip_payload(option);
-	char *bs = encapsulate_ip_payload(ip_payload);
-	print_ip_payload(ip_payload);
+	struct ip *ip = get_sample_ip(option);
+	char *bs = encapsulate_ip(ip);
+	print_ip(ip);
 	print_bytes(bs, strlen(bs));
-	ip_payload = decapsulate_ip_payload(bs,option);
-	print_ip_payload(ip_payload);
+	ip = decapsulate_ip(bs,option);
+	print_ip(ip);
 	save(bs, ".ip");
 }
 
@@ -133,20 +133,20 @@ void tcp_decapsulation() {
 void ip_decapsulation() {
 	int option = get_transport_option();
 	char *bs = read(".ip");
-	struct ip_payload *ip_payload = decapsulate_ip_payload(bs,option);
-	print_ip_payload(ip_payload);
+	struct ip *ip = decapsulate_ip(bs,option);
+	print_ip(ip);
 }
 
 void craft(){
 	printf("\nCrafting...\n");
 	int option = get_transport_option();
-	struct ip_payload* ip_payload = craft_ip_payload(option,1);
-	print_ip_payload(ip_payload);
-	char *bs = encapsulate_ip_payload(ip_payload);
+	struct eth* eth = craft_eth(option,1);
+	print_eth(eth,option);
+	char *bs = encapsulate_eth(eth,1);
 	print_bytes(bs, strlen(bs));
-	ip_payload = decapsulate_ip_payload(bs,option);
-	print_ip_payload(ip_payload);
-	save(bs, ".ip");
+	eth = decapsulate_eth(bs,option);
+	print_eth(eth,option);
+	save(bs, ".eth");
 }
 
 

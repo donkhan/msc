@@ -67,12 +67,12 @@ void eth_header_test(){
 }
 
 void ip_test(){
-	struct ip_payload* pl = craft_ip_payload(1,0);
-	char* bs = encapsulate_ip_payload(pl);
-	print_ip_payload(pl);
+	struct ip* pl = craft_ip(1,0);
+	char* bs = encapsulate_ip(pl);
+	print_ip(pl);
 	print_bytes(bs,strlen(bs));
-	pl = decapsulate_ip_payload(bs,1);
-	print_ip_payload(pl);
+	pl = decapsulate_ip(bs,1);
+	print_ip(pl);
 }
 
 void eth_test(){

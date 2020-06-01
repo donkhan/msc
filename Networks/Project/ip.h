@@ -1,57 +1,57 @@
-struct ip_payload{
+struct ip{
 	struct ip_header* header;
 	void* data;
 	int option;
 };
 
-struct ip_payload* get_sample_ip_payload(int option){
-	struct ip_payload* ip_payload = (struct ip_payload *) malloc(sizeof(struct ip_payload));
-	ip_payload->header = get_sample_ip_header();
-	ip_payload->option = option;
+struct ip* get_sample_ip(int option){
+	struct ip* ip = (struct ip *) malloc(sizeof(struct ip));
+	ip->header = get_sample_ip_header();
+	ip->option = option;
 	if(option == 1){
-		ip_payload->data = (struct udp *)get_sample_udp();
+		ip->data = (struct udp *)get_sample_udp();
 	}
 	if(option == 2){
-		ip_payload->data = (struct tcp *)get_sample_tcp();
+		ip->data = (struct tcp *)get_sample_tcp();
 	}
-	return ip_payload;
+	return ip;
 }
 
-struct ip_payload* craft_ip_payload(int option,int in){
-	struct ip_payload* ip_payload = (struct ip_payload *) malloc(sizeof(struct ip_payload));
-	ip_payload->option = option;
-	ip_payload->header = craft_ip_packet_header(in);
+struct ip* craft_ip(int option,int in){
+	struct ip* ip = (struct ip *) malloc(sizeof(struct ip));
+	ip->option = option;
+	ip->header = craft_ip_packet_header(in);
 	if(option == 1){
 		printf("\nCrafting UDP Payload...");
-		ip_payload->data = craft_udp(in);
+		ip->data = craft_udp(in);
 	}else{
 		printf("\nCrafting TCP Payload...");
-		ip_payload->data = craft_tcp(in);
+		ip->data = craft_tcp(in);
 	}
-	return ip_payload;
+	return ip;
 }
 
-char* encapsulate_ip_payload(struct ip_payload* ip_payload){
-	char* ip = encapsulate_ip_header(ip_payload->header);
+char* encapsulate_ip(struct ip* ip){
+	char* bs = encapsulate_ip_header(ip->header);
 	char* x;
-	if(ip_payload->option == 2){
-		x = encapsulate_tcp((struct tcp*)ip_payload->data);
+	if(ip->option == 2){
+		x = encapsulate_tcp((struct tcp*)ip->data);
 	}
 	else{
-		x = encapsulate_udp((struct udp*)ip_payload->data);
+		x = encapsulate_udp((struct udp*)ip->data);
 	}
-	char *t = calloc(strlen(ip) + strlen(x),sizeof(char));
-	for(int i = 0;i<strlen(ip);i++){
-		t[i] = ip[i];
+	char *t = calloc(strlen(bs) + strlen(x),sizeof(char));
+	for(int i = 0;i<strlen(bs);i++){
+		t[i] = bs[i];
 	}
-	for(int i = strlen(ip);i<strlen(ip) + strlen(x);i++){
-		t[i] = x[i - strlen(ip)];
+	for(int i = strlen(bs);i<strlen(bs) + strlen(x);i++){
+		t[i] = x[i - strlen(bs)];
 	}
 	return t;
 }
 
-struct ip_payload* decapsulate_ip_payload(char *c,int option){
-	struct ip_payload* payload = (struct ip_payload *)malloc(sizeof(struct ip_payload));
+struct ip* decapsulate_ip(char *c,int option){
+	struct ip* payload = (struct ip *)malloc(sizeof(struct ip));
 	payload->option = option;
 	payload->header = decapsulate_ip_header(c);
 	int e = end_of_ip_header(payload->header);
@@ -68,7 +68,7 @@ struct ip_payload* decapsulate_ip_payload(char *c,int option){
 }
 
 
-void print_ip_payload(struct ip_payload* payload){
+void print_ip(struct ip* payload){
 	print_ip_header(payload->header);
 	if(payload->option == 1){
 		print_udp(payload->data);
