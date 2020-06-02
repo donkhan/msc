@@ -1,2 +1,21 @@
-demo: *.o
-	gcc  -o demo *.o
+obj/lib.o	: src/lib.c include/lib.h
+	gcc -Iinclude	-c src/lib.c -o obj/lib.o
+	
+obj/udp.o	: src/udp.c include/udp.h include/udp_header.h
+	gcc -Iinclude	-c src/udp.c src/udp_header.c -o obj/udp.o
+
+obj/tcp.o	: src/tcp.c include/tcp.h include/tcp_header.h
+	gcc -Iinclude	-c src/tcp.c src/tcp_header.c -o obj/tcp.o
+
+obj/eth.o	: src/eth.c include/eth_header.h include/eth.h
+	gcc -Iinclude	-c src/eth_header.c src/eth.c -o obj/eth.o
+
+obj/ip.o	: src/ip.c include/ip_header.h include/ip.h
+	gcc -Iinclude	-c src/ip_header.c src/ip.c -o obj/ip.o
+
+obj/demo.o	: src/demo.c
+	gcc -Iinclude -c src/demo.c -o obj/demo.o
+	
+demo:	obj/demo.o obj/lib.o obj/udp.o obj/ip.o  obj/tcp.o  obj/eth.o
+	gcc -o demo obj/*.o
+	
