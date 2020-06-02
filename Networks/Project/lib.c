@@ -67,8 +67,8 @@ char* pluck(char *src,int pos, int length){
 void print_bytes(char *s){
 	int bytes = 0;
 	int length = strlen(s);
-	printf("\nBinary: %s Length %d ",s,length);
-	printf("\nOctet Split: \n");
+	printf("\nBinary: %s (%d) bits ",s,length);
+	printf("\nByte Split: ");
 	for(int i = 0;i<length;i++){
 		if(i%8 == 0 && i != 0){
 			printf(",");
@@ -76,6 +76,7 @@ void print_bytes(char *s){
 		}
 		printf("%c",s[i]);
 	}
+	printf(" (%d) Bytes",bytes+1);
 	printf("\n");
 }
 

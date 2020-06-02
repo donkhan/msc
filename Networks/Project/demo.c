@@ -5,6 +5,8 @@
 #include "lib.h"
 #include "udp.h"
 #include "tcp.h"
+#include "ip.h"
+#include "eth.h"
 
 
 void printOption(char *message) {
@@ -13,7 +15,7 @@ void printOption(char *message) {
 
 int get_transport_option(){
 	int option = 1;
-	//option = get_int_input_new("Transport 1-UDP 2-TCP",option);
+	option = get_int_input_new("Transport 1-UDP 2-TCP",option);
 	return option;
 }
 
@@ -93,11 +95,6 @@ void tcp_decapsulation() {
 	print_tcp(tcp);
 }
 
-
-/*
-
-
-
 void ip_encapsulation() {
 	int option = get_transport_option();
 	struct ip *ip = get_sample_ip(option);
@@ -107,6 +104,14 @@ void ip_encapsulation() {
 	print_ip(ip);
 	save(bs, ".ip");
 }
+
+void ip_decapsulation() {
+	int option = get_transport_option();
+	char *bs = read(".ip");
+	struct ip *ip = decapsulate_ip(bs,option);
+	print_ip(ip);
+}
+
 
 void eth_encapsulation() {
 	int option = get_transport_option();
@@ -118,6 +123,7 @@ void eth_encapsulation() {
 	save(bs, ".eth");
 }
 
+
 void eth_decapsulation() {
 	int option = get_transport_option();
 	char *bs = read(".eth");
@@ -126,26 +132,17 @@ void eth_decapsulation() {
 }
 
 
-void ip_decapsulation() {
-	int option = get_transport_option();
-	char *bs = read(".ip");
-	struct ip *ip = decapsulate_ip(bs,option);
-	print_ip(ip);
-}
 
 void craft(){
-	//printf("\nCrafting Packet. Default Values will be shown. Type c to change it. If you want to retain the value, type e. \n");
 	print_start("Crafting Packet");
 	int option = get_transport_option();
-	struct eth* eth = craft_eth(option,1);
+	struct eth* eth = craft_eth(1,option);
 	print_end("Crafting Over");
-	print_eth(eth,option);
 	char *bs = encapsulate_eth(eth,1);
 	eth = decapsulate_eth(bs,option);
 	print_eth(eth,option);
 	save(bs, ".eth");
 }
-*/
 
 int main() {
 	int option;
@@ -157,9 +154,9 @@ int main() {
 				"\n4-TCP Decapsulation "
 				"\n5-IP Encapsulation"
 				"\n6-IP Decapsulation "
-				"\n7-Craft"
-				"\n8-Ethernet Encapsulation"
-				"\n9-Ethernet Decapsulation"
+				"\n7-Ethernet Encapsulation"
+				"\n8-Ethernet Decapsulation"
+				"\n9-Craft"
 				"\n10-Quit."
 				"\n");
 		scanf("%d", &option);
@@ -177,7 +174,6 @@ int main() {
 		case 4:
 			tcp_decapsulation();
 			break;
-		/*
 		case 5:
 			ip_encapsulation();
 			break;
@@ -185,15 +181,14 @@ int main() {
 			ip_decapsulation();
 			break;
 		case 7:
-			craft();
-			break;
-		case 8:
 			eth_encapsulation();
 			break;
-		case 9:
+		case 8:
 			eth_decapsulation();
 			break;
-		*/
+		case 9:
+			craft();
+			break;
 		case 10:
 			printf("Quitting the Demo... Bye\n");
 			flag = 0;
