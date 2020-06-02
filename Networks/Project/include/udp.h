@@ -2,7 +2,7 @@
 #define XINC
 struct udp{
 	struct udp_header* header;
-	void* data;
+	char* data;
 };
 
 struct udp* get_sample_udp();

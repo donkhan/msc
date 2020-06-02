@@ -21,5 +21,9 @@ char* get_6_octets(char* mac);
 char* get_hex_char(char *x);
 char* toHEX(char *string);
 
+int get_int_input_between(char* field,int old_value,int min,int max);
+char* get_string_input_with_valid_check(char * field, char *old_value,char *type);
+
+int is_valid(const char* input,char *type);
 
 #endif

@@ -2,7 +2,7 @@
 #define TCP
 struct tcp{
 	struct tcp_header* header;
-	void* data;
+	char* data;
 };
 
 struct tcp* get_sample_tcp();
