@@ -1,14 +1,11 @@
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
+
 #include "lib.h"
-#include "tcp_header.h"
-#include "tcp.h"
-#include "udp_header.h"
 #include "udp.h"
-#include "ip_header.h"
-#include "ip.h"
-#include "eth_header.h"
-#include "eth.h"
+#include "tcp.h"
+
 
 void printOption(char *message) {
 	printf("%s\nEnter Your Choice:  ", message);
@@ -66,18 +63,8 @@ char* read(char *ext) {
 	return bs;
 }
 
-
-void tcp_encapsulation() {
-	struct tcp *tcp = get_sample_tcp();
-	print_tcp(tcp);
-	char *bs = encapsulate_tcp(tcp);
-	tcp = decapsulate_tcp(bs);
-	print_tcp(tcp);
-	save(bs, ".tcp");
-}
-
 void udp_encapsulation() {
-	struct udp *udp = craft_udp(1);
+	struct udp* udp = craft_udp(1);
 	char *bs = encapsulate_udp(udp);
 	print_udp(udp);
 	udp = decapsulate_udp(bs);
@@ -90,6 +77,26 @@ void udp_decapsulation() {
 	struct udp *udp = decapsulate_udp(bs);
 	print_udp(udp);
 }
+
+void tcp_encapsulation() {
+	struct tcp *tcp = craft_tcp(1);
+	print_tcp(tcp);
+	char *bs = encapsulate_tcp(tcp);
+	tcp = decapsulate_tcp(bs);
+	print_tcp(tcp);
+	save(bs, ".tcp");
+}
+
+void tcp_decapsulation() {
+	char *bs = read(".tcp");
+	struct tcp *tcp = decapsulate_tcp(bs);
+	print_tcp(tcp);
+}
+
+
+/*
+
+
 
 void ip_encapsulation() {
 	int option = get_transport_option();
@@ -118,11 +125,6 @@ void eth_decapsulation() {
 	print_eth(eth,option);
 }
 
-void tcp_decapsulation() {
-	char *bs = read(".tcp");
-	struct tcp *tcp = decapsulate_tcp(bs);
-	print_tcp(tcp);
-}
 
 void ip_decapsulation() {
 	int option = get_transport_option();
@@ -143,16 +145,16 @@ void craft(){
 	print_eth(eth,option);
 	save(bs, ".eth");
 }
-
+*/
 
 int main() {
 	int option;
 	int flag = 1;
 	while (flag) {
-		printOption("\n1-TCP Encapsulation "
-				"\n2-TCP Decapsulation "
-				"\n3-UDP Encapsulation"
-				"\n4-UDP Decapsulation "
+		printOption("\n1-UDP Encapsulation "
+				"\n2-UDP Decapsulation "
+				"\n3-TCP Encapsulation"
+				"\n4-TCP Decapsulation "
 				"\n5-IP Encapsulation"
 				"\n6-IP Decapsulation "
 				"\n7-Craft"
@@ -164,17 +166,18 @@ int main() {
 		printf("Selected Option %d\n", option);
 		switch (option) {
 		case 1:
-			tcp_encapsulation();
-			break;
-		case 2:
-			tcp_decapsulation();
-			break;
-		case 3:
 			udp_encapsulation();
 			break;
-		case 4:
+		case 2:
 			udp_decapsulation();
 			break;
+		case 3:
+			tcp_encapsulation();
+			break;
+		case 4:
+			tcp_decapsulation();
+			break;
+		/*
 		case 5:
 			ip_encapsulation();
 			break;
@@ -190,6 +193,7 @@ int main() {
 		case 9:
 			eth_decapsulation();
 			break;
+		*/
 		case 10:
 			printf("Quitting the Demo... Bye\n");
 			flag = 0;

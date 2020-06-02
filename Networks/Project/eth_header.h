@@ -47,11 +47,13 @@ int end_of_eth_header(struct eth_header* header){
 }
 
 struct eth_header* decapsulate_eth_header(char *c){
+	print_start("Decapsulating Ethernet Header");
 	struct eth_header* eth_header = (struct eth_header *)malloc(sizeof(struct eth_header));
 	eth_header->src_mac = calloc(17,sizeof(char));
 	eth_header->dst_mac = calloc(17,sizeof(char));
 	strcpy(eth_header->src_mac, toHEX((char*) pluck(c, 0, 48)));
 	strcpy(eth_header->dst_mac, toHEX((char*) pluck(c, 48, 48)));
+	print_start("Decapsulating Ethernet Header");
 	return eth_header;
 }
 
