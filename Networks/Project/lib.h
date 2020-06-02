@@ -63,8 +63,9 @@ char* pluck(char *src,int pos, int length){
 	return dst;
 }
 
-void print_bytes(char *s,int length){
+void print_bytes(char *s){
 	int bytes = 0;
+	int length = strlen(s);
 	printf("\nBinary: %s Length %d ",s,length);
 	printf("\nOctet Split: \n");
 	for(int i = 0;i<length;i++){
@@ -74,6 +75,7 @@ void print_bytes(char *s,int length){
 		}
 		printf("%c",s[i]);
 	}
+	printf("\n");
 }
 
 char* get_4_octets(char* a){
@@ -125,9 +127,51 @@ void print_end(char* header){
 }
 
 int get_int_input(char* field){
-	int input = 0;
+	int input;
 	printf("Enter %s : ",field);
 	scanf("%d",&input);
+	return input;
+}
+
+char get_option(){
+	int option;
+	printf(" e-continue c-change ");
+	option = fgetc(stdin);
+	while(option != 'e' && option != 'c'){
+		option = fgetc(stdin);
+	}
+	return option;
+}
+
+void gulp_go_ahead(){
+	printf("\n Press c to Continue...");
+	char option = fgetc(stdin);
+	while(option != 'c'){
+		option = fgetc(stdin);
+	}
+}
+
+int get_int_input_new(char* field,int old_value){
+	printf("%s = (%d)   ",field,old_value);
+	char option = get_option();
+	if(option == 'c'){
+		int input = old_value;
+		printf("Enter %s : ",field);
+		scanf("%d",&input);
+		return input;
+	}
+	return old_value;
+}
+
+char* get_string_input_new(char * field, char *old_value){
+	char* input = old_value;
+	printf("%s = (%s) ",field,input);
+	char option = get_option();
+	if(option == 'c'){
+		printf("Enter %s : ",field);
+		scanf("%s",input);
+		return input;
+	}
 	return input;
 }
 

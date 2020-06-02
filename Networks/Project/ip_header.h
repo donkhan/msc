@@ -53,6 +53,7 @@ int end_of_ip_header(struct ip_header *header) {
 }
 
 char* encapsulate_ip_header(struct ip_header *ip_header) {
+	print_start("Encapsulating IP Header");
 	int size = 64;
 
 	char *ip_packet = (char*) calloc(size, sizeof(char));
@@ -75,7 +76,9 @@ char* encapsulate_ip_header(struct ip_header *ip_header) {
 
 	ip_packet = strcat(ip_packet, get_4_octets(ip_header->src));
 	ip_packet = strcat(ip_packet, get_4_octets(ip_header->dst));
-
+	print_bytes(ip_packet);
+	print_start("Encapsulating IP Header");
+	gulp_go_ahead();
 	return ip_packet;
 }
 
@@ -84,15 +87,16 @@ struct ip_header* craft_ip_packet_header(int in) {
 	int input;
 	if (in) {
 		print_start("IP Header Configuration");
-		header->version = get_int_input("Version");
-		printf("Enter Source Address : ");
-		scanf("%s", header->src);
-		printf("Enter Destination Address : ");
-		scanf("%s", header->dst);
-		header->dscp = get_int_input("Differentiated Services Code Point");
-		header->ecn = get_int_input("Explicit Congestion Notification");
-		header->ttl = get_int_input("Time to Live");
-		header->protocol = get_int_input("Protocol");
+		char option = get_option();
+		if(option == 'c'){
+			header->version = get_int_input_new("version",header->version);
+			get_string_input_new("Source Address",header->src);
+			get_string_input_new("Destination Address",header->dst);
+			header->dscp = get_int_input_new("Differentiated Services Code Point",header->dscp);
+			header->ecn = get_int_input_new("Explicit Congestion Notification",header->ecn);
+			header->ttl = get_int_input_new("Time to Live",header->ttl);
+			header->protocol = get_int_input_new("Protocol",header->protocol);
+		}
 		print_end("IP Header Configuration");
 	}
 	return header;

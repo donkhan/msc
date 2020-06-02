@@ -77,6 +77,7 @@ struct tcp_header* craft_tcp_header(int in) {
 }
 
 char* encapsulate_tcp_header(struct tcp_header *tcp_header) {
+	print_start("Encapsulating TCP Packet Header");
 	int size = 160 + (tcp_header->hlen * 32);
 	char *tcp_packet = (char*) calloc(size, sizeof(char));
 	tcp_packet = strcat(tcp_packet, int_to_binary(tcp_header->src_port, 16));
@@ -100,6 +101,9 @@ char* encapsulate_tcp_header(struct tcp_header *tcp_header) {
 		tcp_packet = strcat(tcp_packet,
 				int_to_binary(tcp_header->options[i], 32));
 	}
+	print_bytes(tcp_packet);
+	print_start("Encapsulating TCP Packet Header");
+	gulp_go_ahead();
 	return tcp_packet;
 }
 

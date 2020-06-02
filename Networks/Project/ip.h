@@ -18,20 +18,20 @@ struct ip* get_sample_ip(int option){
 }
 
 struct ip* craft_ip(int option,int in){
+	printf("\nOption %d\n",option);
 	struct ip* ip = (struct ip *) malloc(sizeof(struct ip));
 	ip->option = option;
 	ip->header = craft_ip_packet_header(in);
 	if(option == 1){
-		printf("\nCrafting UDP Payload...");
 		ip->data = craft_udp(in);
 	}else{
-		printf("\nCrafting TCP Payload...");
 		ip->data = craft_tcp(in);
 	}
 	return ip;
 }
 
 char* encapsulate_ip(struct ip* ip){
+	print_start("Encapsulating IP Packet");
 	char* bs = encapsulate_ip_header(ip->header);
 	char* x;
 	if(ip->option == 2){
@@ -47,6 +47,9 @@ char* encapsulate_ip(struct ip* ip){
 	for(int i = strlen(bs);i<strlen(bs) + strlen(x);i++){
 		t[i] = x[i - strlen(bs)];
 	}
+	print_bytes(t);
+	print_end("Encapsulating IP Packet");
+	gulp_go_ahead();
 	return t;
 }
 

@@ -15,9 +15,8 @@ void printOption(char *message) {
 }
 
 int get_transport_option(){
-	int option;
-	printf("Enter the Transport Layer: \n1-UDP 2-TCP\n");
-	scanf("%d",&option);
+	int option = 1;
+	//option = get_int_input_new("Transport 1-UDP 2-TCP",option);
 	return option;
 }
 
@@ -64,7 +63,6 @@ char* read(char *ext) {
 	fp = fopen(file_name, "r");
 	fgets(bs, sz, fp);
 	fclose(fp);
-	print_bytes(bs,strlen(bs));
 	return bs;
 }
 
@@ -73,17 +71,15 @@ void tcp_encapsulation() {
 	struct tcp *tcp = get_sample_tcp();
 	print_tcp(tcp);
 	char *bs = encapsulate_tcp(tcp);
-	print_bytes(bs, strlen(bs));
 	tcp = decapsulate_tcp(bs);
 	print_tcp(tcp);
 	save(bs, ".tcp");
 }
 
 void udp_encapsulation() {
-	struct udp *udp = get_sample_udp();
+	struct udp *udp = craft_udp(1);
 	char *bs = encapsulate_udp(udp);
 	print_udp(udp);
-	print_bytes(bs, strlen(bs));
 	udp = decapsulate_udp(bs);
 	print_udp(udp);
 	save(bs, ".udp");
@@ -100,7 +96,6 @@ void ip_encapsulation() {
 	struct ip *ip = get_sample_ip(option);
 	char *bs = encapsulate_ip(ip);
 	print_ip(ip);
-	print_bytes(bs, strlen(bs));
 	ip = decapsulate_ip(bs,option);
 	print_ip(ip);
 	save(bs, ".ip");
@@ -111,7 +106,6 @@ void eth_encapsulation() {
 	struct eth *eth = get_sample_eth(option);
 	char *bs = encapsulate_eth(eth,option);
 	print_eth(eth,option);
-	print_bytes(bs, strlen(bs));
 	eth = decapsulate_eth(bs,option);
 	print_eth(eth,option);
 	save(bs, ".eth");
@@ -138,12 +132,13 @@ void ip_decapsulation() {
 }
 
 void craft(){
-	printf("\nCrafting...\n");
+	//printf("\nCrafting Packet. Default Values will be shown. Type c to change it. If you want to retain the value, type e. \n");
+	print_start("Crafting Packet");
 	int option = get_transport_option();
 	struct eth* eth = craft_eth(option,1);
+	print_end("Crafting Over");
 	print_eth(eth,option);
 	char *bs = encapsulate_eth(eth,1);
-	print_bytes(bs, strlen(bs));
 	eth = decapsulate_eth(bs,option);
 	print_eth(eth,option);
 	save(bs, ".eth");
@@ -161,8 +156,8 @@ int main() {
 				"\n5-IP Encapsulation"
 				"\n6-IP Decapsulation "
 				"\n7-Craft"
-				"\n8-Eth Encapsulation"
-				"\n9-Eth Decapsulation"
+				"\n8-Ethernet Encapsulation"
+				"\n9-Ethernet Decapsulation"
 				"\n10-Quit."
 				"\n");
 		scanf("%d", &option);

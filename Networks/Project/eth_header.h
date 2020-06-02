@@ -18,6 +18,7 @@ struct eth_header* get_sample_eth_header(){
 
 struct eth_header* craft_eth_header(int in){
 	struct eth_header* eth_header = get_sample_eth_header();
+	in = 0;
 	if(in){
 		print_start("ETH HEADER CONFIGURATION");
 		printf("Source MAC...");
@@ -30,10 +31,14 @@ struct eth_header* craft_eth_header(int in){
 }
 
 char* encapsulate_eth_header(struct eth_header* eth_header){
+	print_start("Encapsulating Ethernet Header");
 	int size = 96;
 	char *eth_packet = (char *)calloc(size,sizeof(char));
 	eth_packet = strcat(eth_packet, get_6_octets(eth_header->src_mac));
 	eth_packet = strcat(eth_packet, get_6_octets(eth_header->dst_mac));
+	print_bytes(eth_packet);
+	print_end("Encapsulating Ethernet Header");
+	gulp_go_ahead();
 	return eth_packet;
 }
 

@@ -12,17 +12,22 @@ struct udp* get_sample_udp(){
 
 
 char* encapsulate_udp(struct udp* udp){
+	print_start("Encapsulating UDP Packet");
 	char* bs = encapsulate_udp_header(udp->header);
 	char *data = udp->data;
 	int no_of_chars = strlen(data);
 	for(int i = 0;i<no_of_chars;i++){
 		bs = strcat(bs,int_to_binary(data[i],8));
 	}
+	print_bytes(bs);
+	print_end("Encapsulating UDP Packet");
+	gulp_go_ahead();
 	return bs;
 }
 
 
 struct udp* decapsulate_udp(char *c){
+	print_start("Decapsulating UDP Packet");
 	struct udp* payload = (struct udp *)malloc(sizeof(struct udp));
 	payload->header = decapsulate_udp_header(c);
 	int e = end_of_udp_header(payload->header);
@@ -35,6 +40,8 @@ struct udp* decapsulate_udp(char *c){
 		string[i] = (char)fromBinary(p);
 	}
 	payload->data = string;
+	print_end("Decapsulating UDP Packet");
+	//gulp_go_ahead();
 	return payload;
 }
 

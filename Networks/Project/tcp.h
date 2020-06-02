@@ -22,12 +22,16 @@ struct tcp* craft_tcp(int in){
 
 
 char* encapsulate_tcp(struct tcp* tcp){
+	print_start("Encapsulating IP Packet");
 	char* bs = encapsulate_tcp_header(tcp->header);
 	char *data = tcp->data;
 	int no_of_chars = strlen(data);
 	for(int i = 0;i<no_of_chars;i++){
 		bs = strcat(bs,int_to_binary(data[i],8));
 	}
+	print_bytes(bs);
+	print_end("Encapsulating IP Packet");
+	gulp_go_ahead();
 	return bs;
 }
 
