@@ -19,9 +19,11 @@ struct udp_header* craft_udp_header(int in){
 		print_start("UDP Header Configuration");
 		print_udp_header(udp_header);
 		char option = get_option();
+		printf("Option %d\n",option);
 		if (option == 'c') {
 			udp_header->src_port = get_int_input_between("Source Port",udp_header->src_port,0,65536);
-			udp_header->dst_port = get_int_input_between("Destination Port",udp_header->dst_port,0,65536);		}
+			udp_header->dst_port = get_int_input_between("Destination Port",udp_header->dst_port,0,65536);
+		}
 		print_end("UDP Header Configuration");
 	}
 	return udp_header;

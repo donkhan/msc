@@ -3,6 +3,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include "convert.h"
 
 struct eth_header* get_sample_eth_header(){
 	struct eth_header* eth_header = (struct eth_header *) malloc(sizeof(struct eth_header));

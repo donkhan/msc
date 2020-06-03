@@ -1,5 +1,6 @@
 #include "tcp.h"
 #include "tcp_header.h"
+#include "convert.h"
 #include "lib.h"
 
 #include <stdio.h>
@@ -17,8 +18,8 @@ struct tcp* get_sample_tcp(){
 
 struct tcp* craft_tcp(int in){
 	struct tcp* tcp = get_sample_tcp();
-	tcp->header = craft_tcp_header(in);
 	if(in){
+		tcp->header = craft_tcp_header(in);
 		tcp->data = (void *)get_application_payload();
 	}
 	return tcp;

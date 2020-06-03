@@ -1,5 +1,6 @@
 #include "tcp_header.h"
 #include "lib.h"
+#include "convert.h"
 
 #include <stdio.h>
 #include <string.h>
@@ -36,7 +37,7 @@ struct tcp_header* get_sample_tcp_header() {
 
 struct tcp_header* craft_tcp_header(int in) {
 	struct tcp_header *tcp_header = get_sample_tcp_header();
-	if (in) {
+	if(in) {
 		print_start("TCP Header Configuration");
 		print_tcp_header(tcp_header);
 		char option = get_option();

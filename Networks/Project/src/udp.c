@@ -16,8 +16,8 @@ struct udp* get_sample_udp(){
 
 struct udp* craft_udp(int in){
 	struct udp* udp = get_sample_udp();
-	udp->header = craft_udp_header(in);
 	if(in){
+		udp->header = craft_udp_header(in);
 		udp->data = (void *)get_string_input_new("Application Data",udp->data);
 	}
 	return udp;

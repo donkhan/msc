@@ -66,7 +66,7 @@ char* read(char *ext) {
 }
 
 void udp_encapsulation() {
-	struct udp* udp = craft_udp(1);
+	struct udp* udp = get_sample_udp();
 	char *bs = encapsulate_udp(udp);
 	print_udp(udp);
 	udp = decapsulate_udp(bs);
@@ -81,7 +81,7 @@ void udp_decapsulation() {
 }
 
 void tcp_encapsulation() {
-	struct tcp *tcp = craft_tcp(1);
+	struct tcp *tcp = get_sample_tcp(1);
 	print_tcp(tcp);
 	char *bs = encapsulate_tcp(tcp);
 	tcp = decapsulate_tcp(bs);
@@ -97,7 +97,7 @@ void tcp_decapsulation() {
 
 void ip_encapsulation() {
 	int option = get_transport_option();
-	struct ip *ip = craft_ip(option,1);
+	struct ip *ip = get_sample_ip(option);
 	char *bs = encapsulate_ip(ip);
 	print_ip(ip);
 	ip = decapsulate_ip(bs,option);
@@ -115,7 +115,7 @@ void ip_decapsulation() {
 
 void eth_encapsulation() {
 	int option = get_transport_option();
-	struct eth *eth = craft_eth(option,1);
+	struct eth *eth = get_sample_eth(option);
 	char *bs = encapsulate_eth(eth,option);
 	print_eth(eth,option);
 	eth = decapsulate_eth(bs,option);
@@ -146,6 +146,7 @@ void craft(){
 
 int main() {
 	printf("Packet Encapsulation/Decapsulation Project \n");
+	printf("Type e to continue with the default values and c to change it");
 	int option;
 	int flag = 1;
 	while (flag) {
