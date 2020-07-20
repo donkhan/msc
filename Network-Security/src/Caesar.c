@@ -1,43 +1,34 @@
-/*
- * Caesar.c
- *
- *  Created on: 20-Jul-2020
- *      Author: kkhan
- */
-
-#include<string.h>
-#include<stdio.h>
-#include<stdlib.h>
 #include "caesar.h"
+#include <stdlib.h>
+#include <string.h>
 
-char* encrypt(char* plain_text,int k){
+char* caesar_encryption(char* plain_text,int k){
 	char* cipher_text = (char *)malloc(sizeof(char) * strlen(plain_text));
 	for(int i = 0;i<strlen(plain_text);i++){
-		int mod = (plain_text[i] - 'A' + k) % 26;
-		cipher_text[i] = 'A' + mod;
+		char p = plain_text[i];
+		if(p >= 'A' && p <='Z'){
+			cipher_text[i] = 'A' + (p - 65 + k) % 26;
+		}
+		else{
+			cipher_text[i] = plain_text[i];
+		}
 	}
 	return cipher_text;
 }
 
-char* decrypt(char* cipher_text,int k){
+char* caesar_decryption(char* cipher_text,int k){
 	char* plain_text = (char *)malloc(sizeof(char) * strlen(cipher_text));
 	for(int i = 0;i<strlen(cipher_text);i++){
-		int mod = (cipher_text[i] - 'A' - k) % 26;
-		plain_text[i] = 'A' + mod;
+		char c = cipher_text[i];
+		if(c >= 'A' && c <= 'Z'){
+			c = c - 65 - k;
+			while(c < 0){
+				c = c + 26;
+			}
+			plain_text[i] = 'A' + c % 26;
+		}else{
+			plain_text[i] = cipher_text[i];
+		}
 	}
 	return plain_text;
 }
-
-int main(){
-	char i[10],*p,*c;
-	int k;
-	printf("Please Enter Plain Text:");
-	scanf("%s",i);
-	printf("Enter K: ");
-	scanf("%d",&k);
-	c = encrypt(i,k);
-	printf("Cipher Text %s\n",c);
-	p = decrypt(c,k);
-	printf("Plain Text %s\n",p);
-}
-

@@ -5,8 +5,11 @@
  *      Author: kkhan
  */
 
+#ifndef caesar
+#define caesar
 
 
-char* encryption(char* plain_text,int k);
-char* decryption(char* cipher_text,int k);
+char* caesar_encryption(char* plain_text,int k);
+char* caesar_decryption(char* cipher_text,int k);
 
+#endif
