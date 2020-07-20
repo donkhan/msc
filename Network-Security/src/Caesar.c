@@ -1,13 +1,14 @@
 #include "caesar.h"
 #include <stdlib.h>
 #include <string.h>
+#define offset 0
 
 char* caesar_encryption(char* plain_text,int k){
 	char* cipher_text = (char *)malloc(sizeof(char) * strlen(plain_text));
 	for(int i = 0;i<strlen(plain_text);i++){
 		char p = plain_text[i];
 		if(p >= 'A' && p <='Z'){
-			cipher_text[i] = 'A' + (p - 65 + k) % 26;
+			cipher_text[i] = 'A' + (p -offset + k) % 26;
 		}
 		else{
 			cipher_text[i] = plain_text[i];
@@ -21,7 +22,7 @@ char* caesar_decryption(char* cipher_text,int k){
 	for(int i = 0;i<strlen(cipher_text);i++){
 		char c = cipher_text[i];
 		if(c >= 'A' && c <= 'Z'){
-			c = c - 65 - k;
+			c = c  -offset -k;
 			while(c < 0){
 				c = c + 26;
 			}
